@@ -34,6 +34,6 @@ public class Main extends Application {
 		ArbitroDAOImpl arbitroDAOImpl = new ArbitroDAOImpl();
 		arbitroDAOImpl.inserir(arbitro);
 		arbitroDAOImpl.listar();
-		System.out.println("Oi!");
+		System.out.println("Ola!");
 	}
 }

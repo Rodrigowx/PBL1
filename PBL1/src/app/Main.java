@@ -35,5 +35,6 @@ public class Main extends Application {
 		arbitroDAOImpl.inserir(arbitro);
 		arbitroDAOImpl.listar();
 		System.out.println("Ola!");
+		System.out.println("bom dia");
 	}
 }

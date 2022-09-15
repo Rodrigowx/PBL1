@@ -14,7 +14,7 @@ public class Arbitro {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {

@@ -22,7 +22,23 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 	@Override
 	public Arbitro excluir(String nomeArbitro) {
-		// TODO Auto-generated method stub
+		
+		/* O método excluir funciona de uma maneira parecida com o método editar,
+		 * mas ele exclui o objeto da lista Árbitro ao encontrá-lo.
+		 * E retorna o nome do Árbitro que foi excluído. 
+		 * Caso não encontre, retorna NULL. */
+		
+		for (int i = 0; i < listaArbitro.size(); i++) {
+			
+			if (listaArbitro.get(i).getNome() == nomeArbitro) {
+				
+				Arbitro objArbitro = listaArbitro.get(i); //puxa da lista o objeto que será excluído para o retorno 
+				listaArbitro.remove(i);
+				
+				return objArbitro;
+			}
+		}
+		
 		return null;
 	}
 

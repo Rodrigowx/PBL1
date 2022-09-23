@@ -5,12 +5,27 @@ public class JogadorDAOImpl implements JogadorDAO{
 	
 	Scanner scan = new Scanner(System.in); 
 	Map<String, Jogador> mapJogadores = new HashMap<String, Jogador>(); //Lista para armazenar os objetos Jogador
-
+	public static List<String> nomesJogadores = new ArrayList<String>();
+	
+	
+	public static boolean checarNome(String nome) {
+		if (nomesJogadores.isEmpty()) {
+			return false;
+		}else {
+			if(nomesJogadores.contains(nome)) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
+	
 	@Override
 	public boolean inserir(Jogador jogador) {
 		
 		mapJogadores.put(jogador.getCodJog(), jogador);
 		//fazer verificação caso haja erro aqui
+		nomesJogadores.add(jogador.getNome());
 		
 		return true;
 	}

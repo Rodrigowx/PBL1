@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -24,16 +23,38 @@ public class Main extends Application {
 		}
 	}
 	
+	public static boolean checarNome(String nome, List<String> nomes){
+		if (nomes.isEmpty()) {
+			return false;
+		}else {
+			if(nomes.contains(nome)) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		//launch(args);
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Digite nome do arbitro");
-		Arbitro arbitro = new Arbitro();
-		arbitro.setNome(scan.nextLine());
-		System.out.println(arbitro.getNome());
-		ArbitroDAOImpl arbitroDAOImpl = new ArbitroDAOImpl();
-		arbitroDAOImpl.inserir(arbitro);
-		arbitroDAOImpl.listar();
-		System.out.println("Ola!");
+		String teste = "Rodrigo";
+		
+		if(ArbitroDAOImpl.checarNome(teste)) {
+			System.out.println("Nome ja cadastrado");
+		}else{
+		Arbitro novo = new Arbitro(teste);
+		ArbitroDAOImpl.nomesArbitros.add(teste);
+		System.out.println("Arbitro criado");
+		}
+		
+		if(ArbitroDAOImpl.checarNome(teste)) {
+			System.out.println("Nome ja cadastrado");
+		}else{
+		Arbitro novo = new Arbitro(teste);
+		ArbitroDAOImpl.nomesArbitros.add(teste);
+		System.out.println("Arbitro criado");
+		}
+		
 	}
 }

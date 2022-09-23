@@ -4,13 +4,25 @@ import java.util.*;
 
 public class SelecaoDAOImpl implements SelecaoDAO {
 
-	ArrayList<Selecao> listaSelecoes = new ArrayList<>(); 
+	ArrayList<Selecao> listaSelecoes = new ArrayList<>();
+	public static List<String> nomesSelecao = new ArrayList<String>();
 	
+	public static boolean checarNome(String nome) {
+		if (nomesSelecao.isEmpty()) {
+			return false;
+		}else {
+			if(nomesSelecao.contains(nome)) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
 	@Override
 	public boolean inserir(Selecao selecao) {
 		
 		listaSelecoes.add(selecao); //**
-		
+		nomesSelecao.add(selecao.getNome());
 		return true;
 	}
 

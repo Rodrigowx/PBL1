@@ -5,10 +5,24 @@ import java.util.*;
 public class TecnicoDAOImpl implements TecnicoDAO {
 	
 	ArrayList<Tecnico> listaTecnicos = new ArrayList<>();
+	public static List<String> nomesTecnico = new ArrayList<String>();
+	
+	public static boolean checarNome(String nome) {
+		if (nomesTecnico.isEmpty()) {
+			return false;
+		}else {
+			if(nomesTecnico.contains(nome)) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
 
 	@Override
 	public boolean inserir(Tecnico tecnico) {
 		this.listaTecnicos.add(tecnico);
+		nomesTecnico.add(tecnico.getNome());
 		return true;
 	}
 	

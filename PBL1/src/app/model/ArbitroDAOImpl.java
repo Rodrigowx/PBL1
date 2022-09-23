@@ -6,17 +6,36 @@ import java.util.*;
 public class ArbitroDAOImpl implements ArbitroDAO {
 	
 	ArrayList<Arbitro> listaArbitro = new ArrayList<>(); //Lista para o armazenamento dos Arbitros cadastrados PRECISA DO PUBLIC AQUI?
+	public static List<String> nomesArbitros = new ArrayList<String>();
 	
+	
+	public static boolean checarNome(String nome) {
+		if (nomesArbitros.isEmpty()) {
+			return false;
+		}else {
+			if(nomesArbitros.contains(nome)) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
 	
 	@Override
 	public boolean inserir(Arbitro arbitro) {
-			listaArbitro.add(arbitro);
+		listaArbitro.add(arbitro);
+		nomesArbitros.add(arbitro.getNome());
 		return true;
 	}
 
 	@Override
-	public boolean editar(Arbitro arbitro) {
-		
+	public boolean editar(String nome1, String nome2 ) {
+		for(Arbitro atual : listaArbitro) {
+			if(atual.getNome() == nome1) {
+				atual.setNome(nome2);
+				return true;
+			}
+		}
 		return false;
 	}
 

@@ -18,6 +18,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			}
 		}
 	}
+	
 	@Override
 	public boolean inserir(Selecao selecao) {
 		

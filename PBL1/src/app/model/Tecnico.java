@@ -4,6 +4,10 @@ public class Tecnico {
 	
 	//ATRIBUTO
 	private String nome;
+	
+	public Tecnico(String nome) {
+		this.nome = nome;
+	}
 		
 	//METODOS
 	public String toString() {

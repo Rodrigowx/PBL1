@@ -65,9 +65,9 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	}
 
 	@Override
-	public void listar() {
+	public void listar(Tecnico tecnico) {
 		for(int i = 0; i < listaTecnicos.size(); i++) {
-			System.out.println(listaTecnicos.get(i).getNome()); //for para percorrer e listar o nome cada Técnico da lista
+			System.out.println(listaTecnicos.get(i).getNome()); //loop para percorrer e listar o nome cada Técnico da lista
 		}
 	}
 

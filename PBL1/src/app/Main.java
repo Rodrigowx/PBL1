@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
+import java.text.SimpleDateFormat;
+
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
@@ -38,23 +40,10 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		//launch(args);
 		Scanner scan = new Scanner(System.in);
-		String teste = "Rodrigo";
+		Date data = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
 		
-		if(ArbitroDAOImpl.checarNome(teste)) {
-			System.out.println("Nome ja cadastrado");
-		}else{
-		Arbitro novo = new Arbitro(teste);
-		ArbitroDAOImpl.nomesArbitros.add(teste);
-		System.out.println("Arbitro criado");
-		}
-		
-		if(ArbitroDAOImpl.checarNome(teste)) {
-			System.out.println("Nome ja cadastrado");
-		}else{
-		Arbitro novo = new Arbitro(teste);
-		ArbitroDAOImpl.nomesArbitros.add(teste);
-		System.out.println("Arbitro criado");
-		}
+		System.out.println(sdf.format(data));
 		
 	}
 }

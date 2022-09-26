@@ -11,11 +11,9 @@ public class Selecao {
 	
 	
 	//CONSTRUTOR
-	public Selecao(String nome, List<Jogador> jogadores, Tecnico tecnico) {
+	public Selecao(String nome) {
 		super();
 		this.nome = nome;
-		this.jogadores = jogadores;
-		this.tecnico = tecnico;
 	}
 
 	//METODOS

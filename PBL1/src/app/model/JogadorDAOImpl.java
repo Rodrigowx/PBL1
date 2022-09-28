@@ -3,11 +3,11 @@ import java.util.*;
 
 public class JogadorDAOImpl implements JogadorDAO{
 	
-	Scanner scan = new Scanner(System.in); 
-	Map<String, Jogador> mapJogadores = new HashMap<String, Jogador>(); //Lista para armazenar os objetos Jogador
-	public static List<String> nomesJogadores = new ArrayList<String>();
+	private static Scanner scan = new Scanner(System.in); 
+	private static Map<String, Jogador> mapJogadores = new HashMap<String, Jogador>(); //Lista para armazenar os objetos Jogador
+	private static List<String> nomesJogadores = new ArrayList<String>();
 	
-	
+	//------------------------------------------------------------------------
 	public static boolean checarNome(String nome) {
 		if (nomesJogadores.isEmpty()) {
 			return false;
@@ -19,6 +19,16 @@ public class JogadorDAOImpl implements JogadorDAO{
 			}
 		}
 	}
+	
+	//------------------------------------------------------------------------
+	public static Map<String, Jogador> getMap(){
+		return mapJogadores;
+	}
+		
+	public static List<String> getLista(){
+		return nomesJogadores;
+	}
+	//------------------------------------------------------------------------
 	
 	@Override
 	public boolean inserir(Jogador jogador) {

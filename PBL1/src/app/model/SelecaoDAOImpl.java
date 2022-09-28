@@ -4,10 +4,12 @@ import java.util.*;
 
 public class SelecaoDAOImpl implements SelecaoDAO {
 
-	ArrayList<Selecao> listaSelecoes = new ArrayList<>();
-	public static List<String> nomesSelecao = new ArrayList<String>();
+	private static ArrayList<Selecao> listaSelecoes = new ArrayList<>();
+	private static List<String> nomesSelecao = new ArrayList<String>();
 	
-	public static boolean checarNome(String nome) {
+	
+	//------------------------------------------------------------------------
+	public boolean checarNome(String nome) {
 		if (nomesSelecao.isEmpty()) {
 			return false;
 		}else {
@@ -18,6 +20,52 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			}
 		}
 	}
+	//------------------------------------------------------------------------
+	public static Selecao verificaTecnico(String nomeSelecao) {
+		
+		/*comentar aqui*/
+		
+		for (Selecao atual : listaSelecoes) {
+			if (atual.getNome().equals(nomeSelecao)) {
+				if (atual.getTecnico() == null) {
+					return atual;
+				}
+			}
+		}
+		return null;
+	}
+	//------------------------------------------------------------------------
+	
+	public Selecao verificaSelecao (String nomeSelecao) {
+		
+		/*escrever aqui pra que serve isso: verificar 
+		 * se a seleção informada pelo usuário existe na lista e retorná-la
+		 * pra adicionar o jogador e o tecnico no objeto seleçao deles */
+		
+		if (nomesSelecao.contains(nomeSelecao)) {
+			
+			for (Selecao selecao : listaSelecoes) {
+				
+				if (selecao.getNome().equals(nomeSelecao)) {//buscando a seleção na lista
+					return selecao;
+				}
+			}
+			
+		}else {
+			return null;
+		}
+		return null;
+	}
+	
+	//------------------------------------------------------------------------
+	public ArrayList<Selecao> getLista1(){
+		return listaSelecoes;
+	}
+	
+	public List<String> getLista2(){
+		return nomesSelecao;
+	}
+	//------------------------------------------------------------------------
 	
 	@Override
 	public boolean inserir(Selecao selecao) {

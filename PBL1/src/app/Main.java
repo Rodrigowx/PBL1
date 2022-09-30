@@ -202,8 +202,8 @@ public class Main extends Application {
 						
 						if (SelecaoDAO.verificaSelecao(selecaoTec) != null) { //verifica se o nome está na lista de Seleções
 							
-							if (selecaoAtual == null) { //verifica se essa seleção já tem tecnico
-								System.out.println("NEssa Selecao ja possui um tecnico! Digite o nome de outra Selecao: ");
+							if (selecaoAtual.getTecnico() != null) { //verifica se essa seleção já tem tecnico
+								System.out.println("Nessa Selecao ja possui um tecnico! Digite o nome de outra Selecao: ");
 								selecaoTec = read.next();
 								
 							}else { //se não, sai do loop, cria o objeto Técnico e adiciona esse Técnico em sua Seleção

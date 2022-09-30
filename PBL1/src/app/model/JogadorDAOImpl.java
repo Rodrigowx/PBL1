@@ -21,11 +21,11 @@ public class JogadorDAOImpl implements JogadorDAO{
 	}
 	
 	//------------------------------------------------------------------------
-	public static Map<String, Jogador> getMap(){
+	public Map<String, Jogador> getMap(){
 		return mapJogadores;
 	}
 		
-	public static List<String> getLista(){
+	public List<String> getLista(){
 		return nomesJogadores;
 	}
 	//------------------------------------------------------------------------
@@ -55,34 +55,59 @@ public class JogadorDAOImpl implements JogadorDAO{
 			
 			if (opcaoMenu == 1) { //EDITA NOME
 				
-				
+				System.out.println("Informe o novo nome: ");
 				String novoNome = scan.nextLine();
 				mapJogadores.get(idJogador).setNome(novoNome);//FAZER VERIFICAÇÃO DE ERRO DE TODOS
-				
+				System.out.println("Nome editado com sucesso!");
 				
 			}else if (opcaoMenu == 2) { //EDITA POSIÇÃO
 				
-				
-				String novaPosic = scan.nextLine();
-				mapJogadores.get(idJogador).setPosicao(novaPosic);
+				System.out.println("\n -> Escolha qual a posicao do Jogador: ");
+				System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
+				int novaPosic = scan.nextInt();
+				String posicao = null;
+				while (posicao == null) {
+					switch (novaPosic) {
+					case 1:
+						posicao = "Goleiro";
+						break;
+					case 2:
+						posicao = "Zagueiro";
+						break;
+					case 3:
+						posicao = "Meia";
+						break;
+					case 4:
+						posicao = "Atacante";
+						break;
+					default:
+						System.out.println("Escolha uma posicao valida!");
+						novaPosic = scan.nextInt();
+					}
+				}
+				mapJogadores.get(idJogador).setPosicao(posicao);
+				System.out.println("Posicao alterada com sucesso!");
 				
 			}else if (opcaoMenu == 3) { //EDITA CARTÕES AMARELO
 				
-				
+				System.out.println("Informe a nova quantidade de cartoes amarelos: ");
 				Integer novoCartA = scan.nextInt();
 				mapJogadores.get(idJogador).setCartAmarelo(novoCartA);
+				System.out.println("Cartao alterado com sucesso!");
 				
 			}else if (opcaoMenu == 4) { //EDITA CARTÕES VERMELHO
 				
-				
+				System.out.println("Informe a nova quantidade de cartoes vermelhos: ");
 				Integer novoCartV = scan.nextInt();
 				mapJogadores.get(idJogador).setCartVermelho(novoCartV);
+				System.out.println("Cartao alterado com sucesso!");
 				
 			}else if (opcaoMenu == 5) { //EDITA QUANTIDADE DE GOLS
 				
-				
+				System.out.println("Informe a nova quantidade de gols: ");
 				Integer novoGols = scan.nextInt();
 				mapJogadores.get(idJogador).setGols(novoGols);
+				System.out.println("Gols alterado com sucesso!");
 				
 			}
 			return true;

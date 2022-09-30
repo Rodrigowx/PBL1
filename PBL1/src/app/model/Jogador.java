@@ -9,10 +9,12 @@ public class Jogador {
 	private Integer cartAmarelo;
 	private Integer cartVermelho;
 	private Integer gols;
+	private Selecao selecao;
 	
+
 	//CONSTRUTOR
 	public Jogador(String codJog, String nome, String posicao, Integer cartAmarelo, Integer cartVermelho,
-			Integer gols) {
+			Integer gols, Selecao selecao) {
 		super();
 		this.codJog = codJog;
 		this.nome = nome;
@@ -20,6 +22,7 @@ public class Jogador {
 		this.cartAmarelo = cartAmarelo;
 		this.cartVermelho = cartVermelho;
 		this.gols = gols;
+		this.selecao = selecao;
 	}
 	
 	//MÉTODOS
@@ -65,6 +68,12 @@ public class Jogador {
 		this.gols = gols;
 	}
 	
-	
+	public Selecao getSelecao() {
+		return selecao;
+	}
+
+	public void setSelecao(Selecao selecao) {
+		this.selecao = selecao;
+	}
 
 }

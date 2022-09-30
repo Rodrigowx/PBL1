@@ -4,10 +4,10 @@ import java.util.*;
 
 public class TecnicoDAOImpl implements TecnicoDAO {
 	
-	ArrayList<Tecnico> listaTecnicos = new ArrayList<>();
-	public static List<String> nomesTecnico = new ArrayList<String>();
+	private static ArrayList<Tecnico> listaTecnicos = new ArrayList<>();
+	private static List<String> nomesTecnico = new ArrayList<String>();
 	
-	public static boolean checarNome(String nome) {
+	public boolean checarNome(String nome) {
 		if (nomesTecnico.isEmpty()) {
 			return false;
 		}else {
@@ -19,9 +19,20 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 		}
 	}
 
+	//------------------------------------------------------------------------
+	public ArrayList<Tecnico> getLista1(){
+		return listaTecnicos;
+	}
+		
+	public List<String> getLista2(){
+		return nomesTecnico;
+	}
+	//------------------------------------------------------------------------
+	
+	
 	@Override
 	public boolean inserir(Tecnico tecnico) {
-		this.listaTecnicos.add(tecnico);
+		listaTecnicos.add(tecnico);
 		nomesTecnico.add(tecnico.getNome());
 		return true;
 	}

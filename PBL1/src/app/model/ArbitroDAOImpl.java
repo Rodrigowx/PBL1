@@ -1,12 +1,11 @@
 package app.model;
-import app.model.*;
 import java.util.*;
 
 
 public class ArbitroDAOImpl implements ArbitroDAO {
 	
-	ArrayList<Arbitro> listaArbitro = new ArrayList<>(); //Lista para o armazenamento dos Arbitros cadastrados PRECISA DO PUBLIC AQUI?
-	public static List<String> nomesArbitros = new ArrayList<String>();
+	private static ArrayList<Arbitro> listaArbitro = new ArrayList<>(); //Lista para o armazenamento dos Arbitros cadastrados PRECISA DO PUBLIC AQUI?
+	private static List<String> nomesArbitros = new ArrayList<String>();
 	
 	
 	public static boolean checarNome(String nome) {
@@ -20,6 +19,15 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 			}
 		}
 	}
+	//------------------------------------------------------------------------
+	public ArrayList<Arbitro> getLista1(){
+		return listaArbitro;
+	}
+	
+	public List<String> getLista2(){
+		return nomesArbitros;
+	}
+	//------------------------------------------------------------------------
 	
 	@Override
 	public boolean inserir(Arbitro arbitro) {

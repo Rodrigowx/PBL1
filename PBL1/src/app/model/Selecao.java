@@ -7,13 +7,14 @@ public class Selecao {
 	//ATRIBUTOS
 	private String nome;
 	private List<Jogador> jogadores;
-	private Tecnico tecnico;
+	private Tecnico tecnico = null;
 	
 	
 	//CONSTRUTOR
-	public Selecao(String nome) {
+	public Selecao(String nome, List<Jogador> jogadores) {
 		super();
 		this.nome = nome;
+		this.jogadores = jogadores;
 	}
 
 	//METODOS
@@ -34,8 +35,8 @@ public class Selecao {
 		return jogadores;//AQUI PRECISARIA LISTAR CADA UM DA LISTA
 	}
 
-	public void setJogadores(List<Jogador> jogadores) {
-		this.jogadores = jogadores;
+	public void setJogadores(Jogador jogador) {
+		this.jogadores.add(jogador); //adiciona o objeto passado como parâmetro na lista
 	}
 
 	public Tecnico getTecnico() {

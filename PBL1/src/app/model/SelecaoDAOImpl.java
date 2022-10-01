@@ -100,6 +100,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 				
 				Selecao removed = listaSelecoes.get(i);
 				listaSelecoes.remove(i);
+				
 				return removed;
 			}
 		}

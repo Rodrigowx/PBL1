@@ -3,22 +3,21 @@ package app.model;
 import java.util.*;
 
 public class Selecao {
-	
-	//ATRIBUTOS
+
+	// ATRIBUTOS
 	private String nome;
 	private List<Jogador> jogadores;
 	private Tecnico tecnico = null;
-	
-	
-	//CONSTRUTOR
+
+	// CONSTRUTOR
 	public Selecao(String nome, List<Jogador> jogadores) {
 		super();
 		this.nome = nome;
 		this.jogadores = jogadores;
 	}
 
-	//METODOS
-	
+	// METODOS
+
 	public String toString() {
 		return this.nome;
 	}
@@ -32,11 +31,11 @@ public class Selecao {
 	}
 
 	public List<Jogador> getJogadores() {
-		return jogadores;//AQUI PRECISARIA LISTAR CADA UM DA LISTA
+		return jogadores;// AQUI PRECISARIA LISTAR CADA UM DA LISTA
 	}
 
 	public void setJogadores(Jogador jogador) {
-		this.jogadores.add(jogador); //adiciona o objeto passado como parâmetro na lista
+		this.jogadores.add(jogador); // adiciona o objeto passado como parâmetro na lista
 	}
 
 	public Tecnico getTecnico() {
@@ -45,5 +44,12 @@ public class Selecao {
 
 	public void setTecnico(Tecnico tecnico) {
 		this.tecnico = tecnico;
+	}
+
+	public void attListaJogs(Jogador jog) {
+		for (Jogador atual : jogadores) {
+			if (jog.getNome() == atual.getNome())
+				jogadores.remove(atual);
+		}
 	}
 }

@@ -1,46 +1,49 @@
 package app.model;
+
 import java.util.*;
 
-
 public class ArbitroDAOImpl implements ArbitroDAO {
-	
-	private static ArrayList<Arbitro> listaArbitro = new ArrayList<>(); //Lista para o armazenamento dos Arbitros cadastrados PRECISA DO PUBLIC AQUI?
+
+	private static ArrayList<Arbitro> listaArbitro = new ArrayList<>(); // Lista para o armazenamento dos Arbitros
+																		// cadastrados PRECISA DO PUBLIC AQUI?
 	private static List<String> nomesArbitros = new ArrayList<String>();
-	
-	
-	public static boolean checarNome(String nome) {
+
+	public boolean checarNome(String nome) {
 		if (nomesArbitros.isEmpty()) {
 			return false;
-		}else {
-			if(nomesArbitros.contains(nome)) {
+		} else {
+			if (nomesArbitros.contains(nome)) {
 				return true;
-			}else {
+			} else {
 				return false;
 			}
 		}
 	}
-	//------------------------------------------------------------------------
-	public ArrayList<Arbitro> getLista1(){
+
+	// ------------------------------------------------------------------------
+	public ArrayList<Arbitro> getLista1() {
 		return listaArbitro;
 	}
-	
-	public List<String> getLista2(){
+
+	public List<String> getLista2() {
 		return nomesArbitros;
 	}
-	//------------------------------------------------------------------------
-	
+	// ------------------------------------------------------------------------
+
 	@Override
 	public boolean inserir(Arbitro arbitro) {
 		listaArbitro.add(arbitro);
 		nomesArbitros.add(arbitro.getNome());
+		System.out.println("Inserido com sucesso!");
 		return true;
 	}
 
 	@Override
-	public boolean editar(String nome1, String nome2 ) {
-		for(Arbitro atual : listaArbitro) {
-			if(atual.getNome() == nome1) {
+	public boolean editar(String nome1, String nome2) {
+		for (Arbitro atual : listaArbitro) {
+			if (atual.getNome().equals(nome2) == true) {
 				atual.setNome(nome2);
+				System.out.println("Editado com sucesso!");
 				return true;
 			}
 		}
@@ -49,33 +52,36 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 	@Override
 	public Arbitro excluir(String nomeArbitro) {
-		
-		/* O método excluir funciona de uma maneira parecida com o método editar,
-		 * mas ele exclui o objeto da lista Árbitro ao encontrá-lo.
-		 * E retorna o nome do Árbitro que foi excluído. 
-		 * Caso não encontre, retorna NULL. */
-		
+
+		/*
+		 * O método excluir funciona de uma maneira parecida com o método editar, mas
+		 * ele exclui o objeto da lista Árbitro ao encontrá-lo. E retorna o nome do
+		 * Árbitro que foi excluído. Caso não encontre, retorna NULL.
+		 */
+
 		for (int i = 0; i < listaArbitro.size(); i++) {
-			
-			if (listaArbitro.get(i).getNome() == nomeArbitro) {
-				
-				Arbitro objArbitro = listaArbitro.get(i); //puxa da lista o objeto que será excluído para o retorno 
+
+			if (listaArbitro.get(i).getNome().equals(nomeArbitro) == true) {
+
+				Arbitro objArbitro = listaArbitro.get(i); // puxa da lista o objeto que será excluído para o retorno
 				listaArbitro.remove(i);
-				
+				System.out.println("Excluido com sucesso!");
 				return objArbitro;
 			}
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public void listar() {
-		for(int i = 0; i < listaArbitro.size(); i++) {
-			System.out.println(listaArbitro.get(i).getNome()); //for para percorrer e listar o nome cada Arbitro da lista 
-					
+		System.out.println("- Arbitros:");
+		for (int i = 0; i < listaArbitro.size(); i++) {
+			System.out.println("- " + listaArbitro.get(i).getNome()); // for para percorrer e listar o nome cada Arbitro
+																		// da lista
+
 		}
-		
+
 	}
 
 }

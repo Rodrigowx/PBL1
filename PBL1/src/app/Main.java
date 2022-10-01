@@ -31,7 +31,7 @@ public class Main extends Application {
 		Scanner read = new Scanner(System.in);
 
 		// PARA GERAR O CÓDIGO DO JOGADOR
-		Date data = new Date();
+
 		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
 
 		// INSTANCIANDO CADA DAO DAS CLASSES
@@ -94,7 +94,7 @@ public class Main extends Application {
 						// AVISO CASO O USUÁRIO QUEIRA CADASTRAR UM JOGADOR E NAO HÁ SELEÇÕES
 					if (SelecaoDAO.getLista1().isEmpty()) {
 						System.out.println(
-								"\n-- Você não pode cadastrar um jogador agora pois ainda não há Seleções cadastradas! --");
+								"\n-- Voce nao pode cadastrar um jogador agora pois ainda não ha Seleções cadastradas! --");
 						break;
 					}
 
@@ -130,9 +130,9 @@ public class Main extends Application {
 					}
 
 					// ***verificar com try os erros
-					System.out.println("\n -> Digite quantos cartões-amarelo o jogador possui: ");
+					System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: ");
 					Integer cartA = read.nextInt();
-					System.out.println("\n -> Digite quantos cartões-vermelho o jogador possui: ");
+					System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: ");
 					Integer cartV = read.nextInt();
 					System.out.println("\n -> Digite quantos gols o jogador ja fez: ");
 					Integer gols = read.nextInt();
@@ -148,18 +148,19 @@ public class Main extends Application {
 					Selecao selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 
 					while (selecaoJog == null) {
-						System.out.println("\nSeleção não cadastrada! Digite novamente: ");
+						System.out.println("\nSeleçao nao cadastrada! Digite novamente: ");
 						escolhaSel = read.nextLine();
 						selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 					}
 
 					// CRIANDO O JOGADOR
+					Date data = new Date();
 					Jogador novoJog = new Jogador(sdf.format(data), nomeJ, posicao, cartA, cartV, gols, selecaoJog);
 
 					// ADICIONANDO O JOGADOR NOVO NA LISTA DE SEU DAO E DA SUA SELEÇAO
 					JogadorDAO.inserir(novoJog);
 					selecaoJog.setJogadores(novoJog);
-					System.out.println("Jogador cadastrado!\nN° ID: " + novoJog.getCodJog());
+					System.out.println("Jogador cadastrado!\nNUMERO DO ID: " + novoJog.getCodJog());
 					break;
 
 				// INSERIR ARBITRO
@@ -169,7 +170,7 @@ public class Main extends Application {
 
 					while (true) {
 						if (TecnicoDAO.checarNome(nomeAr)) {// verifica se já possui um Árbitro com esse nome
-							System.out.println("\nÁrbitro já cadastrado! Digite o nome novamente: ");
+							System.out.println("\nArbitro ja cadastrado! Digite o nome novamente: ");
 							nomeAr = read.nextLine();
 						} else {
 							break;
@@ -180,7 +181,7 @@ public class Main extends Application {
 					Arbitro novoArbitro = new Arbitro(nomeAr);
 
 					// ADICIONANDO O ARBITRO NA LISTA DO DAO
-					ArbitroDAO.getLista1().add(novoArbitro);
+					ArbitroDAO.inserir(novoArbitro);
 					break;
 
 				// INSERIR TECNICO
@@ -189,7 +190,7 @@ public class Main extends Application {
 					// AVISO CASO O USUÁRIO QUEIRA CADASTRAR UM TÉCNICO E NAO HÁ SELEÇÕES
 					if (SelecaoDAO.getLista1().isEmpty()) {
 						System.out.println(
-								"\n-- Você não pode cadastrar um técnico agora pois ainda não há Seleções cadastradas! --");
+								"\n-- Voce nao pode cadastrar um tecnico agora pois ainda nao ha Selecoes cadastradas! --");
 						break;
 					}
 
@@ -198,7 +199,7 @@ public class Main extends Application {
 
 					while (true) {
 						if (TecnicoDAO.checarNome(nomeTec)) {// verifica se já possui um tecnico com esse nome
-							System.out.println("\nTécnico já cadastrado! Digite o nome novamente: ");
+							System.out.println("\nTecnico já cadastrado! Digite o nome novamente: ");
 							nomeTec = read.nextLine();
 						} else {
 							break;
@@ -206,15 +207,18 @@ public class Main extends Application {
 					}
 
 					System.out.println("\n -> Digite a qual Selecao pertence o novo Tecnico: ");
+					for (String selecao : SelecaoDAO.getLista2()) {
+						System.out.println("-" + selecao);
+					}
 					String selecaoTec = read.nextLine();
 
-					Selecao selecaoAtual = SelecaoDAOImpl.verificaTecnico(selecaoTec);// função que verifica se a
-																						// seleção já tem Técnico
+					Selecao selecaoAtual = SelecaoDAO.verificaTecnico(selecaoTec);// função que verifica se a
+																					// seleção já tem Técnico
 
 					while (true) {
 
-						if (SelecaoDAO.verificaSelecao(selecaoTec) != null) { // verifica se o nome está na lista de
-																				// Seleções
+						if (selecaoAtual != null) { // verifica se o nome está na lista de
+													// Seleções
 
 							if (selecaoAtual.getTecnico() != null) { // verifica se essa seleção já tem tecnico
 								System.out.println(
@@ -227,17 +231,19 @@ public class Main extends Application {
 							}
 
 						} else { // se não estiver pergunta novamente
-							System.out.println("\nSeleção não cadastrada! Digite novamente: ");
+							System.out.println("\nSeleçao nao cadastrada! Digite novamente: ");
 							selecaoTec = read.nextLine();
+							break;
 						}
 					}
 
 					// CRIANDO O TÉCNICO
 					Tecnico novoTecnico = new Tecnico(nomeTec);
 					selecaoAtual.setTecnico(novoTecnico);
+					novoTecnico.setSelecao(selecaoAtual);
 
 					// ADICIONAR O TECNICO NA LISTA DO DAO
-					TecnicoDAO.getLista1().add(novoTecnico);
+					TecnicoDAO.inserir(novoTecnico);
 					break;
 				case 5:
 					break;
@@ -408,7 +414,7 @@ public class Main extends Application {
 			// EXCLUIR
 			case 3:
 
-				System.out.println("\nEM QUAL DAS ENTIDADES DESEJA FAZER UMA EXCLUSÃO: ");
+				System.out.println("\nEM QUAL DAS ENTIDADES DESEJA FAZER UMA EXCLUSAO: ");
 				System.out.println(
 						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNA AO MENU PRINCIPAL");
 				int remove = read.nextInt();
@@ -422,23 +428,71 @@ public class Main extends Application {
 					boolean verificar = SelecaoDAO.checarNome(NomeSelecao);
 					if (verificar) {
 						Selecao obj = SelecaoDAO.excluir(NomeSelecao);
-						if (obj.equals(null))
-							System.out.println("Falha na exclusao!");
-						else
+						if (obj == null) {
+							System.out.println("Falha ao excluir!");
+						} else {
 							JogadorDAO.attListaJogadores(obj);
+							if (obj.getTecnico() == null) {
+								break;
+							} else {
+								TecnicoDAO.excluir(obj.getTecnico().getNome());
+							}
+
+						}
 					} else {
 						System.out.println("Selecao nao encontrada!");
 					}
 					break;
 				case 2:
+					System.out.println("Informe o ID do Jogador: ");
+					String IdJog = read.nextLine();
+					boolean verificarId = JogadorDAO.checarID(IdJog);
+					if (verificarId) {
+						Jogador atual = JogadorDAO.excluir(IdJog);
+						if (atual == null) {
+							System.out.println("Falaha na exclusão");
+							break;
+						} else {
+							ArrayList<Selecao> atualSeleList = new ArrayList<Selecao>();
+							atualSeleList = SelecaoDAO.getLista1();
+							for (Selecao sele : atualSeleList) {
+								if (atual.getSelecao().getNome().equals(sele.getNome()) == true) {
+									sele.attListaJogs(atual);
+								}
+							}
+						}
+					} else {
+						System.out.println("ID do jogador nao encontrado!");
+					}
 					break;
 				case 3:
+					System.out.println("Informe o nome completo do Arbitro: ");
+					String nomeArbitro = read.nextLine();
+					boolean verificarNomeAr = ArbitroDAO.checarNome(nomeArbitro);
+					if (verificarNomeAr) {
+						Arbitro b = ArbitroDAO.excluir(nomeArbitro);
+						if (b == null) {
+							System.out.println("Falha na exclusao");
+							break;
+
+						}
+					}
 					break;
+
 				case 4:
+					System.out.println("Informe o nome completo do Tecnico: ");
+					String nomeTecc = read.nextLine();
+					boolean verificarNomeTec = TecnicoDAO.checarNome(nomeTecc);
+					if (verificarNomeTec) {
+						Tecnico c = TecnicoDAO.excluir(nomeTecc);
+						SelecaoDAO.attTecnico(c);
+					} else {
+						System.out.println("Tecnico nao encontrado!");
+					}
 					break;
 				case 5:
 					break;
-				
+
 				default:
 					System.out.println("\nOpcao Invalida!");
 
@@ -456,12 +510,36 @@ public class Main extends Application {
 				switch (list) {
 
 				case 1:
+					boolean verificar = SelecaoDAO.getLista1().isEmpty();
+					if (verificar) {
+						System.out.println("Selecao(s) nao encontrada(s)!");
+					} else {
+						SelecaoDAO.listar();
+					}
 					break;
 				case 2:
+					boolean verificarID = JogadorDAO.getMap().isEmpty();
+					if (verificarID) {
+						System.out.println("Jogador(s) nao encontrado(s)!");
+					} else {
+						JogadorDAO.listar();
+					}
 					break;
 				case 3:
+					boolean verificarAr = ArbitroDAO.getLista1().isEmpty();
+					if (verificarAr) {
+						System.out.println("Arbitro(s) nao encontrada(s)!");
+					} else {
+						ArbitroDAO.listar();
+					}
 					break;
 				case 4:
+					boolean verificarTec = TecnicoDAO.getLista1().isEmpty();
+					if (verificarTec) {
+						System.out.println("Tecnico(s) nao encontrada(s)!");
+					} else {
+						TecnicoDAO.listar();
+					}
 					break;
 				case 5:
 					break;

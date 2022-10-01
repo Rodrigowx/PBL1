@@ -9,7 +9,6 @@ public class Arbitro {
 		this.nome = nome;
 	}
 
-
 	public String getNome() {
 		return this.nome;
 	}

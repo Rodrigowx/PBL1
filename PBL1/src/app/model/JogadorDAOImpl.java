@@ -121,9 +121,16 @@ public class JogadorDAOImpl implements JogadorDAO{
 		/*esse método retorna o objeto excluído, ou NULL caso 
 		 * esse id não exista no Map*/
 		
-		//AQUI PRECISA EXCLUIR DAS DUAS LISTAS??
+		Jogador obj = mapJogadores.remove(idJogador);
+		
+		for (String atual : nomesJogadores) {
+			if(atual.equals(obj.getNome())) {
+				nomesJogadores.remove(nomesJogadores.indexOf(atual));
+			}
+				
+		}
 			
-		return mapJogadores.remove(idJogador);
+		return obj;
 		
 	}
 
@@ -141,4 +148,14 @@ public class JogadorDAOImpl implements JogadorDAO{
 	    	});
 	}
 
+	public void attListaJogadores(Selecao obj){
+
+		for (Jogador atual : obj.getJogadores()) {
+			mapJogadores.remove(atual.getCodJog());
+			int indx = nomesJogadores.indexOf(atual.getNome());
+			nomesJogadores.remove(indx);
+		}
+
+	}
+	
 }

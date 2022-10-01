@@ -6,5 +6,4 @@ import app.Main;
 
 public class funcoes {
 
-
 }

@@ -54,8 +54,9 @@ public class Main extends Application {
 			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - SAIR"); // Menu principal
 
 			// O TRATAMENTO DE ENTRADA COM O TRY É AQUI??
-			int menu = read.nextInt(); // O programa ler a opção escolhida pelo usuario
-			read.nextLine();
+			//int menu = read.nextInt(); // O programa ler a opção escolhida pelo usuario
+			//read.nextLine();
+			Integer menu = funcoes.leituraInt();
 
 			switch (menu) {
 
@@ -63,9 +64,10 @@ public class Main extends Application {
 			case 1:
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA INSERIR: ");
 				System.out.println(
-						"1 - INSERIR SELECAO \n2 - INSERIR JOGADOR \n3 - INSERIR ARBITRO \n4 - INSERIR TECNICO\n5 - RETORNA AO MENU PRINCIPAL");
-				int insert = read.nextInt();
-				read.nextLine();
+						"1 - INSERIR SELECAO \n2 - INSERIR JOGADOR \n3 - INSERIR ARBITRO \n4 - INSERIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
+				//int insert = read.nextInt();
+				//read.nextLine();
+				Integer insert = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE INSERIR
 				switch (insert) {
@@ -104,8 +106,9 @@ public class Main extends Application {
 					// POSIÇÕES PRÉ ESTABELEIDAS PARA O USUÁRIO ESCOLHER
 					System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 					System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-					int escolhaPos = read.nextInt();
-					read.nextLine();
+					//int escolhaPos = read.nextInt();
+					//read.nextLine();
+					Integer escolhaPos = funcoes.leituraInt();
 					String posicao = null;
 
 					while (posicao == null) {
@@ -124,19 +127,20 @@ public class Main extends Application {
 							break;
 						default:
 							System.out.println("Escolha uma posicao valida!");
-							escolhaPos = read.nextInt();
-							read.nextLine();
+							//escolhaPos = read.nextInt();
+							//read.nextLine();
+							escolhaPos = funcoes.leituraInt();
 						}
 					}
 
 					// ***verificar com try os erros
 					System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: ");
-					Integer cartA = read.nextInt();
+					Integer cartA = funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: ");
-					Integer cartV = read.nextInt();
+					Integer cartV = funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos gols o jogador ja fez: ");
-					Integer gols = read.nextInt();
-					read.nextLine();
+					Integer gols = funcoes.leituraInt();
+					
 
 					// ADICIONANDO JOGADOR EM UMA SELEÇÃO
 					System.out.println("\n -> Digite qual dessas eh a Selecao do Jogador: ");
@@ -211,11 +215,11 @@ public class Main extends Application {
 						System.out.println("-" + selecao);
 					}
 					String selecaoTec = read.nextLine();
-
-					Selecao selecaoAtual = SelecaoDAO.verificaTecnico(selecaoTec);// função que verifica se a
-																					// seleção já tem Técnico
+					Selecao selecaoAtual;
 
 					while (true) {
+						
+						selecaoAtual = SelecaoDAO.verificaTecnico(selecaoTec);// função que verifica se a seleção já tem Técnico
 
 						if (selecaoAtual != null) { // verifica se o nome está na lista de
 													// Seleções
@@ -233,7 +237,6 @@ public class Main extends Application {
 						} else { // se não estiver pergunta novamente
 							System.out.println("\nSeleçao nao cadastrada! Digite novamente: ");
 							selecaoTec = read.nextLine();
-							break;
 						}
 					}
 
@@ -245,8 +248,10 @@ public class Main extends Application {
 					// ADICIONAR O TECNICO NA LISTA DO DAO
 					TecnicoDAO.inserir(novoTecnico);
 					break;
+					
 				case 5:
 					break;
+					
 				default:
 					System.out.println("\nOpcao Invalida!"); // Tratamento de entrada para o switch-case de Inserir
 				}
@@ -258,9 +263,10 @@ public class Main extends Application {
 			case 2:
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA EDITAR: ");
 				System.out.println(
-						"1 - EDITAR SELECAO \n2 - EDITAR JOGADOR \n3 - EDITAR ARBITRO \n4 - EDITAR TECNICO\n5 - RETORNA AO MENU PRINCIPAL");
-				int edit = read.nextInt();
-				read.nextLine();
+						"1 - EDITAR SELECAO \n2 - EDITAR JOGADOR \n3 - EDITAR ARBITRO \n4 - EDITAR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
+				//int edit = read.nextInt();
+				//read.nextLine();
+				Integer edit = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE EDITAR
 				switch (edit) {
@@ -307,8 +313,8 @@ public class Main extends Application {
 						System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
 						System.out.println("1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
 						
-						int dado = read.nextInt();
-						read.nextLine();
+						
+						Integer dado = funcoes.leituraInt();
 						
 						switch (dado) {
 
@@ -424,9 +430,10 @@ public class Main extends Application {
 
 				System.out.println("\nEM QUAL DAS ENTIDADES DESEJA FAZER UMA EXCLUSAO: ");
 				System.out.println(
-						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNA AO MENU PRINCIPAL");
-				int remove = read.nextInt();
-				read.nextLine();
+						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
+				//int remove = read.nextInt();
+				//read.nextLine();
+				Integer remove = funcoes.leituraInt();
 
 				switch (remove) {
 
@@ -516,15 +523,17 @@ public class Main extends Application {
 			case 4:
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA LISTAR: ");
 				System.out.println(
-						"1 - LISTAR SELECOES \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS\n5 - RETORNA AO MENU PRINCIPAL");
-				int list = read.nextInt();
-				read.nextLine();
+						"1 - LISTAR SELECOES \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS\n5 - RETORNAR AO MENU PRINCIPAL");
+				//int list = read.nextInt();
+				//read.nextLine();
+				Integer list = funcoes.leituraInt();
+				
 				switch (list) {
 
 				case 1:
 					boolean verificar = SelecaoDAO.getLista1().isEmpty();
 					if (verificar) {
-						System.out.println("Selecao(s) nao encontrada(s)!");
+						System.out.println("Nao ha Selecao(oes) cadastrada(s)!");
 					} else {
 						SelecaoDAO.listar();
 					}
@@ -532,7 +541,7 @@ public class Main extends Application {
 				case 2:
 					boolean verificarID = JogadorDAO.getMap().isEmpty();
 					if (verificarID) {
-						System.out.println("Jogador(s) nao encontrado(s)!");
+						System.out.println("Nao ha Jogador(es) cadastrado(s)!");
 					} else {
 						JogadorDAO.listar();
 					}
@@ -540,7 +549,7 @@ public class Main extends Application {
 				case 3:
 					boolean verificarAr = ArbitroDAO.getLista1().isEmpty();
 					if (verificarAr) {
-						System.out.println("Arbitro(s) nao encontrada(s)!");
+						System.out.println("Nao ha Arbitro(s) cadastrado(s)!");
 					} else {
 						ArbitroDAO.listar();
 					}
@@ -548,7 +557,7 @@ public class Main extends Application {
 				case 4:
 					boolean verificarTec = TecnicoDAO.getLista1().isEmpty();
 					if (verificarTec) {
-						System.out.println("Tecnico(s) nao encontrada(s)!");
+						System.out.println("Nao ha Tecnico(s) cadastrado(s)!");
 					} else {
 						TecnicoDAO.listar();
 					}
@@ -568,7 +577,7 @@ public class Main extends Application {
 				System.exit(0);
 
 			default:
-				System.out.println("\nDigite um numero valido!");
+				System.out.println("\nDigite uma opcao valida!");
 			}
 
 		}

@@ -2,6 +2,8 @@ package app.model;
 
 import java.util.*;
 
+import app.funcoes;
+
 public class JogadorDAOImpl implements JogadorDAO {
 
 	private static Scanner scan = new Scanner(System.in);
@@ -76,7 +78,8 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 				System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 				System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-				int novaPosic = scan.nextInt();
+				//int novaPosic = scan.nextInt();
+				Integer novaPosic = funcoes.leituraInt();
 				String posicao = null;
 				while (posicao == null) {
 					switch (novaPosic) {
@@ -94,7 +97,8 @@ public class JogadorDAOImpl implements JogadorDAO {
 						break;
 					default:
 						System.out.println("Escolha uma posicao valida!");
-						novaPosic = scan.nextInt();
+						//novaPosic = scan.nextInt();
+						novaPosic = funcoes.leituraInt();
 					}
 				}
 				mapJogadores.get(idJogador).setPosicao(posicao);
@@ -103,21 +107,24 @@ public class JogadorDAOImpl implements JogadorDAO {
 			} else if (opcaoMenu == 3) { // EDITA CARTÕES AMARELO
 
 				System.out.println("Informe a nova quantidade de cartoes amarelos: ");
-				Integer novoCartA = scan.nextInt();
+				//Integer novoCartA = scan.nextInt();
+				Integer novoCartA = funcoes.leituraInt();
 				mapJogadores.get(idJogador).setCartAmarelo(novoCartA);
 				System.out.println("Cartao alterado com sucesso!");
 
 			} else if (opcaoMenu == 4) { // EDITA CARTÕES VERMELHO
 
 				System.out.println("Informe a nova quantidade de cartoes vermelhos: ");
-				Integer novoCartV = scan.nextInt();
+				//Integer novoCartV = scan.nextInt();
+				Integer novoCartV = funcoes.leituraInt();
 				mapJogadores.get(idJogador).setCartVermelho(novoCartV);
 				System.out.println("Cartao alterado com sucesso!");
 
 			} else if (opcaoMenu == 5) { // EDITA QUANTIDADE DE GOLS
 
 				System.out.println("Informe a nova quantidade de gols: ");
-				Integer novoGols = scan.nextInt();
+				//Integer novoGols = scan.nextInt();
+				Integer novoGols = funcoes.leituraInt();
 				mapJogadores.get(idJogador).setGols(novoGols);
 				System.out.println("Gols alterado com sucesso!");
 
@@ -136,9 +143,9 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 		Jogador obj = mapJogadores.remove(idJogador);
 		System.out.println("Excluido com sucesso!");
+		
 		for (String atual : nomesJogadores) {
-			if (atual.equals(obj.getNome()) == true) {
-				Jogador a = obj;
+			if (atual.equals(obj.getNome())) {
 				nomesJogadores.remove(nomesJogadores.indexOf(atual));
 				return obj;
 			}

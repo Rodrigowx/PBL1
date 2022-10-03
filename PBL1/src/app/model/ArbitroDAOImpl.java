@@ -2,12 +2,23 @@ package app.model;
 
 import java.util.*;
 
+/**
+ * Classe responsável pelo DAO do Árbitro. Aqui foi implementado todas as
+ * funções do CRUD.
+ */
 public class ArbitroDAOImpl implements ArbitroDAO {
 
 	private static ArrayList<Arbitro> listaArbitro = new ArrayList<>(); // Lista para o armazenamento dos Arbitros
 																		// cadastrados PRECISA DO PUBLIC AQUI?
 	private static List<String> nomesArbitros = new ArrayList<String>();
 
+	/**
+	 * Função responsável por checar se a lista de nomes está vazia e se contém o
+	 * nome passado pelo parametro.
+	 * 
+	 * @param nome
+	 * @return vericação de execução.
+	 */
 	public boolean checarNome(String nome) {
 		if (nomesArbitros.isEmpty()) {
 			return false;
@@ -20,16 +31,33 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 		}
 	}
 
+	/**
+	 * get da Lista de objetos árbitros cadastrados.
+	 * 
+	 * @return lista de objetos.
+	 */
 	// ------------------------------------------------------------------------
 	public ArrayList<Arbitro> getLista1() {
 		return listaArbitro;
 	}
 
+	/**
+	 * Get da Lista de nomes de árbitros cadastrados.
+	 * 
+	 * @return lista de nomes.
+	 */
 	public List<String> getLista2() {
 		return nomesArbitros;
 	}
 	// ------------------------------------------------------------------------
 
+	/**
+	 * Função inserir, responsável por adcionar o novo objeto Árbitro na lista. E
+	 * também, adcionar o novo nome do árbitro na lista de nomes cadastrados.
+	 * 
+	 * @param arbitro
+	 * @return verificação de sucesso ou falha do processo(boolean)
+	 */
 	@Override
 	public boolean inserir(Arbitro arbitro) {
 		listaArbitro.add(arbitro);
@@ -38,17 +66,24 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 		return true;
 	}
 
+	/**
+	 * Função editar, responsável por modificar os atributos do objeto Árbitro salvo
+	 * na lista. E também, adcionar o novo nome da lista de nomes cadastrados.
+	 * 
+	 * @param nome1(antigo) e nome2 (novo).
+	 * @return verificação de sucesso ou falha do processo(boolean).
+	 */
 	@Override
 	public boolean editar(String nome1, String nome2) {
 		for (Arbitro atual : listaArbitro) {
 			if (atual.getNome().equals(nome1) == true) {
 				atual.setNome(nome2);
-				
-				//tirando o nome antigo da segunda lista e adicionando o novo
+
+				// tirando o nome antigo da segunda lista e adicionando o novo
 				int index = nomesArbitros.indexOf(nome1);
 				nomesArbitros.remove(index);
 				nomesArbitros.add(nome2);
-				
+
 				System.out.println("Editado com sucesso!");
 				return true;
 			}
@@ -56,14 +91,16 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 		return false;
 	}
 
+	/**
+	 * Função excluir, responsável por excluir o objeto Árbitro da lista. E também,
+	 * excluir o nome do árbitro da lista de nomes cadastrados.
+	 * 
+	 * @param nome do árbitro.
+	 * @return Objeto Árbitro recém excluido .
+	 */
+
 	@Override
 	public Arbitro excluir(String nomeArbitro) {
-
-		/*
-		 * O método excluir funciona de uma maneira parecida com o método editar, mas
-		 * ele exclui o objeto da lista Árbitro ao encontrá-lo. E retorna o nome do
-		 * Árbitro que foi excluído. Caso não encontre, retorna NULL.
-		 */
 
 		for (int i = 0; i < listaArbitro.size(); i++) {
 
@@ -71,11 +108,11 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 				Arbitro objArbitro = listaArbitro.get(i); // puxa da lista o objeto que será excluído para o retorno
 				listaArbitro.remove(i);
-				
-				/*removendo da lista de nomes (segunda lista)*/
+
+				/* removendo da lista de nomes (segunda lista) */
 				int index = nomesArbitros.indexOf(nomeArbitro);
 				nomesArbitros.remove(index);
-				
+
 				System.out.println("Excluido com sucesso!");
 				return objArbitro;
 			}
@@ -84,12 +121,17 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 		return null;
 	}
 
+	/**
+	 * Função listar, responsável por imprimir o nome de todos os objetos Árbitros
+	 * cadastrados.
+	 */
+
 	@Override
 	public void listar() {
 		System.out.println("- Arbitros:");
 		for (int i = 0; i < listaArbitro.size(); i++) {
 			System.out.println("- " + listaArbitro.get(i).getNome()); // for para percorrer e listar o nome cada Arbitro
-																		// da lista
+																		// da lista.
 
 		}
 

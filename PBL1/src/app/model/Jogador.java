@@ -1,5 +1,11 @@
 package app.model;
 
+/**
+ * Classe que representa o Jogador no sistema. Jogador possiu ID do jogador,
+ * nome, posição, cartão amarelo e vermelho, gols e selecao que ele faz parte
+ * como parametro. Get e o set do de todos atributos.
+ */
+
 public class Jogador {
 
 	// ATRIBUTOS

@@ -2,6 +2,11 @@ package app.model;
 
 import java.util.*;
 
+/**
+ * Classe que representa o Seleção no sistema. Seleção possiu nome, lista de
+ * jogadores e tecnico como parametro. Get e o set do dos atributos.
+ */
+
 public class Selecao {
 
 	// ATRIBUTOS
@@ -46,6 +51,11 @@ public class Selecao {
 		this.tecnico = tecnico;
 	}
 
+	/**
+	 * Método responsável por atualizar a lista de jogadores ao excluir o mesmo.
+	 * 
+	 * @param jogador
+	 */
 	public void attListaJogs(Jogador jog) {
 		for (Jogador atual : jogadores) {
 			if (jog.getNome() == atual.getNome())

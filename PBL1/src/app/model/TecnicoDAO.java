@@ -1,5 +1,9 @@
 package app.model;
 
+/**
+ * Interface do DAO do Técnico. Com as funções responsáveis pelo CRUD.
+ */
+
 public interface TecnicoDAO {
 
 	public boolean inserir(Tecnico tecnico);

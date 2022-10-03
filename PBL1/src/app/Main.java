@@ -1,3 +1,14 @@
+/**
+Autores: Rodrigo de Matos Ferreira e Nathille Cerqueira Alves
+Componente Curricular: MI Algoritmos II
+Concluido em: 03/10/2022
+Declaro que este código foi elaborado por mim de forma individual e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.
+**/
+
 package app;
 
 import java.text.SimpleDateFormat;
@@ -9,6 +20,12 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
+
+/**
+ * Classe MAIN, responsável por toda logística de execução do sistema. E também,
+ * Instanciamento dos objetos.
+ * 
+ */
 
 public class Main extends Application {
 	@Override
@@ -23,7 +40,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		// launch(args);
 
@@ -63,7 +80,7 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA INSERIR: ");
 				System.out.println(
 						"1 - INSERIR SELECAO \n2 - INSERIR JOGADOR \n3 - INSERIR ARBITRO \n4 - INSERIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				
+
 				Integer insert = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE INSERIR
@@ -103,7 +120,7 @@ public class Main extends Application {
 					// POSIÇÕES PRÉ ESTABELEIDAS PARA O USUÁRIO ESCOLHER
 					System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 					System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-					
+
 					Integer escolhaPos = funcoes.leituraInt();
 					String posicao = null;
 
@@ -123,7 +140,7 @@ public class Main extends Application {
 							break;
 						default:
 							System.err.println("Escolha uma posicao valida!");
-							
+
 							escolhaPos = funcoes.leituraInt();
 						}
 					}
@@ -134,7 +151,6 @@ public class Main extends Application {
 					Integer cartV = funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos gols o jogador ja fez: ");
 					Integer gols = funcoes.leituraInt();
-					
 
 					// ADICIONANDO JOGADOR EM UMA SELEÇÃO
 					System.out.println("\n -> Digite qual dessas eh a Selecao do Jogador: ");
@@ -212,8 +228,9 @@ public class Main extends Application {
 					Selecao selecaoAtual;
 
 					while (true) {
-						
-						selecaoAtual = SelecaoDAO.verificaTecnico(selecaoTec);// função que verifica se a seleção já tem Técnico
+
+						selecaoAtual = SelecaoDAO.verificaTecnico(selecaoTec);// função que verifica se a seleção já tem
+																				// Técnico
 
 						if (selecaoAtual != null) { // verifica se o nome está na lista de
 													// Seleções
@@ -242,10 +259,10 @@ public class Main extends Application {
 					// ADICIONAR O TECNICO NA LISTA DO DAO
 					TecnicoDAO.inserir(novoTecnico);
 					break;
-					
+
 				case 5:
 					break;
-					
+
 				default:
 					System.err.println("\nOpcao Invalida!"); // Tratamento de entrada para o switch-case de Inserir
 				}
@@ -258,7 +275,7 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA EDITAR: ");
 				System.out.println(
 						"1 - EDITAR SELECAO \n2 - EDITAR JOGADOR \n3 - EDITAR ARBITRO \n4 - EDITAR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				
+
 				Integer edit = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE EDITAR
@@ -295,78 +312,79 @@ public class Main extends Application {
 								"\n-- Voce nao pode editar um jogador agora, pois ainda nao ha Jogadores cadastrados! --");
 						break;
 					}
-					
+
 					System.out.println("*-ID DISPONIVEL EM LISTAR JOGADORES-*\nInforme o ID do jogador: ");
 					String idPesquisa = read.nextLine();
-					
+
 					if (JogadorDAO.getMap().containsKey(idPesquisa)) {
-						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();				
-						
+						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();
+
 						boolean loopCase = true;
-						
+
 						while (loopCase) {
-							
+
 							System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
-							System.out.println("1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
+							System.out.println(
+									"1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
 							Integer dado = funcoes.leituraInt();
-							
+
 							switch (dado) {
-	
+
 							case 1:
-	
+
 								if (JogadorDAO.editar(idPesquisa, dado)) {
 									loopCase = false;
 									continue;
-	
+
 								} else {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-	
+
 							case 2:
-	
+
 								if (JogadorDAO.editar(idPesquisa, dado)) {
 									loopCase = false;
 									continue;
-	
+
 								} else {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-	
+
 							case 3:
-	
+
 								if (JogadorDAO.editar(idPesquisa, dado)) {
 									loopCase = false;
 									continue;
-	
+
 								} else {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-	
+
 							case 4:
-	
+
 								if (JogadorDAO.editar(idPesquisa, dado)) {
 									loopCase = false;
 									continue;
-	
+
 								} else {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-	
+
 							case 5:
-	
+
 								if (JogadorDAO.editar(idPesquisa, dado)) {
 									loopCase = false;
 									continue;
-	
+
 								} else {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-	
+
 							default:
 								System.err.println("\nOpcao Invalida!");
 							}
@@ -377,7 +395,7 @@ public class Main extends Application {
 					}
 					break;
 
-					// EDITAR ARBITRO
+				// EDITAR ARBITRO
 				case 3:
 					if (ArbitroDAO.getLista1().isEmpty()) {
 						System.out.println(
@@ -387,7 +405,7 @@ public class Main extends Application {
 
 					System.out.println("Informe o nome do Arbitro que deseja editar: ");
 					String antigoArbitro = read.nextLine();
-					
+
 					System.out.println("Agora informe o NOVO nome do Arbitro: ");
 					String novoArbitro = read.nextLine();
 					if (ArbitroDAO.editar(antigoArbitro, novoArbitro))
@@ -396,7 +414,7 @@ public class Main extends Application {
 						System.err.println("Falha na edicao! Arbitro nao encontrado!");
 					break;
 
-					// EDITAR TECNICO
+				// EDITAR TECNICO
 				case 4:
 
 					if (TecnicoDAO.getLista1().isEmpty()) {
@@ -414,7 +432,7 @@ public class Main extends Application {
 						System.err.println("Falha na edicao!");
 
 					break;
-					
+
 				case 5:
 					break;
 
@@ -432,7 +450,7 @@ public class Main extends Application {
 				System.out.println("\nEM QUAL DAS ENTIDADES DESEJA FAZER UMA EXCLUSAO: ");
 				System.out.println(
 						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				
+
 				Integer remove = funcoes.leituraInt();
 
 				switch (remove) {
@@ -440,7 +458,7 @@ public class Main extends Application {
 				case 1:
 					System.out.println("Informe o nome da Selecao: ");
 					String NomeSelecao = read.nextLine();
-					
+
 					boolean verificar = SelecaoDAO.checarNome(NomeSelecao);
 					if (verificar) {
 						Selecao obj = SelecaoDAO.excluir(NomeSelecao);
@@ -459,7 +477,7 @@ public class Main extends Application {
 						System.err.println("Selecao nao encontrada!");
 					}
 					break;
-					
+
 				case 2:
 					System.out.println("Informe o ID do Jogador: ");
 					String IdJog = read.nextLine();
@@ -482,7 +500,7 @@ public class Main extends Application {
 						System.out.println("ID do jogador nao encontrado!");
 					}
 					break;
-					
+
 				case 3:
 					System.out.println("Informe o nome completo do Arbitro: ");
 					String nomeArbitro = read.nextLine();
@@ -508,7 +526,7 @@ public class Main extends Application {
 						System.out.println("Tecnico nao encontrado!");
 					}
 					break;
-					
+
 				case 5:
 					break;
 
@@ -524,9 +542,9 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA LISTAR: ");
 				System.out.println(
 						"1 - LISTAR SELECOES \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS\n5 - RETORNAR AO MENU PRINCIPAL");
-				
+
 				Integer list = funcoes.leituraInt();
-				
+
 				switch (list) {
 
 				case 1:

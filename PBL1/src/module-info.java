@@ -1,6 +1,8 @@
 module PBL1 {
-	requires javafx.controls;
+	exports app;
+	exports app.model;
+
+	requires javafx.base;
 	requires javafx.fxml;
-	
-	opens app to javafx.graphics, javafx.fxml;
+	requires javafx.graphics;
 }

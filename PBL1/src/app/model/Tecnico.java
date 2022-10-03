@@ -1,5 +1,10 @@
 package app.model;
 
+/**
+ * Classe que representa o Técnico no sistema. Técnico possiu nome e seleção
+ * como parametro. Get e o set do dos atributos.
+ */
+
 public class Tecnico {
 
 	// ATRIBUTO

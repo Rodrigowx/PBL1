@@ -2,6 +2,11 @@ package app.model;
 
 import java.util.*;
 
+/**
+ * Classe responsável pelo DAO do Seleção. Aqui foi implementado todas as
+ * funções do CRUD.
+ */
+
 public class SelecaoDAOImpl implements SelecaoDAO {
 
 	private static ArrayList<Selecao> listaSelecoes = new ArrayList<>();
@@ -21,9 +26,14 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	}
 
 	// ------------------------------------------------------------------------
-	public Selecao verificaTecnico(String nomeSelecao) {
 
-		/* comentar aqui */
+	/**
+	 * Função responsável para saber seleção ja tem técnico.
+	 * 
+	 * @param nomeSelecao
+	 * @return seleção
+	 */
+	public Selecao verificaTecnico(String nomeSelecao) {
 
 		for (Selecao atual : listaSelecoes) {
 			if (atual.getNome().equals(nomeSelecao)) {
@@ -36,13 +46,15 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	}
 	// ------------------------------------------------------------------------
 
-	public Selecao verificaSelecao(String nomeSelecao) {
+	/**
+	 * Função para verificar se a seleção informada pelo usuário existe na lista e
+	 * retorná-la pra adicionar o jogador e o tecnico no objeto seleçao deles.
+	 * 
+	 * @param nome da seleção.
+	 * @return objeto da Seleção
+	 */
 
-		/*
-		 * escrever aqui pra que serve isso: verificar se a seleção informada pelo
-		 * usuário existe na lista e retorná-la pra adicionar o jogador e o tecnico no
-		 * objeto seleçao deles
-		 */
+	public Selecao verificaSelecao(String nomeSelecao) {
 
 		if (nomesSelecao.contains(nomeSelecao)) {
 
@@ -60,14 +72,33 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	}
 
 	// ------------------------------------------------------------------------
+	/**
+	 * Get para lista de objetos seleções cadastrados.
+	 * 
+	 * @return Lista Selecao.
+	 */
+
 	public ArrayList<Selecao> getLista1() {
 		return listaSelecoes;
 	}
 
+	/**
+	 * Get para lista de nomes das seleções ja cadastrados.
+	 * 
+	 * @return Lista de nomes da Selecao.
+	 */
 	public List<String> getLista2() {
 		return nomesSelecao;
 	}
 	// ------------------------------------------------------------------------
+
+	/**
+	 * Função inserir, responsável por adicionar o novo objeto Seleção na lista. E
+	 * também, adicionar o novo nome na lista de nomes cadastrados.
+	 * 
+	 * @param seleção
+	 * @return verificação de sucesso ou falha do processo(boolean)
+	 */
 
 	@Override
 	public boolean inserir(Selecao selecao) {
@@ -78,20 +109,29 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		return true;
 	}
 
+	/**
+	 * Função editar, responsável por modificar os atributos do objeto Seleção salvo
+	 * na lista. E também,caso seja novo nome, adicionar na lista de nomes
+	 * cadastrados. E excluir o antigo nome.
+	 * 
+	 * @param nomeSelecao(antigo) e novoNome (novo).
+	 * @return verificação de sucesso ou falha do processo(boolean).
+	 */
+
 	@Override
 	public boolean editar(String nomeSelecao, String novoNome) {
 
 		for (int i = 0; i < listaSelecoes.size(); i++) {
 
 			if (listaSelecoes.get(i).getNome().equals(nomeSelecao)) {
-				
-				listaSelecoes.get(i).setNome(novoNome);//mudando o nome no objeto 
-				
-				//tirando o nome antigo da segunda lista e adicionando o novo
+
+				listaSelecoes.get(i).setNome(novoNome);// mudando o nome no objeto
+
+				// tirando o nome antigo da segunda lista e adicionando o novo
 				int index = nomesSelecao.indexOf(nomeSelecao);
 				nomesSelecao.remove(index);
 				nomesSelecao.add(novoNome);
-				
+
 				System.out.println("Editado com sucesso!");
 				return true;
 			}
@@ -99,10 +139,18 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		return false;
 	}
 
+	/**
+	 * Função excluir, responsável por excluir o objeto Seleção da lista. E também,
+	 * excluir o nome da seleção da lista de nomes cadastrados.
+	 * 
+	 * @param nome do árbitro.
+	 * @return Objeto Árbitro recém excluido .
+	 */
+
 	@Override
 	public Selecao excluir(String nomeSelecao) {
 
-		/*removendo da lista de nomes (segunda lista)*/
+		/* removendo da lista de nomes (segunda lista) */
 		int indx2 = nomesSelecao.indexOf(nomeSelecao);
 		nomesSelecao.remove(indx2);
 
@@ -119,6 +167,11 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		return null;
 	}
 
+	/**
+	 * Função listar, responsável por imprimir o nome de todos os objetos Seleções
+	 * cadastrados.
+	 */
+
 	@Override
 	public void listar() {
 		System.out.println("- Selecoes:");
@@ -126,6 +179,13 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			System.out.println("- " + listaSelecoes.get(i).getNome());
 		}
 	}
+
+	/**
+	 * Função responsável por atualizar a lista de tecnicos da seleção após ele ser
+	 * excluido do sistema
+	 * 
+	 * @param tec
+	 */
 
 	public void attTecnico(Tecnico tec) {
 

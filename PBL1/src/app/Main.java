@@ -53,9 +53,7 @@ public class Main extends Application {
 
 			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - SAIR"); // Menu principal
 
-			// O TRATAMENTO DE ENTRADA COM O TRY É AQUI??
-			//int menu = read.nextInt(); // O programa ler a opção escolhida pelo usuario
-			//read.nextLine();
+			// O programa ler a opção escolhida pelo usuario
 			Integer menu = funcoes.leituraInt();
 
 			switch (menu) {
@@ -65,8 +63,7 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA INSERIR: ");
 				System.out.println(
 						"1 - INSERIR SELECAO \n2 - INSERIR JOGADOR \n3 - INSERIR ARBITRO \n4 - INSERIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				//int insert = read.nextInt();
-				//read.nextLine();
+				
 				Integer insert = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE INSERIR
@@ -78,7 +75,7 @@ public class Main extends Application {
 
 					// VERIFICAÇÃO SE O ESSA SELEÇAO JÁ FOI INSERIDA ANTES
 					while (SelecaoDAO.checarNome(nomeS)) {// ***caso dê erro
-						System.out.println("\nSelecao já cadastrada! Digite o nome da nova Selecao: ");
+						System.err.println("\nSelecao ja cadastrada! Digite o nome da nova Selecao: ");
 						nomeS = read.nextLine();
 						;
 					}
@@ -96,7 +93,7 @@ public class Main extends Application {
 						// AVISO CASO O USUÁRIO QUEIRA CADASTRAR UM JOGADOR E NAO HÁ SELEÇÕES
 					if (SelecaoDAO.getLista1().isEmpty()) {
 						System.out.println(
-								"\n-- Voce nao pode cadastrar um jogador agora pois ainda não ha Seleções cadastradas! --");
+								"\n-- Voce nao pode cadastrar um jogador agora pois ainda nao ha Selecoes cadastradas! --");
 						break;
 					}
 
@@ -106,8 +103,7 @@ public class Main extends Application {
 					// POSIÇÕES PRÉ ESTABELEIDAS PARA O USUÁRIO ESCOLHER
 					System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 					System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-					//int escolhaPos = read.nextInt();
-					//read.nextLine();
+					
 					Integer escolhaPos = funcoes.leituraInt();
 					String posicao = null;
 
@@ -126,14 +122,12 @@ public class Main extends Application {
 							posicao = "Atacante";
 							break;
 						default:
-							System.out.println("Escolha uma posicao valida!");
-							//escolhaPos = read.nextInt();
-							//read.nextLine();
+							System.err.println("Escolha uma posicao valida!");
+							
 							escolhaPos = funcoes.leituraInt();
 						}
 					}
 
-					// ***verificar com try os erros
 					System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: ");
 					Integer cartA = funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: ");
@@ -152,7 +146,7 @@ public class Main extends Application {
 					Selecao selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 
 					while (selecaoJog == null) {
-						System.out.println("\nSeleçao nao cadastrada! Digite novamente: ");
+						System.err.println("\nSeleçao nao cadastrada! Digite novamente: ");
 						escolhaSel = read.nextLine();
 						selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 					}
@@ -174,7 +168,7 @@ public class Main extends Application {
 
 					while (true) {
 						if (TecnicoDAO.checarNome(nomeAr)) {// verifica se já possui um Árbitro com esse nome
-							System.out.println("\nArbitro ja cadastrado! Digite o nome novamente: ");
+							System.err.println("\nArbitro ja cadastrado! Digite o nome novamente: ");
 							nomeAr = read.nextLine();
 						} else {
 							break;
@@ -203,7 +197,7 @@ public class Main extends Application {
 
 					while (true) {
 						if (TecnicoDAO.checarNome(nomeTec)) {// verifica se já possui um tecnico com esse nome
-							System.out.println("\nTecnico já cadastrado! Digite o nome novamente: ");
+							System.err.println("\nTecnico já cadastrado! Digite o nome novamente: ");
 							nomeTec = read.nextLine();
 						} else {
 							break;
@@ -225,7 +219,7 @@ public class Main extends Application {
 													// Seleções
 
 							if (selecaoAtual.getTecnico() != null) { // verifica se essa seleção já tem tecnico
-								System.out.println(
+								System.err.println(
 										"Nessa Selecao ja possui um tecnico! Digite o nome de outra Selecao: ");
 								selecaoTec = read.nextLine();
 
@@ -235,7 +229,7 @@ public class Main extends Application {
 							}
 
 						} else { // se não estiver pergunta novamente
-							System.out.println("\nSeleçao nao cadastrada! Digite novamente: ");
+							System.err.println("\nSeleçao nao cadastrada! Digite novamente: ");
 							selecaoTec = read.nextLine();
 						}
 					}
@@ -253,7 +247,7 @@ public class Main extends Application {
 					break;
 					
 				default:
-					System.out.println("\nOpcao Invalida!"); // Tratamento de entrada para o switch-case de Inserir
+					System.err.println("\nOpcao Invalida!"); // Tratamento de entrada para o switch-case de Inserir
 				}
 				break;
 
@@ -264,8 +258,7 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA EDITAR: ");
 				System.out.println(
 						"1 - EDITAR SELECAO \n2 - EDITAR JOGADOR \n3 - EDITAR ARBITRO \n4 - EDITAR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				//int edit = read.nextInt();
-				//read.nextLine();
+				
 				Integer edit = funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE EDITAR
@@ -274,7 +267,7 @@ public class Main extends Application {
 				// EDITAR SELECAO
 				case 1:
 					if (SelecaoDAO.getLista1().isEmpty()) {
-						System.out.println("Nao existe selecoes cadastradas no sistema!");
+						System.err.println("Nao existe selecoes cadastradas no sistema!");
 						break;
 					}
 					System.out.println("\n -> Digite o nome da Selecao que deseja editar: ");
@@ -288,10 +281,9 @@ public class Main extends Application {
 						System.out.println("\n -> Digite o novo nome da Selecao: ");
 						String novoNomeS = read.nextLine();
 						SelecaoDAO.editar(novoNomeSelecao, novoNomeS);
-						//System.out.println("Edicao concluida!");
 
 					} else {
-						System.out.println("Selecao nao cadastrada!");
+						System.err.println("Selecao nao cadastrada!");
 					}
 					break;
 
@@ -308,73 +300,82 @@ public class Main extends Application {
 					String idPesquisa = read.nextLine();
 					
 					if (JogadorDAO.getMap().containsKey(idPesquisa)) {
-						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();
+						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();				
 						
-						System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
-						System.out.println("1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
+						boolean loopCase = true;
 						
-						
-						Integer dado = funcoes.leituraInt();
-						
-						switch (dado) {
-
-						case 1:
-
-							if (JogadorDAO.editar(idPesquisa, dado)) {
-								continue;
-
-							} else {
-								System.out.println("Falha na edicao!");
+						while (loopCase) {
+							
+							System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
+							System.out.println("1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
+							Integer dado = funcoes.leituraInt();
+							
+							switch (dado) {
+	
+							case 1:
+	
+								if (JogadorDAO.editar(idPesquisa, dado)) {
+									loopCase = false;
+									continue;
+	
+								} else {
+									System.err.println("Falha na edicao!");
+								}
+								break;
+	
+							case 2:
+	
+								if (JogadorDAO.editar(idPesquisa, dado)) {
+									loopCase = false;
+									continue;
+	
+								} else {
+									System.err.println("Falha na edicao!");
+								}
+								break;
+	
+							case 3:
+	
+								if (JogadorDAO.editar(idPesquisa, dado)) {
+									loopCase = false;
+									continue;
+	
+								} else {
+									System.err.println("Falha na edicao!");
+								}
+								break;
+	
+							case 4:
+	
+								if (JogadorDAO.editar(idPesquisa, dado)) {
+									loopCase = false;
+									continue;
+	
+								} else {
+									System.err.println("Falha na edicao!");
+								}
+								break;
+	
+							case 5:
+	
+								if (JogadorDAO.editar(idPesquisa, dado)) {
+									loopCase = false;
+									continue;
+	
+								} else {
+									System.err.println("Falha na edicao!");
+								}
+								break;
+	
+							default:
+								System.err.println("\nOpcao Invalida!");
 							}
-							break;
-
-						case 2:
-
-							if (JogadorDAO.editar(idPesquisa, dado)) {
-								continue;
-
-							} else {
-								System.out.println("Falha na edicao!");
-							}
-							break;
-
-						case 3:
-
-							if (JogadorDAO.editar(idPesquisa, dado)) {
-								continue;
-
-							} else {
-								System.out.println("Falha na edicao!");
-							}
-							break;
-
-						case 4:
-
-							if (JogadorDAO.editar(idPesquisa, dado)) {
-								continue;
-
-							} else {
-								System.out.println("Falha na edicao!");
-							}
-							break;
-
-						case 5:
-
-							if (JogadorDAO.editar(idPesquisa, dado)) {
-								continue;
-
-							} else {
-								System.out.println("Falha na edicao!");
-							}
-							break;
-
-						default:
-							System.out.println("\nOpcao Invalida!");
 						}
 					} else {
 						System.out.println("ID nao encontrado");
 						break;
 					}
+					break;
 
 					// EDITAR ARBITRO
 				case 3:
@@ -392,7 +393,7 @@ public class Main extends Application {
 					if (ArbitroDAO.editar(antigoArbitro, novoArbitro))
 						break;
 					else
-						System.out.println("Falha na edicao! Arbitro não encontrado!");
+						System.err.println("Falha na edicao! Arbitro nao encontrado!");
 					break;
 
 					// EDITAR TECNICO
@@ -407,10 +408,10 @@ public class Main extends Application {
 					String antigoTecnico = read.nextLine();
 					System.out.println("Agora informe o NOVO nome do Tecnico: ");
 					String novoTecnico = read.nextLine();
-					if (ArbitroDAO.editar(antigoTecnico, novoTecnico))
+					if (TecnicoDAO.editar(antigoTecnico, novoTecnico))
 						break;
 					else
-						System.out.println("Falha na edicao!");
+						System.err.println("Falha na edicao!");
 
 					break;
 					
@@ -418,7 +419,7 @@ public class Main extends Application {
 					break;
 
 				default:
-					System.out.println("Opcao invalida!");
+					System.err.println("Opcao invalida!");
 					break;
 
 				}
@@ -431,8 +432,7 @@ public class Main extends Application {
 				System.out.println("\nEM QUAL DAS ENTIDADES DESEJA FAZER UMA EXCLUSAO: ");
 				System.out.println(
 						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
-				//int remove = read.nextInt();
-				//read.nextLine();
+				
 				Integer remove = funcoes.leituraInt();
 
 				switch (remove) {
@@ -445,7 +445,7 @@ public class Main extends Application {
 					if (verificar) {
 						Selecao obj = SelecaoDAO.excluir(NomeSelecao);
 						if (obj == null) {
-							System.out.println("Falha ao excluir!");
+							System.err.println("Falha ao excluir!");
 						} else {
 							JogadorDAO.attListaJogadores(obj);
 							if (obj.getTecnico() == null) {
@@ -456,7 +456,7 @@ public class Main extends Application {
 
 						}
 					} else {
-						System.out.println("Selecao nao encontrada!");
+						System.err.println("Selecao nao encontrada!");
 					}
 					break;
 					
@@ -467,7 +467,7 @@ public class Main extends Application {
 					if (verificarId) {
 						Jogador atual = JogadorDAO.excluir(IdJog);
 						if (atual == null) {
-							System.out.println("Falaha na exclusão");
+							System.err.println("Falaha na exclusão");
 							break;
 						} else {
 							ArrayList<Selecao> atualSeleList = new ArrayList<Selecao>();
@@ -490,7 +490,7 @@ public class Main extends Application {
 					if (verificarNomeAr) {
 						Arbitro b = ArbitroDAO.excluir(nomeArbitro);
 						if (b == null) {
-							System.out.println("Falha na exclusao");
+							System.err.println("Falha na exclusao");
 							break;
 
 						}
@@ -513,7 +513,7 @@ public class Main extends Application {
 					break;
 
 				default:
-					System.out.println("\nOpcao Invalida!");
+					System.err.println("\nOpcao Invalida!");
 
 				}
 				break;
@@ -524,8 +524,7 @@ public class Main extends Application {
 				System.out.println("\nQUAL DAS ENTIDADES DESEJA LISTAR: ");
 				System.out.println(
 						"1 - LISTAR SELECOES \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS\n5 - RETORNAR AO MENU PRINCIPAL");
-				//int list = read.nextInt();
-				//read.nextLine();
+				
 				Integer list = funcoes.leituraInt();
 				
 				switch (list) {
@@ -565,7 +564,7 @@ public class Main extends Application {
 				case 5:
 					break;
 				default:
-					System.out.println("\nOpcao Invalida!");
+					System.err.println("\nOpcao Invalida!");
 
 				}
 				break;

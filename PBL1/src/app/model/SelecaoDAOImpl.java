@@ -102,7 +102,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	@Override
 	public Selecao excluir(String nomeSelecao) {
 
-		/* explicar aqui o que faz */
+		/*removendo da lista de nomes (segunda lista)*/
 		int indx2 = nomesSelecao.indexOf(nomeSelecao);
 		nomesSelecao.remove(indx2);
 
@@ -130,7 +130,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	public void attTecnico(Tecnico tec) {
 
 		for (Selecao x : listaSelecoes) {
-			if (x.getNome().equals(tec.getSelecao().getNome()) == true) {
+			if (x.getNome().equals(tec.getSelecao().getNome())) {
 				int indx = listaSelecoes.indexOf(x);
 				listaSelecoes.get(indx).setTecnico(null);
 			}

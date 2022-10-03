@@ -7,12 +7,18 @@ import app.funcoes;
 public class JogadorDAOImpl implements JogadorDAO {
 
 	private static Scanner scan = new Scanner(System.in);
-	private static Map<String, Jogador> mapJogadores = new HashMap<String, Jogador>(); // Lista para armazenar os
-																						// objetos Jogador
+	private static Map<String, Jogador> mapJogadores = new HashMap<String, Jogador>(); // Lista para armazenar os objetos Jogador
 	private static List<String> nomesJogadores = new ArrayList<String>();
 
 	// ------------------------------------------------------------------------
 	public boolean checarNome(String nome) {
+		
+		/**
+		 * Função para verificar se o jogador informado já foi cadastrado
+		 * @param nome do jogador
+		 * @return boolean
+		 * */
+		
 		if (nomesJogadores.isEmpty()) {
 			return false;
 		} else {
@@ -26,6 +32,13 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 	// ------------------------------------------------------------------------
 	public boolean checarID(String id) {
+		
+		/**
+		 * Função para verificar se o ID informado pelo usuário está na Map de Joadpres
+		 * @param ID do jogador
+		 * @return resultado da verificação
+		 */
+		
 		if (mapJogadores.isEmpty()) {
 			return false;
 		} else {
@@ -39,19 +52,34 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 	// ------------------------------------------------------------------------
 	public Map<String, Jogador> getMap() {
+		
+		/**
+		 * Função para retornar o Map de jogadores, pois é um atributo privado do DAO
+		 * @return Map dos jogadores
+		 */
+		
 		return mapJogadores;
 	}
 
 	public List<String> getLista() {
+		/**
+		 * Função para retornar a lista de nomes dos jogadores, pois é um atributo privado do DAO
+		 * @return lista do nome dos jogadores
+		 */
+		
 		return nomesJogadores;
 	}
 	// ------------------------------------------------------------------------
 
 	@Override
 	public boolean inserir(Jogador jogador) {
+		
+		/**
+		 * Função para inserir um jogador novo (CRUD)
+		 * @param objeto jogador
+		 */
 
 		mapJogadores.put(jogador.getCodJog(), jogador);
-		// fazer verificação caso haja erro aqui
 		nomesJogadores.add(jogador.getNome());
 		return true;
 	}
@@ -59,8 +87,12 @@ public class JogadorDAOImpl implements JogadorDAO {
 	@Override
 	public boolean editar(String idJogador, int opcaoMenu) {
 
-		/*
-		 * ...primeiro verifica se o ID recebido está na lista
+		/**
+		 * Função para editar algum dado de um jogador já cadastrado (CRUD).
+		 * Para editar, primeiro verifica se o ID recebido está na lista
+		 * e depois ele edita conforme a escolha do usuário.
+		 * @param ID do jogador e opção do que o usuário quer editar
+		 * @return verificação
 		 */
 
 		if (mapJogadores.containsKey(idJogador)) {
@@ -71,14 +103,21 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 				System.out.println("Informe o novo nome: ");
 				String novoNome = scan.nextLine();
-				mapJogadores.get(idJogador).setNome(novoNome);// FAZER VERIFICAÇÃO DE ERRO DE TODOS
+				
+				//tirando o nome antigo da segunda lista de jogadores
+				int index = nomesJogadores.indexOf(mapJogadores.get(idJogador).getNome());
+				nomesJogadores.remove(index);
+				
+				mapJogadores.get(idJogador).setNome(novoNome);//mudando o nome do objeto
+				nomesJogadores.add(novoNome); //adicionando o novo nome na segunda lista
+				
 				System.out.println("Nome editado com sucesso!");
 
 			} else if (opcaoMenu == 2) { // EDITA POSIÇÃO
 
 				System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 				System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-				//int novaPosic = scan.nextInt();
+				
 				Integer novaPosic = funcoes.leituraInt();
 				String posicao = null;
 				while (posicao == null) {
@@ -97,7 +136,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 						break;
 					default:
 						System.out.println("Escolha uma posicao valida!");
-						//novaPosic = scan.nextInt();
+						
 						novaPosic = funcoes.leituraInt();
 					}
 				}
@@ -137,8 +176,11 @@ public class JogadorDAOImpl implements JogadorDAO {
 	@Override
 	public Jogador excluir(String idJogador) {
 
-		/*
-		 * esse método retorna o objeto excluído, ou NULL caso esse id não exista no Map
+		/**
+		 * Função para excluir um jogador cadastrado (CRUD).
+		 * Esse método retorna o objeto excluído, ou NULL caso esse ID não exista no Map
+		 * @param ID do jogador
+		 * @return objeto Jogador que foi excluído
 		 */
 
 		Jogador obj = mapJogadores.remove(idJogador);
@@ -157,13 +199,17 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 	@Override
 	public void listar() {
+		
+		/**
+		 * Função para listar todos os jogadores (CRUD)
+		 */
 
-		System.out.println("LISTAGEM DOS JOGADORES: \n");
+		System.out.println("\nLISTAGEM DOS JOGADORES: \n");
 
 		mapJogadores.forEach((id, jogador) -> {
 			System.out.print("ID: " + id + "\nNOME: " + jogador.getNome() + "\t");
 			System.out.print("SELECAO: " + jogador.getSelecao().getNome() + "\t");
-			System.out.print("POSICAO: " + jogador.getPosicao() + "\t");
+			System.out.print("\tPOSICAO: " + jogador.getPosicao() + "\t");
 			System.out.print("CARTOES AMARELOS: " + jogador.getCartAmarelo() + "\t");
 			System.out.print("CARTOES VERMELHOS: " + jogador.getCartVermelho() + "\t");
 			System.out.println("QUANTIDADE DE GOLS: " + jogador.getGols());
@@ -172,6 +218,12 @@ public class JogadorDAOImpl implements JogadorDAO {
 	}
 
 	public void attListaJogadores(Selecao obj) {
+		
+		/**
+		 * Funçao para atualizar a lista de jogadores da seleção 
+		 * de um jogador que foi excluido
+		 * @param Objeto Seleçao
+		 * */
 
 		for (Jogador atual : obj.getJogadores()) {
 			mapJogadores.remove(atual.getCodJog());

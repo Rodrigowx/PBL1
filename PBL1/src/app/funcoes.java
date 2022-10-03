@@ -21,13 +21,19 @@ public class funcoes {
 			try {
 				dadoLeitura = read.nextLine();
 				dadoLeituraInt = Integer.parseInt(dadoLeitura);
-				finish = false;
-
+				
+				//Caso não dê erro, agora verifica se a entrada é um numero positivo
+				if (dadoLeituraInt < 0) {
+					System.err.println("Apenas numeros positivos!");
+				}else {
+					finish = false;
+				}
+				
 			} catch (NumberFormatException erro) {
 				System.err.println("Digite apenas numeros!");
 			}
 		}
-		//read.nextLine(); //Limpando o cache toda a vez que ocorre a leitura de um inteiro
+		
 		return dadoLeituraInt;
 
 	}

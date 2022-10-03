@@ -41,8 +41,14 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	@Override
 	public boolean editar(String nome1, String nome2) {
 		for (Arbitro atual : listaArbitro) {
-			if (atual.getNome().equals(nome2) == true) {
+			if (atual.getNome().equals(nome1) == true) {
 				atual.setNome(nome2);
+				
+				//tirando o nome antigo da segunda lista e adicionando o novo
+				int index = nomesArbitros.indexOf(nome1);
+				nomesArbitros.remove(index);
+				nomesArbitros.add(nome2);
+				
 				System.out.println("Editado com sucesso!");
 				return true;
 			}
@@ -65,6 +71,11 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 				Arbitro objArbitro = listaArbitro.get(i); // puxa da lista o objeto que será excluído para o retorno
 				listaArbitro.remove(i);
+				
+				/*removendo da lista de nomes (segunda lista)*/
+				int index = nomesArbitros.indexOf(nomeArbitro);
+				nomesArbitros.remove(index);
+				
 				System.out.println("Excluido com sucesso!");
 				return objArbitro;
 			}

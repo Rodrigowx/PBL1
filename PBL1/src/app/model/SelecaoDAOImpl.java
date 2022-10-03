@@ -83,8 +83,15 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 		for (int i = 0; i < listaSelecoes.size(); i++) {
 
-			if (listaSelecoes.get(i).getNome() == nomeSelecao) {
-				listaSelecoes.get(i).setNome(novoNome);
+			if (listaSelecoes.get(i).getNome().equals(nomeSelecao)) {
+				
+				listaSelecoes.get(i).setNome(novoNome);//mudando o nome no objeto 
+				
+				//tirando o nome antigo da segunda lista e adicionando o novo
+				int index = nomesSelecao.indexOf(nomeSelecao);
+				nomesSelecao.remove(index);
+				nomesSelecao.add(novoNome);
+				
 				System.out.println("Editado com sucesso!");
 				return true;
 			}

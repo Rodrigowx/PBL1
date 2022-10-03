@@ -160,6 +160,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 			System.out.print("CARTOES AMARELOS: " + jogador.getCartAmarelo() + "\t");
 			System.out.print("CARTOES VERMELHOS: " + jogador.getCartVermelho() + "\t");
 			System.out.println("QUANTIDADE DE GOLS: " + jogador.getGols());
+			System.out.println();
 		});
 	}
 

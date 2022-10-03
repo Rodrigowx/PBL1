@@ -282,7 +282,7 @@ public class Main extends Application {
 						System.out.println("\n -> Digite o novo nome da Selecao: ");
 						String novoNomeS = read.nextLine();
 						SelecaoDAO.editar(novoNomeSelecao, novoNomeS);
-						System.out.println("Edicao concluida!");
+						//System.out.println("Edicao concluida!");
 
 					} else {
 						System.out.println("Selecao nao cadastrada!");
@@ -297,14 +297,19 @@ public class Main extends Application {
 								"\n-- Voce nao pode editar um jogador agora, pois ainda nao ha Jogadores cadastrados! --");
 						break;
 					}
+					
 					System.out.println("*-ID DISPONIVEL EM LISTAR JOGADORES-*\nInforme o ID do jogador: ");
 					String idPesquisa = read.nextLine();
+					
 					if (JogadorDAO.getMap().containsKey(idPesquisa)) {
 						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();
+						
 						System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
 						System.out.println("1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
+						
 						int dado = read.nextInt();
 						read.nextLine();
+						
 						switch (dado) {
 
 						case 1:
@@ -375,12 +380,14 @@ public class Main extends Application {
 
 					System.out.println("Informe o nome do Arbitro que deseja editar: ");
 					String antigoArbitro = read.nextLine();
+					
 					System.out.println("Agora informe o NOVO nome do Arbitro: ");
 					String novoArbitro = read.nextLine();
 					if (ArbitroDAO.editar(antigoArbitro, novoArbitro))
 						break;
 					else
-						System.out.println("Falha na edicao!");
+						System.out.println("Falha na edicao! Arbitro não encontrado!");
+					break;
 
 					// EDITAR TECNICO
 				case 4:
@@ -400,6 +407,7 @@ public class Main extends Application {
 						System.out.println("Falha na edicao!");
 
 					break;
+					
 				case 5:
 					break;
 
@@ -425,6 +433,7 @@ public class Main extends Application {
 				case 1:
 					System.out.println("Informe o nome da Selecao: ");
 					String NomeSelecao = read.nextLine();
+					
 					boolean verificar = SelecaoDAO.checarNome(NomeSelecao);
 					if (verificar) {
 						Selecao obj = SelecaoDAO.excluir(NomeSelecao);
@@ -443,6 +452,7 @@ public class Main extends Application {
 						System.out.println("Selecao nao encontrada!");
 					}
 					break;
+					
 				case 2:
 					System.out.println("Informe o ID do Jogador: ");
 					String IdJog = read.nextLine();
@@ -465,6 +475,7 @@ public class Main extends Application {
 						System.out.println("ID do jogador nao encontrado!");
 					}
 					break;
+					
 				case 3:
 					System.out.println("Informe o nome completo do Arbitro: ");
 					String nomeArbitro = read.nextLine();
@@ -490,6 +501,7 @@ public class Main extends Application {
 						System.out.println("Tecnico nao encontrado!");
 					}
 					break;
+					
 				case 5:
 					break;
 

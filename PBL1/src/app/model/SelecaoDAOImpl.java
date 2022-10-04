@@ -158,6 +158,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			if (atual.getNome().equals(nomeSelecao) == true) {
 				Selecao a = atual;
 				listaSelecoes.remove(atual);
+				System.out.println("Excluido com sucesso!");
 				return a;
 			} else {
 				return null;

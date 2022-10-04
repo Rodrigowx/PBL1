@@ -485,16 +485,10 @@ public class Main extends Application {
 					if (verificarId) {
 						Jogador atual = JogadorDAO.excluir(IdJog);
 						if (atual == null) {
-							System.err.println("Falaha na exclusão");
+							System.err.println("Falha na exclusão");
 							break;
 						} else {
-							ArrayList<Selecao> atualSeleList = new ArrayList<Selecao>();
-							atualSeleList = SelecaoDAO.getLista1();
-							for (Selecao sele : atualSeleList) {
-								if (atual.getSelecao().getNome().equals(sele.getNome()) == true) {
-									sele.attListaJogs(atual);
-								}
-							}
+							atual.getSelecao().getJogadores().remove(atual);
 						}
 					} else {
 						System.out.println("ID do jogador nao encontrado!");

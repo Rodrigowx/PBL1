@@ -200,7 +200,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 		System.out.println("Excluido com sucesso!");
 
 		for (String atual : nomesJogadores) {
-			if (atual.equals(obj.getNome())) {
+			if (atual.equals(obj.getNome()) == true) {
 				nomesJogadores.remove(nomesJogadores.indexOf(atual));
 				return obj;
 			}

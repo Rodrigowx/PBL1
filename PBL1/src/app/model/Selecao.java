@@ -51,15 +51,4 @@ public class Selecao {
 		this.tecnico = tecnico;
 	}
 
-	/**
-	 * Método responsável por atualizar a lista de jogadores ao excluir o mesmo.
-	 * 
-	 * @param jogador
-	 */
-	public void attListaJogs(Jogador jog) {
-		for (Jogador atual : jogadores) {
-			if (jog.getNome() == atual.getNome())
-				jogadores.remove(atual);
-		}
-	}
 }

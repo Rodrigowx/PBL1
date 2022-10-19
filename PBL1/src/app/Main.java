@@ -99,10 +99,57 @@ public class Main extends Application {
 
 					// CRIANDO O OBJETO SELEÇÃO
 					List<Jogador> listaJogadores = new ArrayList<>(); // lista de jogadores para o atributo de Seleção
-					Selecao novaSelecao = new Selecao(nomeS, listaJogadores); // cria o novo objeto
+					
+					//perguntando ao usuário a qual Grupo a Seleção pertence
+					System.out.println("\n -> Escolha qual desses Grupos a Selecao pertence: ");	
+					System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
 
-					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO
+					Integer escolhaGrup = funcoes.leituraInt();
+					String grupo = null;
+
+					while (grupo == null) {
+						switch (escolhaGrup) {
+						case 1:
+							grupo = "A";
+							break;
+						case 2:
+							grupo = "B";
+							break;
+						case 3:
+							grupo = "C";
+							break;
+						case 4:
+							grupo = "D";
+							break;
+						case 5:
+							grupo = "E";
+							break;
+						case 6:
+							grupo = "F";
+							break;
+						case 7:
+							grupo = "G";
+							break;
+						case 8:
+							grupo = "H";
+							break;
+						default:
+							System.err.println("Escolha um Grupo valido!");
+							escolhaGrup = funcoes.leituraInt();
+						}
+					}
+					
+					//chama a função que verifica se esse grupo já está cheio, ou seja, com 4 Seleções
+					if (SelecaoDAO.verificaGrupos(grupo)) {
+						System.err.println("Esse Grupo ja esta completo! Nao foi possivel cadastrar a Selecao.");
+						break;
+					}
+					
+					Selecao novaSelecao = new Selecao(nomeS, listaJogadores, grupo); // cria o novo objeto
+
+					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO E NO MAP DOS GRUPOS
 					SelecaoDAO.inserir(novaSelecao);
+					SelecaoDAO.atualizaGrupos(grupo, novaSelecao);
 					break;
 
 				// INSERIR JOGADOR

@@ -11,6 +11,8 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 	private static ArrayList<Selecao> listaSelecoes = new ArrayList<>();
 	private static List<String> nomesSelecao = new ArrayList<String>();
+	
+	private static Map<String, List<Selecao>> mapGrupos = new HashMap<String, List<Selecao>>();//map para armazenar em que grupos as seleções estão
 
 	// ------------------------------------------------------------------------
 	public boolean checarNome(String nome) {
@@ -70,6 +72,49 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * Função para verificar se o Grupo informado pelo usuário na hora de cadastrar a
+	 * Seleção já está completo. Se estiver não poderá mais cadastrar Seleções nesse Grupo
+	 * e retornará true.
+	 * 
+	 * @param Letra do Grupo
+	 * @return true ou false
+	 */
+	public boolean verificaGrupos(String opcaoMenu) {
+		
+		List<Selecao> grupo = mapGrupos.get(opcaoMenu);
+		
+		if (grupo == null) {
+			return false;
+			
+		}else if (grupo.isEmpty()) {
+			return false;
+			
+		}else if (grupo.size() == 4) {
+			return true; //retorna true (que a lista está cheia)
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * Função que adiciona as seleções em seus grupos e atualiza o map Grupos
+	 * para sempre fazer a verificação 
+	 * @param grupo
+	 */
+	public void atualizaGrupos(String grupo, Selecao selecao) {
+		
+		if (mapGrupos.containsKey(grupo)) { //se o map já contem esse grupo, adiciona a seleção a lista
+			mapGrupos.get(grupo).add(selecao);
+			
+		}else {	//se não, então cria o grupo no map e adiciona a seleção depois
+			List<Selecao> listaSel = new ArrayList<Selecao>();
+			mapGrupos.put(grupo, listaSel);
+			mapGrupos.get(grupo).add(selecao);
+		}
+		
+	}
 
 	// ------------------------------------------------------------------------
 	/**
@@ -90,6 +135,15 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	public List<String> getLista2() {
 		return nomesSelecao;
 	}
+	
+	/**
+	 * Get para map dos Grupos das Seleções cadastradas.
+	 * @return Map dos Grupos
+	 */
+	public Map<String, List<Selecao>> getMapGrupos(){
+		return mapGrupos;
+	}
+	
 	// ------------------------------------------------------------------------
 
 	/**
@@ -175,9 +229,9 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 	@Override
 	public void listar() {
-		System.out.println("- Selecoes:");
+		System.out.println("\nLISTAGEM DAS SELECOES:");
 		for (int i = 0; i < listaSelecoes.size(); i++) {
-			System.out.println("- " + listaSelecoes.get(i).getNome());
+			System.out.println("- " + listaSelecoes.get(i).getNome() + "\tGrupo: " + listaSelecoes.get(i).getGrupo());
 		}
 	}
 

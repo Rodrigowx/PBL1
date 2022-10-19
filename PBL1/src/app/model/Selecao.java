@@ -13,12 +13,14 @@ public class Selecao {
 	private String nome;
 	private List<Jogador> jogadores;
 	private Tecnico tecnico = null;
+	private String grupo;
 
 	// CONSTRUTOR
-	public Selecao(String nome, List<Jogador> jogadores) {
+	public Selecao(String nome, List<Jogador> jogadores, String grupo) {
 		super();
 		this.nome = nome;
 		this.jogadores = jogadores;
+		this.grupo = grupo;
 	}
 
 	// METODOS
@@ -49,6 +51,14 @@ public class Selecao {
 
 	public void setTecnico(Tecnico tecnico) {
 		this.tecnico = tecnico;
+	}
+
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
 	}
 
 }

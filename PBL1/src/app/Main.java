@@ -56,6 +56,8 @@ public class Main extends Application {
 		JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
 		SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
 		TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
+		
+		FaseGrupos GruposCRUD = new FaseGrupos();
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -68,7 +70,7 @@ public class Main extends Application {
 
 			System.out.println("\nESCOLHA UMA DAS OPCOES: ");
 
-			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - SAIR"); // Menu principal
+			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - IR PARA FASE DE GRUPOS \n6 - SAIR"); // Menu principal
 
 			// O programa ler a opção escolhida pelo usuario
 			Integer menu = funcoes.leituraInt();
@@ -140,7 +142,7 @@ public class Main extends Application {
 					}
 					
 					//chama a função que verifica se esse grupo já está cheio, ou seja, com 4 Seleções
-					if (SelecaoDAO.verificaGrupos(grupo)) {
+					if (GruposCRUD.verificaGrupos(grupo)) {
 						System.err.println("Esse Grupo ja esta completo! Nao foi possivel cadastrar a Selecao.");
 						break;
 					}
@@ -149,7 +151,7 @@ public class Main extends Application {
 
 					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO E NO MAP DOS GRUPOS
 					SelecaoDAO.inserir(novaSelecao);
-					SelecaoDAO.atualizaGrupos(grupo, novaSelecao);
+					GruposCRUD.atualizaGrupos(grupo, novaSelecao);
 					break;
 
 				// INSERIR JOGADOR
@@ -629,8 +631,38 @@ public class Main extends Application {
 				break;
 
 			// -----------------------------------------------------------------------------------------------------------------------
-			// ENCERRAR
+			//FASE DE GRUPOS (CADASTRO DAS PARTIDAS)
 			case 5:
+				
+				//Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
+				if (funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO.getLista1())) {
+					break;
+				}
+				
+				//confirma se o usuário realmente quer ir para a fase de grupos, pois ele não poderá mais voltar para o menu de cadastro
+				System.out.println("Tem certeza que deseja ir para a Fase de Grupo? Voce nao podera mais cadastrar/editar/excluir Selecoes!: ");
+				System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
+				Integer confirm = funcoes.leituraInt();
+				
+				while (true) {
+					if (confirm == 1) {
+						loopMenu = false;
+						break;
+					}else if (confirm == 2) {
+						break;
+					}else {
+						System.err.println("\nOpcao Invalida!");
+						System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
+						confirm = funcoes.leituraInt();
+					}
+				}
+				
+				//dependendo da resposta do usuário, encerra esse loop e começa o loop do cadastro de partidas (fase 1) ou volta
+				break;
+				
+			// -----------------------------------------------------------------------------------------------------------------------
+			// ENCERRAR
+			case 6:
 				System.out.println("\nEncerrando programa...");
 				System.exit(0);
 
@@ -639,5 +671,15 @@ public class Main extends Application {
 			}
 
 		}
+		
+		/**
+		 * Essa parte da Main é a Fase de grupos, onde o usuário não poderá mais inserir, editar ou excluir seleções,
+		 * apenas jogadores, técnicos e árbitros. Esse segundo Menu Principal terá as seguintes oçções:
+		 * 1 GERENCIAR PARTIDAS
+		 * 2 GERENCIAR JOGADORES
+		 * 3 GERENCIAR ARBITROS**
+		 * 4 GERENCIA TECNICOS**se não colocar precisaria verificar de cada seleção?
+		 * 5 PESQUISAR
+		 */
 	}
 }

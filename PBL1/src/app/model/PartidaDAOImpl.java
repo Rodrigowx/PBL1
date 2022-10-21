@@ -40,6 +40,18 @@ public class PartidaDAOImpl implements PartidaDAO{
 	public void listar() {
 		// TODO Auto-generated method stub
 		
+		System.out.println("\nLISTAGEM DAS PARTIDAS: ");
+		
+		mapPartidas.forEach((id, partida) -> {
+			System.out.println("ID: " + id);
+			System.out.println(partida.getTime1() + "\t" + partida.getGolsTime1() + " X " + partida.getGolsTime2() + "\t" + partida.getTime2());
+			//PRECISA FORMATAR A DATA E HORÁRIO!!
+			System.out.println("DATA: " + partida.getData());
+			System.out.println("HORARIO: " + partida.getHorario());
+			System.out.println("LOCAL: " + partida.getLocal());
+			System.out.println();
+		});
+		
 	}
 
 }

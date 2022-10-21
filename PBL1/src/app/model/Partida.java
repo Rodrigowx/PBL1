@@ -2,7 +2,6 @@ package app.model;
 
 /**
  * Classe que representa as partidas do Sistema...
- *
  */
 
 public class Partida {

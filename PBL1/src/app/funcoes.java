@@ -1,6 +1,7 @@
 package app;
 
 import java.util.*;
+import app.model.*;
 
 /**
  * Classe responsável pelas demais funções.
@@ -43,4 +44,19 @@ public class funcoes {
 		return dadoLeituraInt;
 
 	}
+	
+	//essa função serve para verificar se o usuário pode realizar a fase de 
+	public static boolean verificaçãoFase1(FaseGrupos grupos, ArrayList<Selecao> listaSel) {
+		
+		if (grupos.getMapGrupos().isEmpty()) {
+			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois nao ha Selecoes cadastradas!");
+			return true;
+		}else if (listaSel.size() < 32) {
+			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
+			return true;
+		}//PRECISA VERIFICAR SE A SELEÇÃO TEM 16 JOGADORES ANTES??
+		
+		return false;
+	}
+	
 }

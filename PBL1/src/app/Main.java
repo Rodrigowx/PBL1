@@ -642,7 +642,7 @@ public class Main extends Application {
 			case 5:
 				
 				/*Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
-				if (funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
+				if (Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
 					break;
 				}
 				DEIXAR COMENTADO POR ENQUANTO PARA TESTES*/
@@ -690,11 +690,15 @@ public class Main extends Application {
 		 * 5 PESQUISAR
 		 */
 		
+		//CHAMANDO A FUNÇÃO QUE GERA TODAS AS PARTIDAS A PARTIR DAS SELEÇÕES JÁ CADASTRADAS ANTES DE INICIAR O MENU
+		Map<String, List<Partida>> PartidasGeradas = GruposCRUD.gerarPartidas();
+		
 		boolean loopMenuFase1 = true;
 		
 		while (loopMenuFase1) {
 			
-			System.out.println("\nESCOLHA UMA DAS OPCOES: ");
+			System.out.println("\n==== MENU DA FASE 1 ====");
+			System.out.println("ESCOLHA UMA DAS OPCOES: ");
 			
 			//MENU PARA A FASE 1
 			System.out.println("1 - GERENCIAR PARTIDAS \n2 - GERENCIAR JOGADORES \n3 - GERENCIAR ARBITROS \n4 - GERENCIAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
@@ -706,10 +710,44 @@ public class Main extends Application {
 
 			//GERENCIAR PARTIDAS
 			case 1:
+				
+				//NA PARTE DE INSERIR DE PARTIDAS PRECISA LISTAR AS PARTIDAS GEREDAS PARA O USUÁRIO ESCOLHER QUAL ELE VAI INSERIR**
+				//fazer função de listar partidas por grupo
+				//perguntar antes ao usuário de que grupo será a partida para não listar todas (pq são 48 no total)
+				
 				break;
 			//-----------------------------------------------------------------------------------------------------------------------
 			//GERENCIAR JOGADORES
 			case 2:
+				
+				//MENU JOGADOR
+				boolean loopJog = true;
+				while (loopJog) {
+					System.out.println("\n==GERENCIAR JOGADORES==");//Indicador de qual menu o usuário está
+					System.out.println("ESCOLHA UMA DAS OPCOES: ");
+					System.out.println("1 - INSERIR JOGADOR \n2 - EDITAR JOGADOR \n3 - EXCLUIR JOGADOR\n4 - LISTAR JOGADORES \n5 - VOLTAR");
+					Integer menuJogador = Funcoes.leituraInt();
+					
+					switch(menuJogador){
+					case 1: //inserir
+						
+						break;
+					case 2: //editar
+						
+						break;
+					case 3: //excluir
+						
+						break;
+					case 4: //listar
+						
+						break;
+					case 5: //voltar para o Menu Anterior
+						loopJog = false;
+						break;
+					default:
+						System.out.println("\nDigite uma opcao valida!");
+					}
+				}
 				break;
 			//-----------------------------------------------------------------------------------------------------------------------
 			//GERENCIAR ARBITROS

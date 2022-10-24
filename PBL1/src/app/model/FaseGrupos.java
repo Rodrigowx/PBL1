@@ -61,5 +61,43 @@ public class FaseGrupos {
 		}
 		
 	}
+	
+	/**
+	 * Essa função é responsável por gerar as todas as Partidas, pois
+	 * elas são pré-estabelecidas. Essa função é chamada somente uma vez na Main
+	 * antes de iniciar o Menu da fase de Grupos (fase1), pois é lá que ela ficará armazenada
+	 * 
+	 * @return map de todas as partidas geradas
+	 */
+	
+	public Map<String, List<Partida>> gerarPartidas() {
+		
+		Map<String, List<Partida>> mapPartidasGeradas = new HashMap<String, List<Partida>>(); //cria um Map para armazenar as partidas geradas
+		
+		mapGrupos.forEach((grupo, selecoes) -> { //percorre cada Grupo presente no dicionário
+			
+			List<Partida> PartidasGrupo = new ArrayList<Partida>(); //A cada grupo percorrido, ele cria uma lista com as Partidas desse Grupo que serão geradas
+			
+			//cria uma lista temporária e atribui à lista de seleções do grupo para não comprometer a lista original dos grupos
+			List<Selecao> ListaSelTemp = selecoes; 
+			
+			for (Selecao atual1 : ListaSelTemp) {
+				
+				int index = ListaSelTemp.indexOf(atual1); //Identifica qual o index da seleção atual do for...
+				ListaSelTemp.remove(index);// ...e remove ele da lista para não gerar partidas repetidas
+				
+				for (Selecao atual2 : ListaSelTemp) {
+					String time1, time2; //Cria as variáveis que irão guardar os times da partida
+					time1 = atual1.getNome();
+					time2 = atual2.getNome();
+					Partida partidaNova = new Partida(time1, time2); //cria o objeto com os times/Seleções que irão competir
+					PartidasGrupo.add(partidaNova); //adiciona a Partida criada na lista de Partidas desse Grupo
+				}
+			}
+			
+			mapPartidasGeradas.put(grupo, PartidasGrupo); //adiciona a Lista de Partidas do Grupo que acabou de ser percorrido no Map de TODAS as Partidas
+		});
+		return mapPartidasGeradas;
+	}
 
 }

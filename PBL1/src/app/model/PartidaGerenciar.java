@@ -13,8 +13,8 @@ public class PartidaGerenciar{
 	}
 	
 	//função para gerar as partidas. SERIA AQUI OU NA MAIN???
-	public static void gerarPartidas() {
-		
+	public static void dadosPartidas() {
+		//aqui vai colocar os dados que o usuário informar da partida e atualizar
 	}
 
 	public boolean inserir(Partida partida) {

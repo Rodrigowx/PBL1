@@ -17,16 +17,11 @@ public class Partida {
 	private Integer golsTime2;
 	
 	//CONSTRUTOR
-	public Partida(String codPart, String data, String horario, String local, String time1, String time2, Integer golsTime1, Integer golsTime2) {
+	public Partida(String time1, String time2) {
 		super();
-		this.codPart = codPart;
-		this.data = data;
-		this.horario = horario;
-		this.local = local;
 		this.time1 = time1;
 		this.time2 = time2;
-		this.golsTime1 = golsTime1;
-		this.golsTime2 = golsTime2;
+
 	}
 	
 	//GETTERS E SETTERS

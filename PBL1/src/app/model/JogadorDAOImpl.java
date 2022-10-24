@@ -2,7 +2,7 @@ package app.model;
 
 import java.util.*;
 
-import app.funcoes;
+import app.Funcoes;
 
 /**
  * Classe responsável pelo DAO do Jogador. Aqui foi implementado todas as
@@ -131,7 +131,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 				System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 				System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
 
-				Integer novaPosic = funcoes.leituraInt();
+				Integer novaPosic = Funcoes.leituraInt();
 				String posicao = null;
 				while (posicao == null) {
 					switch (novaPosic) {
@@ -150,7 +150,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 					default:
 						System.out.println("Escolha uma posicao valida!");
 
-						novaPosic = funcoes.leituraInt();
+						novaPosic = Funcoes.leituraInt();
 					}
 				}
 				mapJogadores.get(idJogador).setPosicao(posicao);
@@ -160,7 +160,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 				System.out.println("Informe a nova quantidade de cartoes amarelos: ");
 				// Integer novoCartA = scan.nextInt();
-				Integer novoCartA = funcoes.leituraInt();
+				Integer novoCartA = Funcoes.leituraInt();
 				mapJogadores.get(idJogador).setCartAmarelo(novoCartA);
 				System.out.println("Cartao alterado com sucesso!");
 
@@ -168,7 +168,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 				System.out.println("Informe a nova quantidade de cartoes vermelhos: ");
 				// Integer novoCartV = scan.nextInt();
-				Integer novoCartV = funcoes.leituraInt();
+				Integer novoCartV = Funcoes.leituraInt();
 				mapJogadores.get(idJogador).setCartVermelho(novoCartV);
 				System.out.println("Cartao alterado com sucesso!");
 
@@ -176,7 +176,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 
 				System.out.println("Informe a nova quantidade de gols: ");
 				// Integer novoGols = scan.nextInt();
-				Integer novoGols = funcoes.leituraInt();
+				Integer novoGols = Funcoes.leituraInt();
 				mapJogadores.get(idJogador).setGols(novoGols);
 				System.out.println("Gols alterado com sucesso!");
 

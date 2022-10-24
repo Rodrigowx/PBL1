@@ -70,6 +70,22 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		}
 		return null;
 	}
+	
+	public boolean verificaTotal() {
+		
+		/**Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores cadastrados, pois
+		 * as partidas só podem ser iniciadas com pelo menos essa quantidade em cada time (min 7 e max 11)
+		 */
+		
+		for(Selecao selecao : listaSelecoes) {
+			if (selecao.getJogadores().size() >= 7) {
+				continue;
+			}else {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	// ------------------------------------------------------------------------
 	/**

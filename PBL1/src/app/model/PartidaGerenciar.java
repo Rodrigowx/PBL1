@@ -2,7 +2,7 @@ package app.model;
 
 import java.util.*;
 
-public class PartidaDAOImpl implements PartidaDAO{
+public class PartidaGerenciar{
 	
 	private static Map<String, Partida> mapPartidas = new HashMap<String, Partida>(); //É MELHOR USAR MAP OU LIST PARA PARTIDAS??
 	
@@ -17,28 +17,20 @@ public class PartidaDAOImpl implements PartidaDAO{
 		
 	}
 
-	@Override
 	public boolean inserir(Partida partida) {
-		// TODO Auto-generated method stub
 		mapPartidas.put(partida.getCodPart(), partida);//**
 		return false;
 	}
 
-	@Override
 	public boolean editar(String idPartida, int opcaoMenu) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public Partida excluir(String idPartida) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void listar() {
-		// TODO Auto-generated method stub
 		
 		System.out.println("\nLISTAGEM DAS PARTIDAS: ");
 		

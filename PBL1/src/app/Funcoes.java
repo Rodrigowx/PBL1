@@ -7,7 +7,7 @@ import app.model.*;
  * Classe responsável pelas demais funções.
  */
 
-public class funcoes {
+public class Funcoes {
 
 	static Scanner read = new Scanner(System.in);
 
@@ -46,15 +46,18 @@ public class funcoes {
 	}
 	
 	//essa função serve para verificar se o usuário pode realizar a fase de 
-	public static boolean verificaçãoFase1(FaseGrupos grupos, ArrayList<Selecao> listaSel) {
+	public static boolean verificaçãoFase1(FaseGrupos grupos, SelecaoDAOImpl selecoes) {
 		
 		if (grupos.getMapGrupos().isEmpty()) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois nao ha Selecoes cadastradas!");
 			return true;
-		}else if (listaSel.size() < 32) {
+		}else if (selecoes.getLista1().size() < 32) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
 			return true;
-		}//PRECISA VERIFICAR SE A SELEÇÃO TEM 16 JOGADORES ANTES??
+		}else if (selecoes.verificaTotal()) {
+			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de jogadores cadastrados eh Insuficiente!");
+			return true;
+		}
 		
 		return false;
 	}

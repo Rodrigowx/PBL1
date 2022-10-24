@@ -13,7 +13,6 @@ package app;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import app.funcoes;
 import app.model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -58,6 +57,8 @@ public class Main extends Application {
 		TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
 		
 		FaseGrupos GruposCRUD = new FaseGrupos();
+		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
+		
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -73,7 +74,7 @@ public class Main extends Application {
 			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - IR PARA FASE DE GRUPOS \n6 - SAIR"); // Menu principal
 
 			// O programa ler a opção escolhida pelo usuario
-			Integer menu = funcoes.leituraInt();
+			Integer menu = Funcoes.leituraInt();
 
 			switch (menu) {
 
@@ -83,7 +84,7 @@ public class Main extends Application {
 				System.out.println(
 						"1 - INSERIR SELECAO \n2 - INSERIR JOGADOR \n3 - INSERIR ARBITRO \n4 - INSERIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
 
-				Integer insert = funcoes.leituraInt();
+				Integer insert = Funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE INSERIR
 				switch (insert) {
@@ -106,7 +107,7 @@ public class Main extends Application {
 					System.out.println("\n -> Escolha qual desses Grupos a Selecao pertence: ");	
 					System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
 
-					Integer escolhaGrup = funcoes.leituraInt();
+					Integer escolhaGrup = Funcoes.leituraInt();
 					String grupo = null;
 
 					while (grupo == null) {
@@ -137,7 +138,7 @@ public class Main extends Application {
 							break;
 						default:
 							System.err.println("Escolha um Grupo valido!");
-							escolhaGrup = funcoes.leituraInt();
+							escolhaGrup = Funcoes.leituraInt();
 						}
 					}
 					
@@ -170,7 +171,7 @@ public class Main extends Application {
 					System.out.println("\n -> Escolha qual a posicao do Jogador: ");
 					System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
 
-					Integer escolhaPos = funcoes.leituraInt();
+					Integer escolhaPos = Funcoes.leituraInt();
 					String posicao = null;
 
 					while (posicao == null) {
@@ -190,16 +191,16 @@ public class Main extends Application {
 						default:
 							System.err.println("Escolha uma posicao valida!");
 
-							escolhaPos = funcoes.leituraInt();
+							escolhaPos = Funcoes.leituraInt();
 						}
 					}
 
 					System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: ");
-					Integer cartA = funcoes.leituraInt();
+					Integer cartA = Funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: ");
-					Integer cartV = funcoes.leituraInt();
+					Integer cartV = Funcoes.leituraInt();
 					System.out.println("\n -> Digite quantos gols o jogador ja fez: ");
-					Integer gols = funcoes.leituraInt();
+					Integer gols = Funcoes.leituraInt();
 
 					// ADICIONANDO JOGADOR EM UMA SELEÇÃO
 					System.out.println("\n -> Digite qual dessas eh a Selecao do Jogador: ");
@@ -211,9 +212,15 @@ public class Main extends Application {
 					Selecao selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 
 					while (selecaoJog == null) {
-						System.err.println("\nSeleçao nao cadastrada! Digite novamente: ");
+						System.err.println("\nSelecao nao cadastrada! Digite novamente: ");
 						escolhaSel = read.nextLine();
 						selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
+					}
+					
+					//Verifica se essa seleção já possui o número máximo de jogadores (11)***MUDAR AQUI
+					if (selecaoJog.getJogadores().size() == 2) {
+						System.err.println("Essa Selecao ja alcancou seu limite de jogadores! Nao foi possivel cadastrar o Jogador.");
+						break;
 					}
 
 					// CRIANDO O JOGADOR
@@ -325,7 +332,7 @@ public class Main extends Application {
 				System.out.println(
 						"1 - EDITAR SELECAO \n2 - EDITAR JOGADOR \n3 - EDITAR ARBITRO \n4 - EDITAR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
 
-				Integer edit = funcoes.leituraInt();
+				Integer edit = Funcoes.leituraInt();
 
 				// SWITCH-CASE PARA O MENU INTERNO DE EDITAR
 				switch (edit) {
@@ -375,7 +382,7 @@ public class Main extends Application {
 							System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
 							System.out.println(
 									"1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
-							Integer dado = funcoes.leituraInt();
+							Integer dado = Funcoes.leituraInt();
 
 							switch (dado) {
 
@@ -500,7 +507,7 @@ public class Main extends Application {
 				System.out.println(
 						"1 - EXCLUIR UMA SELECAO \n2 - EXCLUIR UM JOGADOR \n3 - EXCLUIR ARBITRO \n4 - EXCLUIR TECNICO\n5 - RETORNAR AO MENU PRINCIPAL");
 
-				Integer remove = funcoes.leituraInt();
+				Integer remove = Funcoes.leituraInt();
 
 				switch (remove) {
 
@@ -586,7 +593,7 @@ public class Main extends Application {
 				System.out.println(
 						"1 - LISTAR SELECOES \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS\n5 - RETORNAR AO MENU PRINCIPAL");
 
-				Integer list = funcoes.leituraInt();
+				Integer list = Funcoes.leituraInt();
 
 				switch (list) {
 
@@ -634,15 +641,16 @@ public class Main extends Application {
 			//FASE DE GRUPOS (CADASTRO DAS PARTIDAS)
 			case 5:
 				
-				//Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
-				if (funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO.getLista1())) {
+				/*Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
+				if (funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
 					break;
 				}
+				DEIXAR COMENTADO POR ENQUANTO PARA TESTES*/
 				
 				//confirma se o usuário realmente quer ir para a fase de grupos, pois ele não poderá mais voltar para o menu de cadastro
 				System.out.println("Tem certeza que deseja ir para a Fase de Grupo? Voce nao podera mais cadastrar/editar/excluir Selecoes!: ");
 				System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
-				Integer confirm = funcoes.leituraInt();
+				Integer confirm = Funcoes.leituraInt();
 				
 				while (true) {
 					if (confirm == 1) {
@@ -653,7 +661,7 @@ public class Main extends Application {
 					}else {
 						System.err.println("\nOpcao Invalida!");
 						System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
-						confirm = funcoes.leituraInt();
+						confirm = Funcoes.leituraInt();
 					}
 				}
 				
@@ -671,15 +679,59 @@ public class Main extends Application {
 			}
 
 		}
-		
+		//=======================================================================================================================================================
 		/**
 		 * Essa parte da Main é a Fase de grupos, onde o usuário não poderá mais inserir, editar ou excluir seleções,
 		 * apenas jogadores, técnicos e árbitros. Esse segundo Menu Principal terá as seguintes oçções:
 		 * 1 GERENCIAR PARTIDAS
 		 * 2 GERENCIAR JOGADORES
 		 * 3 GERENCIAR ARBITROS**
-		 * 4 GERENCIA TECNICOS**se não colocar precisaria verificar de cada seleção?
+		 * 4 GERENCIAR TECNICOS**se não colocar precisaria verificar de cada seleção?
 		 * 5 PESQUISAR
 		 */
+		
+		boolean loopMenuFase1 = true;
+		
+		while (loopMenuFase1) {
+			
+			System.out.println("\nESCOLHA UMA DAS OPCOES: ");
+			
+			//MENU PARA A FASE 1
+			System.out.println("1 - GERENCIAR PARTIDAS \n2 - GERENCIAR JOGADORES \n3 - GERENCIAR ARBITROS \n4 - GERENCIAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
+			
+			// O programa ler a opção escolhida pelo usuario
+			Integer menu2 = Funcoes.leituraInt();
+
+			switch (menu2) {
+
+			//GERENCIAR PARTIDAS
+			case 1:
+				break;
+			//-----------------------------------------------------------------------------------------------------------------------
+			//GERENCIAR JOGADORES
+			case 2:
+				break;
+			//-----------------------------------------------------------------------------------------------------------------------
+			//GERENCIAR ARBITROS
+			case 3:
+				break;
+			//-----------------------------------------------------------------------------------------------------------------------
+			//GERENCIAR TECNICOS
+			case 4:
+				break;
+			//-----------------------------------------------------------------------------------------------------------------------
+			//PESQUISAR
+			case 5:
+				break;	
+			//-----------------------------------------------------------------------------------------------------------------------
+			// ENCERRAR
+			case 6:
+				System.out.println("\nEncerrando programa...");
+				System.exit(0);
+
+			default:
+				System.out.println("\nDigite uma opcao valida!");
+			}
+		}
 	}
 }

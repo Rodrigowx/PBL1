@@ -837,12 +837,15 @@ public class Main extends Application {
 					case 2: //editar
 						
 						break;
+						
 					case 3: //excluir
 						
 						break;
-					case 4: //listar
 						
+					case 4: //listar
+						PartGerenciar.listar();
 						break;
+						
 					case 5: //voltar para o Menu Anterior
 						loopPart = false;
 						break;

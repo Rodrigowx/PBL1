@@ -711,12 +711,152 @@ public class Main extends Application {
 			//GERENCIAR PARTIDAS
 			case 1:
 				
+				boolean loopPart = true;
+				while(loopPart) {
+					System.out.println("\n==GERENCIAR PARTIDAS==");
+					System.out.println("\nESCOLHA UMA DAS OPCOES: ");
+					System.out.println("1 - INSERIR PARTIDA \n2 - EDITAR PARTIDA \n3 - EXCLUIR PARTIDA \n4 - LISTAR PARTIDAS \n5 - VOLTAR");
+					Integer menuPartida = Funcoes.leituraInt();
+					
+					switch(menuPartida){
+					case 1: //inserir
+						
+						//1º) perguntando ao usuário de qual Grupo é a Partida que deseja inserir
+						System.out.println("\n -> Escolha de qual desses Grupos é a Partida: ");	
+						System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
+
+						Integer escolhaGrupP = Funcoes.leituraInt();
+						String grupo = null;
+
+						while (grupo == null) {
+							switch (escolhaGrupP) {
+							case 1:
+								grupo = "A";
+								break;
+							case 2:
+								grupo = "B";
+								break;
+							case 3:
+								grupo = "C";
+								break;
+							case 4:
+								grupo = "D";
+								break;
+							case 5:
+								grupo = "E";
+								break;
+							case 6:
+								grupo = "F";
+								break;
+							case 7:
+								grupo = "G";
+								break;
+							case 8:
+								grupo = "H";
+								break;
+							default:
+								System.err.println("Escolha um Grupo valido!");
+								escolhaGrupP = Funcoes.leituraInt();
+							}
+						}
+						
+						//2º) Listando ao usuário as partidas geradas no Grupo escolhido, para escolher qual ele deseja cadastrar
+						System.out.println("\n -> Escolha qual dessas é a partida que deseja cadastrar: ");
+						int i = 0;
+						ArrayList<Partida> listaPartidasTemp = new ArrayList<>();
+						
+						for (Partida partida : PartidasGeradas.get(escolhaGrupP)) {
+							i += 1;
+							System.out.println(i + " - " + partida.getTime1() + "X" + partida.getTime2());
+							listaPartidasTemp.add(partida);
+						}
+						
+						Integer escolhaPartidas = null;
+						boolean check = true;
+						
+						while(check) {
+							escolhaPartidas = Funcoes.leituraInt();
+							
+							switch(escolhaPartidas) {
+							case 1:
+								check = false;
+								break;
+							case 2:
+								check = false;
+								break;
+							case 3:
+								check = false;
+								break;
+							case 4:
+								check = false;
+								break;
+							case 5:
+								check = false;
+								break;
+							case 6:
+								check = false;
+								break;
+							default:
+								System.err.println("Opcao Invalida! Digite novamente: ");
+							}
+							
+						}
+						
+						Partida partidaEscolhida = listaPartidasTemp.get(escolhaPartidas);
+						
+						//3º) Inserindo os dados da partida cadastrada
+						
+						//codPart
+						Date dataP = new Date();
+						String codPart = sdf.format(dataP);
+						partidaEscolhida.setCodPart(codPart);
+						
+						//data
+						System.out.println("\n -> Digite qual foi a data da Partida: ");
+						String data = read.nextLine();
+						partidaEscolhida.setData(data);
+						
+						//horario
+						System.out.println("\n -> Digite qual foi o horario da Partida: ");
+						String hora = read.nextLine();
+						partidaEscolhida.setHorario(hora);
+						
+						//local
+						System.out.println("\n -> Digite qual foi o local da Partida: ");
+						String local = read.nextLine();
+						partidaEscolhida.setLocal(local);
+						
+						//golsTime1 **FAZER PARTE DOS GOLS E CARTÕES AQUI (PENSAR COMO VAI FICAR ORGANIZADO ESSA PARTE)!!
+						//golsTime2
+						
+						
+						PartGerenciar.inserir(partidaEscolhida);
+						
+						break;
+					//--------------------------------------------------------------------------------------	
+					case 2: //editar
+						
+						break;
+					case 3: //excluir
+						
+						break;
+					case 4: //listar
+						
+						break;
+					case 5: //voltar para o Menu Anterior
+						loopPart = false;
+						break;
+					default:
+						System.out.println("\nDigite uma opcao valida!");
+					}
+				
+				}
 				//NA PARTE DE INSERIR DE PARTIDAS PRECISA LISTAR AS PARTIDAS GEREDAS PARA O USUÁRIO ESCOLHER QUAL ELE VAI INSERIR**
 				//fazer função de listar partidas por grupo
 				//perguntar antes ao usuário de que grupo será a partida para não listar todas (pq são 48 no total)
 				
 				break;
-			//-----------------------------------------------------------------------------------------------------------------------
+			//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			//GERENCIAR JOGADORES
 			case 2:
 				

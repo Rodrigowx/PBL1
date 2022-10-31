@@ -87,9 +87,13 @@ public class FaseGrupos {
 				ListaSelTemp.remove(index);// ...e remove ele da lista para não gerar partidas repetidas
 				
 				for (Selecao atual2 : ListaSelTemp) {
-					String time1, time2; //Cria as variáveis que irão guardar os times da partida
+					String time1, time2; //Cria as variáveis que irão guardar os times da partida				
 					time1 = atual1.getNome();
 					time2 = atual2.getNome();
+					
+					System.out.println(time1);
+					System.out.println(time2);
+					
 					Partida partidaNova = new Partida(time1, time2); //cria o objeto com os times/Seleções que irão competir
 					PartidasGrupo.add(partidaNova); //adiciona a Partida criada na lista de Partidas desse Grupo
 				}

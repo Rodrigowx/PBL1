@@ -40,6 +40,7 @@ public class Main extends Application {
 		}
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 		// launch(args);
 
@@ -722,7 +723,7 @@ public class Main extends Application {
 					case 1: //inserir
 						
 						//1º) perguntando ao usuário de qual Grupo é a Partida que deseja inserir
-						System.out.println("\n -> Escolha de qual desses Grupos é a Partida: ");	
+						System.out.println("\n -> Escolha de qual desses Grupos eh a Partida: ");	
 						System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
 
 						Integer escolhaGrupP = Funcoes.leituraInt();
@@ -761,48 +762,48 @@ public class Main extends Application {
 						}
 						
 						//2º) Listando ao usuário as partidas geradas no Grupo escolhido, para escolher qual ele deseja cadastrar
-						System.out.println("\n -> Escolha qual dessas é a partida que deseja cadastrar: ");
+						System.out.println("\n -> Escolha qual dessas eh a partida que deseja cadastrar: ");
 						int i = 0;
 						ArrayList<Partida> listaPartidasTemp = new ArrayList<>();
 						
-						for (Partida partida : PartidasGeradas.get(escolhaGrupP)) {
+						for (Partida partida : PartidasGeradas.get(grupo)) {
 							i += 1;
-							System.out.println(i + " - " + partida.getTime1() + "X" + partida.getTime2());
+							System.out.println(i + " - " + partida.getTime1() + " X " + partida.getTime2());
 							listaPartidasTemp.add(partida);
 						}
 						
-						Integer escolhaPartidas = null;
-						boolean check = true;
+						Integer escolhaPartidas = Funcoes.leituraInt();
+						Integer part = null;
 						
-						while(check) {
-							escolhaPartidas = Funcoes.leituraInt();
+						while(part == null) {
 							
 							switch(escolhaPartidas) {
 							case 1:
-								check = false;
+								part = 0;
 								break;
 							case 2:
-								check = false;
+								part = 1;
 								break;
 							case 3:
-								check = false;
+								part = 2;
 								break;
 							case 4:
-								check = false;
+								part = 3;
 								break;
 							case 5:
-								check = false;
+								part = 4;
 								break;
 							case 6:
-								check = false;
+								part = 5;
 								break;
 							default:
 								System.err.println("Opcao Invalida! Digite novamente: ");
+								escolhaPartidas = Funcoes.leituraInt();
 							}
 							
 						}
 						
-						Partida partidaEscolhida = listaPartidasTemp.get(escolhaPartidas);
+						Partida partidaEscolhida = listaPartidasTemp.get(part);
 						
 						//3º) Inserindo os dados da partida cadastrada
 						
@@ -831,6 +832,7 @@ public class Main extends Application {
 						
 						
 						PartGerenciar.inserir(partidaEscolhida);
+						System.out.println("Partida Inserida com Sucesso!");
 						
 						break;
 					//--------------------------------------------------------------------------------------	

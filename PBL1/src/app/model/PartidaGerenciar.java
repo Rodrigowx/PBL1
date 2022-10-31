@@ -11,11 +11,6 @@ public class PartidaGerenciar{
 	public static Map<String, Partida> getMapPartidas() {
 		return mapPartidas;
 	}
-	
-	//função para gerar as partidas. SERIA AQUI OU NA MAIN???
-	public static void dadosPartidas() {
-		//aqui vai colocar os dados que o usuário informar da partida e atualizar
-	}
 
 	public boolean inserir(Partida partida) {
 		mapPartidas.put(partida.getCodPart(), partida);//**

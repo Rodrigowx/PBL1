@@ -40,7 +40,6 @@ public class Main extends Application {
 		}
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	public static void main(String[] args) {
 		// launch(args);
 
@@ -642,11 +641,11 @@ public class Main extends Application {
 			//FASE DE GRUPOS (CADASTRO DAS PARTIDAS)
 			case 5:
 				
-				/*Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
+				/*Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)*/
 				if (Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
 					break;
 				}
-				DEIXAR COMENTADO POR ENQUANTO PARA TESTES*/
+				/*DEIXAR COMENTADO POR ENQUANTO PARA TESTES*/
 				
 				//confirma se o usuário realmente quer ir para a fase de grupos, pois ele não poderá mais voltar para o menu de cadastro
 				System.out.println("Tem certeza que deseja ir para a Fase de Grupo? Voce nao podera mais cadastrar/editar/excluir Selecoes!: ");

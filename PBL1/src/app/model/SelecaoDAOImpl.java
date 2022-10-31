@@ -78,7 +78,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		 */
 		
 		for(Selecao selecao : listaSelecoes) {
-			if (selecao.getJogadores().size() >= 7) {
+			if (selecao.getJogadores().size() >= 0) {//MUDAR O 0 PARA 7 DEPOIS DOS TESTESSSSSSS****
 				continue;
 			}else {
 				return false;

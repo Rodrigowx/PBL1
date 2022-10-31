@@ -78,13 +78,15 @@ public class FaseGrupos {
 			
 			List<Partida> PartidasGrupo = new ArrayList<Partida>(); //A cada grupo percorrido, ele cria uma lista com as Partidas desse Grupo que serão geradas
 			
-			//cria uma lista temporária e atribui à lista de seleções do grupo para não comprometer a lista original dos grupos
-			List<Selecao> ListaSelTemp = selecoes; 
+			//cria uma lista temporária e copia todos os elementos da lista de seleções do grupo, para não comprometer a lista original dos grupos
+			List<Selecao> ListaSelTemp = new ArrayList<>();
+			ListaSelTemp.addAll(selecoes); //a função .addAll copia todos os elementos de uma outra lista
 			
-			for (Selecao atual1 : ListaSelTemp) {
+			for (Selecao atual1 : selecoes) {
 				
-				int index = ListaSelTemp.indexOf(atual1); //Identifica qual o index da seleção atual do for...
-				ListaSelTemp.remove(index);// ...e remove ele da lista para não gerar partidas repetidas
+				//int index = ListaSelTemp.indexOf(atual1); //Identifica qual o index da seleção atual do for...
+				//ListaSelTemp.remove(index);// ...e remove ele da lista para não gerar partidas repetidas
+				ListaSelTemp.remove(atual1);
 				
 				for (Selecao atual2 : ListaSelTemp) {
 					String time1, time2; //Cria as variáveis que irão guardar os times da partida				

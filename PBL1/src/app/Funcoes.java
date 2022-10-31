@@ -54,7 +54,7 @@ public class Funcoes {
 		}else if (selecoes.getLista1().size() < 32) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
 			return true;
-		}else if (selecoes.verificaTotal()) {
+		}else if (selecoes.verificaTotal() == false) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de jogadores cadastrados eh Insuficiente!");
 			return true;
 		}

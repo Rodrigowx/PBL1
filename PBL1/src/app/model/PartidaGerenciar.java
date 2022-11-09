@@ -12,22 +12,27 @@ public class PartidaGerenciar{
 		return mapPartidas;
 	}
 
-	public boolean inserir(Partida partida) {
+	public static boolean inserir(Partida partida) {
 		mapPartidas.put(partida.getCodPart(), partida);//**
 		return false;
 	}
 
-	public boolean editar(String idPartida, int opcaoMenu) {
+	public static boolean editar(String idPartida, int opcaoMenu) {
+		
+		//edição desse foi feito na main, precisa passar pra cá????? Mas ver como fica as verificações 
+		
 		return false;
 	}
 
-	public Partida excluir(String idPartida) {
-		return null;
+	public static void excluir(String idPartida) {
+		
+		mapPartidas.remove(idPartida);
+		return;
 	}
 
 	public void listar() {
 		
-		System.out.println("\nLISTAGEM DAS PARTIDAS: ");
+		System.out.println("\nLISTAGEM DAS PARTIDAS: n");
 		
 		mapPartidas.forEach((id, partida) -> {
 			System.out.println("ID: " + id);

@@ -15,6 +15,7 @@ public class Partida {
 	private String time2;
 	private Integer golsTime1;
 	private Integer golsTime2;
+	private String grupo;
 	
 	//CONSTRUTOR
 	public Partida(String time1, String time2) {
@@ -88,6 +89,14 @@ public class Partida {
 
 	public void setGolsTime2(Integer golsTime2) {
 		this.golsTime2 = golsTime2;
+	}
+
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
 	}
 	
 }

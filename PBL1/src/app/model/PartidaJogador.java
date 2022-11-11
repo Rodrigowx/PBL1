@@ -4,17 +4,14 @@ public class PartidaJogador {
 	
 	private String codPartida;
 	private String codJogador;
-	private int gols;
-	private int cartoesA;
-	private int cartoesV;
+	private int gols = 0;
+	private int cartoesA = 0;
+	private int cartoesV = 0;
 	
-	public PartidaJogador(String codPartida, String codJogador, int gols, int cartoesA, int cartoesV) {
+	public PartidaJogador(String codPartida, String codJogador) {
 		super();
 		this.codPartida = codPartida;
 		this.codJogador = codJogador;
-		this.gols = gols;
-		this.cartoesA = cartoesA;
-		this.cartoesV = cartoesV;
 	}
 	
 	public String getCodPartida() {
@@ -52,4 +49,15 @@ public class PartidaJogador {
 		this.cartoesV = cartoesV;
 	}
 	
+	public void inserirGols(int gol) {
+		this.gols = gols + gol;
+	}
+	
+	public void inserirCartA(int cartA) {
+		this.cartoesA = cartoesA + cartA;
+	}
+	
+	public void inserirCartV(int cartV) {
+		this.cartoesV = cartoesV + cartV;
+	}
 }

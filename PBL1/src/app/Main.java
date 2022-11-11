@@ -55,10 +55,9 @@ public class Main extends Application {
 		JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
 		SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
 		TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
-		
+
 		FaseGrupos GruposCRUD = new FaseGrupos();
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
-		
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -71,7 +70,9 @@ public class Main extends Application {
 
 			System.out.println("\nESCOLHA UMA DAS OPCOES: ");
 
-			System.out.println("1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - IR PARA FASE DE GRUPOS \n6 - SAIR"); // Menu principal
+			System.out.println(
+					"1 - INSERIR \n2 - EDITAR \n3 - EXCLUIR \n4 - LISTAR \n5 - IR PARA FASE DE GRUPOS \n6 - SAIR"); // Menu
+																													// principal
 
 			// O programa ler a opção escolhida pelo usuario
 			Integer menu = Funcoes.leituraInt();
@@ -102,10 +103,11 @@ public class Main extends Application {
 
 					// CRIANDO O OBJETO SELEÇÃO
 					List<Jogador> listaJogadores = new ArrayList<>(); // lista de jogadores para o atributo de Seleção
-					
-					//perguntando ao usuário a qual Grupo a Seleção pertence
-					System.out.println("\n -> Escolha qual desses Grupos a Selecao pertence: ");	
-					System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
+
+					// perguntando ao usuário a qual Grupo a Seleção pertence
+					System.out.println("\n -> Escolha qual desses Grupos a Selecao pertence: ");
+					System.out.println(
+							"1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
 
 					Integer escolhaGrup = Funcoes.leituraInt();
 					String grupo = null;
@@ -141,13 +143,14 @@ public class Main extends Application {
 							escolhaGrup = Funcoes.leituraInt();
 						}
 					}
-					
-					//chama a função que verifica se esse grupo já está cheio, ou seja, com 4 Seleções
+
+					// chama a função que verifica se esse grupo já está cheio, ou seja, com 4
+					// Seleções
 					if (GruposCRUD.verificaGrupos(grupo)) {
 						System.err.println("Esse Grupo ja esta completo! Nao foi possivel cadastrar a Selecao.");
 						break;
 					}
-					
+
 					Selecao novaSelecao = new Selecao(nomeS, listaJogadores, grupo); // cria o novo objeto
 
 					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO E NO MAP DOS GRUPOS
@@ -194,14 +197,15 @@ public class Main extends Application {
 							escolhaPos = Funcoes.leituraInt();
 						}
 					}
-
-					System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: ");
-					Integer cartA = Funcoes.leituraInt();
-					System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: ");
-					Integer cartV = Funcoes.leituraInt();
-					System.out.println("\n -> Digite quantos gols o jogador ja fez: ");
-					Integer gols = Funcoes.leituraInt();
-
+					/*
+					 * Comentei aq pra mudar gols e cartoes.
+					 * System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: "
+					 * ); Integer cartA = Funcoes.leituraInt();
+					 * System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: "
+					 * ); Integer cartV = Funcoes.leituraInt();
+					 * System.out.println("\n -> Digite quantos gols o jogador ja fez: "); Integer
+					 * gols = Funcoes.leituraInt();
+					 */
 					// ADICIONANDO JOGADOR EM UMA SELEÇÃO
 					System.out.println("\n -> Digite qual dessas eh a Selecao do Jogador: ");
 					for (String selecao : SelecaoDAO.getLista2()) {
@@ -216,16 +220,18 @@ public class Main extends Application {
 						escolhaSel = read.nextLine();
 						selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 					}
-					
-					//Verifica se essa seleção já possui o número máximo de jogadores (11)***MUDAR AQUI
+
+					// Verifica se essa seleção já possui o número máximo de jogadores (11)***MUDAR
+					// AQUI
 					if (selecaoJog.getJogadores().size() == 2) {
-						System.err.println("Essa Selecao ja alcancou seu limite de jogadores! Nao foi possivel cadastrar o Jogador.");
+						System.err.println(
+								"Essa Selecao ja alcancou seu limite de jogadores! Nao foi possivel cadastrar o Jogador.");
 						break;
 					}
 
 					// CRIANDO O JOGADOR
 					Date data = new Date();
-					Jogador novoJog = new Jogador(sdf.format(data), nomeJ, posicao, cartA, cartV, gols, selecaoJog);
+					Jogador novoJog = new Jogador(sdf.format(data), nomeJ, posicao, selecaoJog);
 
 					// ADICIONANDO O JOGADOR NOVO NA LISTA DE SEU DAO E DA SUA SELEÇAO
 					JogadorDAO.inserir(novoJog);
@@ -380,8 +386,7 @@ public class Main extends Application {
 						while (loopCase) {
 
 							System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
-							System.out.println(
-									"1 - NOME\n2 - POSICAO\n3 - CARTAO AMARELO\n4 - CARTAO VERMELHO\n5 - GOLS");
+							System.out.println("1 - NOME\n2 - POSICAO\n");
 							Integer dado = Funcoes.leituraInt();
 
 							switch (dado) {
@@ -408,39 +413,25 @@ public class Main extends Application {
 								}
 								break;
 
-							case 3:
-
-								if (JogadorDAO.editar(idPesquisa, dado)) {
-									loopCase = false;
-									continue;
-
-								} else {
-									System.err.println("Falha na edicao!");
-								}
-								break;
-
-							case 4:
-
-								if (JogadorDAO.editar(idPesquisa, dado)) {
-									loopCase = false;
-									continue;
-
-								} else {
-									System.err.println("Falha na edicao!");
-								}
-								break;
-
-							case 5:
-
-								if (JogadorDAO.editar(idPesquisa, dado)) {
-									loopCase = false;
-									continue;
-
-								} else {
-									System.err.println("Falha na edicao!");
-								}
-								break;
-
+							/*
+							 * Comentei aqui pois n precisa mais dessa edicao case 3:
+							 * 
+							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
+							 * 
+							 * } else { System.err.println("Falha na edicao!"); } break;
+							 * 
+							 * case 4:
+							 * 
+							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
+							 * 
+							 * } else { System.err.println("Falha na edicao!"); } break;
+							 * 
+							 * case 5:
+							 * 
+							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
+							 * 
+							 * } else { System.err.println("Falha na edicao!"); } break;
+							 */
 							default:
 								System.err.println("\nOpcao Invalida!");
 							}
@@ -638,36 +629,41 @@ public class Main extends Application {
 				break;
 
 			// -----------------------------------------------------------------------------------------------------------------------
-			//FASE DE GRUPOS (CADASTRO DAS PARTIDAS)
+			// FASE DE GRUPOS (CADASTRO DAS PARTIDAS)
 			case 5:
-				
-				/*Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)*/
+
+				/*
+				 * Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
+				 */
 				if (Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
 					break;
 				}
-				/*DEIXAR COMENTADO POR ENQUANTO PARA TESTES*/
-				
-				//confirma se o usuário realmente quer ir para a fase de grupos, pois ele não poderá mais voltar para o menu de cadastro
-				System.out.println("\nTem certeza que deseja ir para a Fase de Grupo? Voce nao podera mais cadastrar/editar/excluir Selecoes!: ");
+				/* DEIXAR COMENTADO POR ENQUANTO PARA TESTES */
+
+				// confirma se o usuário realmente quer ir para a fase de grupos, pois ele não
+				// poderá mais voltar para o menu de cadastro
+				System.out.println(
+						"\nTem certeza que deseja ir para a Fase de Grupo? Voce nao podera mais cadastrar/editar/excluir Selecoes!: ");
 				System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
 				Integer confirm = Funcoes.leituraInt();
-				
+
 				while (true) {
 					if (confirm == 1) {
 						loopMenu = false;
 						break;
-					}else if (confirm == 2) {
+					} else if (confirm == 2) {
 						break;
-					}else {
+					} else {
 						System.err.println("\nOpcao Invalida!");
 						System.out.println("DIGITE 1 PARA SIM \nDIGITE 2 PARA VOLTAR");
 						confirm = Funcoes.leituraInt();
 					}
 				}
-				
-				//dependendo da resposta do usuário, encerra esse loop e começa o loop do cadastro de partidas (fase 1) ou volta
+
+				// dependendo da resposta do usuário, encerra esse loop e começa o loop do
+				// cadastro de partidas (fase 1) ou volta
 				break;
-				
+
 			// -----------------------------------------------------------------------------------------------------------------------
 			// ENCERRAR
 			case 6:
@@ -679,51 +675,53 @@ public class Main extends Application {
 			}
 
 		}
-		//=======================================================================================================================================================
+		// =======================================================================================================================================================
 		/**
-		 * Essa parte da Main é a Fase de grupos, onde o usuário não poderá mais inserir, editar ou excluir seleções,
-		 * apenas jogadores, técnicos e árbitros. Esse segundo Menu Principal terá as seguintes oçções:
-		 * 1 GERENCIAR PARTIDAS
-		 * 2 GERENCIAR JOGADORES
-		 * 3 GERENCIAR ARBITROS**
-		 * 4 GERENCIAR TECNICOS**se não colocar precisaria verificar de cada seleção?
-		 * 5 PESQUISAR
+		 * Essa parte da Main é a Fase de grupos, onde o usuário não poderá mais
+		 * inserir, editar ou excluir seleções, apenas jogadores, técnicos e árbitros.
+		 * Esse segundo Menu Principal terá as seguintes oçções: 1 GERENCIAR PARTIDAS 2
+		 * GERENCIAR JOGADORES 3 GERENCIAR ARBITROS** 4 GERENCIAR TECNICOS**se não
+		 * colocar precisaria verificar de cada seleção? 5 PESQUISAR
 		 */
-		
-		//CHAMANDO A FUNÇÃO QUE GERA TODAS AS PARTIDAS A PARTIR DAS SELEÇÕES JÁ CADASTRADAS ANTES DE INICIAR O MENU
+
+		// CHAMANDO A FUNÇÃO QUE GERA TODAS AS PARTIDAS A PARTIR DAS SELEÇÕES JÁ
+		// CADASTRADAS ANTES DE INICIAR O MENU
 		Map<String, List<Partida>> PartidasGeradas = GruposCRUD.gerarPartidas();
-		
+
 		boolean loopMenuFase1 = true;
-		
+
 		while (loopMenuFase1) {
-			
+
 			System.out.println("\n==== MENU DA FASE 1 ====");
 			System.out.println("ESCOLHA UMA DAS OPCOES: ");
-			
-			//MENU PARA A FASE 1
-			System.out.println("1 - GERENCIAR PARTIDAS \n2 - GERENCIAR JOGADORES \n3 - GERENCIAR ARBITROS \n4 - GERENCIAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
-			
+
+			// MENU PARA A FASE 1
+			System.out.println(
+					"1 - GERENCIAR PARTIDAS \n2 - GERENCIAR JOGADORES \n3 - GERENCIAR ARBITROS \n4 - GERENCIAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
+
 			// O programa ler a opção escolhida pelo usuario
 			Integer menu2 = Funcoes.leituraInt();
 
 			switch (menu2) {
 
-			//GERENCIAR PARTIDAS
+			// GERENCIAR PARTIDAS
 			case 1:
-				
+
 				boolean loopPart = true;
-				while(loopPart) {
+				while (loopPart) {
 					System.out.println("\n==GERENCIAR PARTIDAS==");
 					System.out.println("\nESCOLHA UMA DAS OPCOES: ");
-					System.out.println("1 - INSERIR PARTIDA \n2 - EDITAR PARTIDA \n3 - EXCLUIR PARTIDA \n4 - LISTAR PARTIDAS \n5 - VOLTAR");
+					System.out.println(
+							"1 - INSERIR PARTIDA \n2 - EDITAR PARTIDA \n3 - EXCLUIR PARTIDA \n4 - LISTAR PARTIDAS \n5 - VOLTAR");
 					Integer menuPartida = Funcoes.leituraInt();
-					
-					switch(menuPartida){
-					case 1: //INSERIR PARTIDA
-						
-						//1º) perguntando ao usuário de qual Grupo é a Partida que deseja inserir
-						System.out.println("\n -> Escolha de qual desses Grupos eh a Partida: ");	
-						System.out.println("1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
+
+					switch (menuPartida) {
+					case 1: // INSERIR PARTIDA
+
+						// 1º) perguntando ao usuário de qual Grupo é a Partida que deseja inserir
+						System.out.println("\n -> Escolha de qual desses Grupos eh a Partida: ");
+						System.out.println(
+								"1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
 
 						Integer escolhaGrupP = Funcoes.leituraInt();
 						String grupo = null;
@@ -759,30 +757,32 @@ public class Main extends Application {
 								escolhaGrupP = Funcoes.leituraInt();
 							}
 						}
-						
-						//Verificando se todas as partidas desse grupo já foram cadastradas
+
+						// Verificando se todas as partidas desse grupo já foram cadastradas
 						if (PartidasGeradas.get(grupo).isEmpty()) {
-							System.out.println("\nTodas as Partidas desse Grupo ja foram cadastradas! Tente cadastrar a partida novamente.");
+							System.out.println(
+									"\nTodas as Partidas desse Grupo ja foram cadastradas! Tente cadastrar a partida novamente.");
 							break;
 						}
-						
-						//2º) Listando ao usuário as partidas geradas no Grupo escolhido, para escolher qual ele deseja cadastrar
+
+						// 2º) Listando ao usuário as partidas geradas no Grupo escolhido, para escolher
+						// qual ele deseja cadastrar
 						System.out.println("\n -> Escolha qual dessas eh a partida que deseja cadastrar: ");
 						int i = 0;
 						ArrayList<Partida> listaPartidasTemp = new ArrayList<>();
-						
+
 						for (Partida partida : PartidasGeradas.get(grupo)) {
 							i += 1;
 							System.out.println(i + " - " + partida.getTime1() + " X " + partida.getTime2());
 							listaPartidasTemp.add(partida);
 						}
-						
+
 						Integer escolhaPartidas = Funcoes.leituraInt();
 						Integer part = null;
-						
-						while(part == null) {
-							
-							switch(escolhaPartidas) {
+
+						while (part == null) {
+
+							switch (escolhaPartidas) {
 							case 1:
 								part = 0;
 								break;
@@ -805,152 +805,217 @@ public class Main extends Application {
 								System.err.println("Opcao Invalida! Digite novamente: ");
 								escolhaPartidas = Funcoes.leituraInt();
 							}
-							
+
 						}
-						
+
 						Partida partidaEscolhida = listaPartidasTemp.get(part);
-						
-						//3º) Inserindo os dados da partida cadastrada
-						
-						//codPart-------------------------------------------------------------
+
+						// 3º) Inserindo os dados da partida cadastrada
+
+						// codPart-------------------------------------------------------------
 						Date dataP = new Date();
 						String codPart = sdf.format(dataP);
 						partidaEscolhida.setCodPart(codPart);
-						
-						//data----------------------------------------------------------------
+
+						// data----------------------------------------------------------------
 						System.out.println("\n -> Digite qual foi a data da Partida (dd/mm/aaaa): ");
 						String data = read.nextLine();
-						
-						//Chama a função que Verifica se a data informada pelo usuário possui um formato válido
+
+						// Chama a função que Verifica se a data informada pelo usuário possui um
+						// formato válido
 						while (Funcoes.verificaDatas(data)) {
 							System.out.println("Formato Invalido para data! Digite novamente: ");
 							data = read.nextLine();
 						}
-						
+
 						partidaEscolhida.setData(data);
-						
-						//horario-------------------------------------------------------------
+
+						// horario-------------------------------------------------------------
 						System.out.println("\n -> Digite qual foi o horario da Partida (hh:mm): ");
 						String hora = read.nextLine();
-						
-						//Chama a função que Verifica se a hora informada pelo usuário possui um formato válido
+
+						// Chama a função que Verifica se a hora informada pelo usuário possui um
+						// formato válido
 						while (Funcoes.verificaHorario(hora)) {
 							System.out.println("Formato Invalido para horario! Digite novamente: ");
 							hora = read.nextLine();
 						}
-						
+
 						partidaEscolhida.setHorario(hora);
-						
-						//local----------------------------------------------------------------
+
+						partidaEscolhida.setGrupo(grupo); // preenchendo o atributo grupo no objeto, para um acesso mais
+						// rápido a que grupo pertence a partida
+
+						// local----------------------------------------------------------------
 						System.out.println("\n -> Digite qual foi o local da Partida: ");
 						String local = read.nextLine();
 						partidaEscolhida.setLocal(local);
-						
-						//golsTime1 **FAZER PARTE DOS GOLS E CARTÕES AQUI (PENSAR COMO VAI FICAR ORGANIZADO ESSA PARTE)!!
-						//golsTime2
-						
-						partidaEscolhida.setGrupo(grupo); //preenchendo o atributo grupo no objeto, para um acesso mais rápido a que grupo pertence a partida
-						
+
+						// Inserindo partida em todos jogadores.
+						Funcoes.inserirPartidaJog(partidaEscolhida, SelecaoDAO);
+
+						// GOLS DO TIME 1
+						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime1() + " fez: ");
+						int golsTime1 = Funcoes.leituraInt();
+						partidaEscolhida.setGolsTime1(golsTime1);
+						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime1());
+
+						// GOLS DO TIME 2
+						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime2() + " fez: ");
+						int golsTime2 = Funcoes.leituraInt();
+						partidaEscolhida.setGolsTime2(golsTime2);
+						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime2());
+
+						// INSERIR CARTAO VERMELHO TIME 1
+						System.out.println(
+								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime1() + " recebeu: ");
+						int cartaoVtime1 = Funcoes.leituraInt();
+						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						Funcoes.cadastrarCartaoVermelho(cartaoVtime1, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime1());
+
+						// INSERIR CARTAO VERMELHO TIME 2
+						System.out.println(
+								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime2() + " recebeu: ");
+						int cartaoVtime2 = Funcoes.leituraInt();
+						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						Funcoes.cadastrarCartaoVermelho(cartaoVtime2, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime2());
+
+						// INSERIR CARTAO AMARELO TIME 1
+						System.out.println(
+								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime1() + " recebeu: ");
+						int cartaoAtime1 = Funcoes.leituraInt();
+						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						Funcoes.cadastrarCartaoVermelho(cartaoAtime1, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime1());
+
+						// INSERIR CARTAO AMARELO TIME 2
+						System.out.println(
+								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime2() + " recebeu: ");
+						int cartaoAtime2 = Funcoes.leituraInt();
+						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						Funcoes.cadastrarCartaoVermelho(cartaoAtime2, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime2());
+
+						// INSERIR PARTIDA
 						PartidaGerenciar.inserir(partidaEscolhida);
-						PartidasGeradas.get(grupo).remove(partidaEscolhida); //retirando a partida já cadastrada da lista de partidas geradas para não mostrar novamente
+						PartidasGeradas.get(grupo).remove(partidaEscolhida); // retirando a partida já cadastrada da
+																				// lista de partidas geradas para não
+																				// mostrar novamente
+
 						System.out.println("Partida Cadastrada!\n NUMERO DO ID: " + partidaEscolhida.getCodPart());
-						
+
 						break;
-					//--------------------------------------------------------------------------------------	
-					case 2: //EDITAR PARTIDA
-						
+					// --------------------------------------------------------------------------------------
+					case 2: // EDITAR PARTIDA
+
 						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
-							System.out.println("\n Nao eh possivel editar Partidas, pois ainda nao ha nenhuma cadastrada!");
+							System.out.println(
+									"\n Nao eh possivel editar Partidas, pois ainda nao ha nenhuma cadastrada!");
 							break;
 						}
-						
+
 						System.out.println("\n*-ID DISPONIVEL EM LISTAR PARTIDAS-* \nInforme o ID da Partida: ");
 						String idPartida = read.nextLine();
-						
+
 						if (PartidaGerenciar.getMapPartidas().containsKey(idPartida)) {
-							
+
 							Partida partidaEdit = PartidaGerenciar.getMapPartidas().get(idPartida);
-							
-							System.out.println("\nINFORME O QUE DESEJA EDITAR DA PARTIDA: " + partidaEdit.getTime1() + " x " + partidaEdit.getTime2());
+
+							System.out.println("\nINFORME O QUE DESEJA EDITAR DA PARTIDA: " + partidaEdit.getTime1()
+									+ " x " + partidaEdit.getTime2());
 							System.out.println("1 - DATA\n2 - HORARIO\n3 - LOCAL\n4 - VOLTAR");
 							Integer opcaoEdit = Funcoes.leituraInt();
-							
-							switch(opcaoEdit){
+
+							switch (opcaoEdit) {
 							case 1:
 								System.out.println("Informe a data ATUALIZADA da partida (dd/mm/aaaa): ");
 								String novaData = read.nextLine();
-								
-								//Chama a função que Verifica se a data informada pelo usuário possui um formato válido
-								while(Funcoes.verificaDatas(novaData)) {
+
+								// Chama a função que Verifica se a data informada pelo usuário possui um
+								// formato válido
+								while (Funcoes.verificaDatas(novaData)) {
 									System.out.println("Formato Invalido para data! Digite novamente: ");
 									data = read.nextLine();
 								}
-								
+
 								partidaEdit.setData(novaData);
 								System.out.println("\nData da Partida editada com sucesso!");
-								
+
 								break;
-							case 2://--------------------------------------------------------------------------------
+							case 2:// --------------------------------------------------------------------------------
 								System.out.println("Informe o horario ATUALIZADO da partida (hh:mm): ");
 								String novoHor = read.nextLine();
 								partidaEdit.setHorario(novoHor);
 								System.out.println("\nHorario da Partida editado com sucesso!");
-								
+
 								break;
-							case 3: //--------------------------------------------------------------------------------
+							case 3: // --------------------------------------------------------------------------------
 								System.out.println("Informe o local ATUALIZADO da partida: ");
 								String novoLocal = read.nextLine();
 								partidaEdit.setLocal(novoLocal);
 								System.out.println("\nLocal da Partida editado com sucesso!");
-								
+
 								break;
 							case 4:
 								break;
 							default:
 								System.err.println("Opção Invalida");
 							}
-							
+
 						} else {
 							System.out.println("ID nao encontrado!");
 						}
-						
+
 						break;
-						
-					case 3: //EXCLUIR PARTIDA
-						
+
+					case 3: // EXCLUIR PARTIDA
+
 						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
-							System.out.println("\nNao eh possivel excluir Partidas, pois ainda nao ha nenhuma cadastrada!");
+							System.out.println(
+									"\nNao eh possivel excluir Partidas, pois ainda nao ha nenhuma cadastrada!");
 							break;
 						}
-						
-						System.out.println("\n*-ID DISPONIVEL EM LISTAR PARTIDAS-* \nInforme o ID da Partida que deseja excluir: ");
+
+						System.out.println(
+								"\n*-ID DISPONIVEL EM LISTAR PARTIDAS-* \nInforme o ID da Partida que deseja excluir: ");
 						String idPartida1 = read.nextLine();
-						
+
 						if (PartidaGerenciar.getMapPartidas().containsKey(idPartida1)) {
-							
+
 							Partida partidaExc = PartidaGerenciar.getMapPartidas().get(idPartida1);
-							
-							PartidaGerenciar.excluir(idPartida1);
 
-							PartidasGeradas.get(partidaExc.getGrupo()).add(partidaExc); //Adicionando novamente a partida no map de PartidasGeradas
+							PartidaGerenciar.excluir(idPartida1, JogadorDAO.getMap());
+							Funcoes.atualizarDadosJog(JogadorDAO);
+							PartidasGeradas.get(partidaExc.getGrupo()).add(partidaExc); // Adicionando novamente a
+																						// partida no map de
+																						// PartidasGeradas
 
-							System.out.println("\nPartida " + partidaExc.getTime1() + " x " + partidaExc.getTime2() + " excluida com sucesso! ");
+							System.out.println("\nPartida " + partidaExc.getTime1() + " x " + partidaExc.getTime2()
+									+ " excluida com sucesso! ");
+
 						} else {
 							System.out.println("\nID nao encontrado!");
 						}
 						break;
-						
-					case 4: //LISTAR PARTIDAS
-						
+
+					case 4: // LISTAR PARTIDAS
+
 						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
 							System.out.println("\nAinda nao ha partidas cadastradas!");
 							break;
-						} //se não houver partidas cadastradas ele avisa, se houver ele chama a função de listar
-						
+						} // se não houver partidas cadastradas ele avisa, se houver ele chama a função de
+							// listar
+
 						PartGerenciar.listar();
 						break;
-						
-					case 5: //voltar para o Menu Anterior
+
+					case 5: // voltar para o Menu Anterior
 						loopPart = false;
 						break;
 					default:
@@ -958,28 +1023,29 @@ public class Main extends Application {
 					}
 				}
 				break;
-				
-			//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			//GERENCIAR JOGADORES
+
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+			// GERENCIAR JOGADORES
 			case 2:
-				
-				//MENU JOGADOR
+
+				// MENU JOGADOR
 				boolean loopJog = true;
 				while (loopJog) {
-					System.out.println("\n==GERENCIAR JOGADORES==");//Indicador de qual menu o usuário está
+					System.out.println("\n==GERENCIAR JOGADORES==");// Indicador de qual menu o usuário está
 					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println("1 - INSERIR JOGADOR \n2 - EDITAR JOGADOR \n3 - EXCLUIR JOGADOR\n4 - LISTAR JOGADORES \n5 - VOLTAR");
+					System.out.println(
+							"1 - INSERIR JOGADOR \n2 - EDITAR JOGADOR \n3 - EXCLUIR JOGADOR\n4 - LISTAR JOGADORES \n5 - VOLTAR");
 					Integer menuJogador = Funcoes.leituraInt();
-					
-					switch(menuJogador){
-					case 1: //inserir
-						
+
+					switch (menuJogador) {
+					case 1: // inserir
+
 						break;
-					case 2: //editar
-						
+					case 2: // editar
+
 						break;
-					case 3: //excluir
-						
+					case 3: // excluir
+
 						System.out.println("Informe o ID do Jogador que deseja excluir: ");
 						String IdJog = read.nextLine();
 						boolean verificarId = JogadorDAO.checarID(IdJog);
@@ -995,11 +1061,11 @@ public class Main extends Application {
 							System.out.println("ID do jogador nao encontrado!");
 						}
 						break;
-						
-					case 4: //listar
+
+					case 4: // listar
 						JogadorDAO.listar();
 						break;
-					case 5: //voltar para o Menu Anterior
+					case 5: // voltar para o Menu Anterior
 						loopJog = false;
 						break;
 					default:
@@ -1007,62 +1073,64 @@ public class Main extends Application {
 					}
 				}
 				break;
-			//-----------------------------------------------------------------------------------------------------------------------
-			//GERENCIAR ARBITROS
+			// -----------------------------------------------------------------------------------------------------------------------
+			// GERENCIAR ARBITROS
 			case 3:
-				
+
 				boolean loopArb = true;
 				while (loopArb) {
-					System.out.println("\n==GERENCIAR ARBITROS==");//Indicador de qual menu o usuário está
+					System.out.println("\n==GERENCIAR ARBITROS==");// Indicador de qual menu o usuário está
 					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println("1 - INSERIR ARBITRO \n2 - EDITAR ARBITRO \n3 - EXCLUIR ARBITRO \n4 - LISTAR ARBITROS \n5 - VOLTAR");
+					System.out.println(
+							"1 - INSERIR ARBITRO \n2 - EDITAR ARBITRO \n3 - EXCLUIR ARBITRO \n4 - LISTAR ARBITROS \n5 - VOLTAR");
 					Integer menuArb = Funcoes.leituraInt();
-					
-					switch(menuArb){
-					case 1: //inserir
-						
+
+					switch (menuArb) {
+					case 1: // inserir
+
 						break;
-					case 2: //editar
-						
+					case 2: // editar
+
 						break;
-					case 3: //excluir
-						break;					
-					case 4: //listar
-						
+					case 3: // excluir
 						break;
-					case 5: //voltar para o Menu Anterior
+					case 4: // listar
+
+						break;
+					case 5: // voltar para o Menu Anterior
 						loopArb = false;
 						break;
 					default:
 						System.out.println("\nDigite uma opcao valida!");
 					}
 				}
-				
+
 				break;
-			//-----------------------------------------------------------------------------------------------------------------------
-			//GERENCIAR TECNICOS
+			// -----------------------------------------------------------------------------------------------------------------------
+			// GERENCIAR TECNICOS
 			case 4:
-				
+
 				boolean loopTec = true;
 				while (loopTec) {
-					System.out.println("\n==GERENCIAR TECNICOS==");//Indicador de qual menu o usuário está
+					System.out.println("\n==GERENCIAR TECNICOS==");// Indicador de qual menu o usuário está
 					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println("1 - INSERIR TECNICO \n2 - EDITAR TECNICO \n3 - EXCLUIR TECNICO \n4 - LISTAR TECNICOS \n5 - VOLTAR");
+					System.out.println(
+							"1 - INSERIR TECNICO \n2 - EDITAR TECNICO \n3 - EXCLUIR TECNICO \n4 - LISTAR TECNICOS \n5 - VOLTAR");
 					Integer menuTec = Funcoes.leituraInt();
-					
-					switch(menuTec){
-					case 1: //inserir
-						
+
+					switch (menuTec) {
+					case 1: // inserir
+
 						break;
-					case 2: //editar
-						
+					case 2: // editar
+
 						break;
-					case 3: //excluir
-						break;					
-					case 4: //listar
-						
+					case 3: // excluir
 						break;
-					case 5: //voltar para o Menu Anterior
+					case 4: // listar
+
+						break;
+					case 5: // voltar para o Menu Anterior
 						loopTec = false;
 						break;
 					default:
@@ -1070,15 +1138,13 @@ public class Main extends Application {
 					}
 				}
 				break;
-				
-			//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			//PESQUISAR
+
+			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+			// PESQUISAR
 			case 5:
-				
-				
-				
-				break;	
-			//-----------------------------------------------------------------------------------------------------------------------
+
+				break;
+			// -----------------------------------------------------------------------------------------------------------------------
 			// ENCERRAR
 			case 6:
 				System.out.println("\nEncerrando programa...");
@@ -1089,4 +1155,5 @@ public class Main extends Application {
 			}
 		}
 	}
+
 }

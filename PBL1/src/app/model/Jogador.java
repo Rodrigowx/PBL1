@@ -1,5 +1,7 @@
 package app.model;
 
+import java.util.*;
+
 /**
  * Classe que representa o Jogador no sistema. Jogador possiu ID do jogador,
  * nome, posição, cartão amarelo e vermelho, gols e selecao que ele faz parte
@@ -12,21 +14,19 @@ public class Jogador {
 	private String codJog;
 	private String nome;
 	private String posicao;
-	private Integer cartAmarelo;
-	private Integer cartVermelho;
-	private Integer gols;
+	private Integer cartAmarelo = 0;
+	private Integer cartVermelho = 0;
+	private Integer gols = 0;
 	private Selecao selecao;
+	private ArrayList<PartidaJogador> partidasJogador = new ArrayList<>();
 
 	// CONSTRUTOR
-	public Jogador(String codJog, String nome, String posicao, Integer cartAmarelo, Integer cartVermelho, Integer gols,
+	public Jogador(String codJog, String nome, String posicao,
 			Selecao selecao) {
 		super();
 		this.codJog = codJog;
 		this.nome = nome;
 		this.posicao = posicao;
-		this.cartAmarelo = cartAmarelo;
-		this.cartVermelho = cartVermelho;
-		this.gols = gols;
 		this.selecao = selecao;
 	}
 
@@ -90,6 +90,14 @@ public class Jogador {
 
 	public void setSelecao(Selecao selecao) {
 		this.selecao = selecao;
+	}
+
+	public ArrayList<PartidaJogador> getPartidasJogador() {
+		return partidasJogador;
+	}
+
+	public void setPartidasJogador(ArrayList<PartidaJogador> partidasJogador) {
+		this.partidasJogador = partidasJogador;
 	}
 
 }

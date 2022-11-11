@@ -18,7 +18,7 @@ public class Jogador {
 	private Integer cartVermelho = 0;
 	private Integer gols = 0;
 	private Selecao selecao;
-	private ArrayList<PartidaJogador> partidasJogador = new ArrayList<>();
+	private ArrayList<PartidaJogador> partidasJogador;
 
 	// CONSTRUTOR
 	public Jogador(String codJog, String nome, String posicao,
@@ -92,7 +92,7 @@ public class Jogador {
 		this.selecao = selecao;
 	}
 
-	public ArrayList<PartidaJogador> getPartidasJogador() {
+	public ArrayList<PartidaJogador> getPartidaJogador() {
 		return partidasJogador;
 	}
 

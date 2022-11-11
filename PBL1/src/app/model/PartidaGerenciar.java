@@ -17,26 +17,6 @@ public class PartidaGerenciar {
 		return false;
 	}
 
-	public static boolean editar(String idPartida, int opcaoMenu) {
-
-		// edição desse foi feito na main, precisa passar pra cá????? Mas ver como fica
-		// as verificações
-
-		return false;
-	}
-
-	public static void excluir(String idPartida, Map<String, Jogador> mapJogadores) {
-		mapPartidas.remove(idPartida);
-		for (Jogador atualJog : mapJogadores.values()) {
-			for (PartidaJogador atualJogPartida : atualJog.getPartidasJogador()) {
-				if (atualJogPartida.getCodPartida().equals(idPartida)) {
-					atualJog.getPartidasJogador().remove(atualJogPartida);
-				}
-			}
-		}
-
-	}
-
 	public void listar() {
 
 		System.out.println("\nLISTAGEM DAS PARTIDAS: \n");

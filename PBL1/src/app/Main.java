@@ -232,6 +232,9 @@ public class Main extends Application {
 					// CRIANDO O JOGADOR
 					Date data = new Date();
 					Jogador novoJog = new Jogador(sdf.format(data), nomeJ, posicao, selecaoJog);
+					
+					ArrayList<PartidaJogador> listaJogPart = new ArrayList<>();
+					novoJog.setPartidasJogador(listaJogPart);
 
 					// ADICIONANDO O JOGADOR NOVO NA LISTA DE SEU DAO E DA SUA SELEÇAO
 					JogadorDAO.inserir(novoJog);

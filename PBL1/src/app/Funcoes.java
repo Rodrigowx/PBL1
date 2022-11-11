@@ -149,7 +149,7 @@ public class Funcoes {
 			if (partidaAtual.getTime1().equals(atual.getNome())) {
 				for (Jogador jogAtual : atual.getJogadores()) {
 					PartidaJogador jogPartida = new PartidaJogador(partidaAtual.getCodPart(), jogAtual.getCodJog());
-					jogAtual.getPartidasJogador().add(jogPartida);
+					jogAtual.getPartidaJogador().add(jogPartida);
 				}
 			}
 		}
@@ -157,7 +157,7 @@ public class Funcoes {
 			if (partidaAtual.getTime2().equals(atual.getNome())) {
 				for (Jogador jogAtual : atual.getJogadores()) {
 					PartidaJogador jogPartida = new PartidaJogador(partidaAtual.getCodPart(), jogAtual.getCodJog());
-					jogAtual.getPartidasJogador().add(jogPartida);
+					jogAtual.getPartidaJogador().add(jogPartida);
 				}
 			}
 		}
@@ -209,7 +209,7 @@ public class Funcoes {
 						totalGolsJog = leituraInt();
 					}
 				}
-				for (PartidaJogador atualPart : jogadorIdOK.getPartidasJogador()) {
+				for (PartidaJogador atualPart : jogadorIdOK.getPartidaJogador()) {
 					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
 						atualPart.inserirGols(totalGolsJog);
 						golGeral = jogadorIdOK.getGols() + totalGolsJog;
@@ -254,7 +254,7 @@ public class Funcoes {
 						totalCartaoJog = leituraInt();
 					}
 				}
-				for (PartidaJogador atualPart : jogadorIdOk.getPartidasJogador()) {
+				for (PartidaJogador atualPart : jogadorIdOk.getPartidaJogador()) {
 					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
 						atualPart.inserirCartV(totalCartaoJog);
 						cartaoGeral = jogadorIdOk.getCartVermelho() + totalCartaoJog;
@@ -299,7 +299,7 @@ public class Funcoes {
 						totalCartaoJog = leituraInt();
 					}
 				}
-				for (PartidaJogador atualPart : jogadorIdOk.getPartidasJogador()) {
+				for (PartidaJogador atualPart : jogadorIdOk.getPartidaJogador()) {
 					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
 						atualPart.inserirCartA(totalCartaoJog);
 						cartaoGeral = jogadorIdOk.getCartAmarelo() + totalCartaoJog;
@@ -320,8 +320,8 @@ public class Funcoes {
 				int geralGols = 0;
 				int geralCartaoA = 0;
 				int geralCartaoV = 0;
-				for (PartidaJogador partAtual : jogador.getPartidasJogador()) {
-					if (jogador.getPartidasJogador().isEmpty()) {
+				for (PartidaJogador partAtual : jogador.getPartidaJogador()) {
+					if (jogador.getPartidaJogador().isEmpty()) {
 						System.out.println("Nao existe partida cadastrada, nao foi possivel atualizar dados");
 						jogador.setGols(0);
 						jogador.setCartAmarelo(0);

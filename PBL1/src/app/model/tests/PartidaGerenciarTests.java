@@ -4,21 +4,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import app.model.Partida;
+import app.model.PartidaGerenciar;
+
 class PartidaGerenciarTests {
 
 	@Test
 	void testInserir() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEditar() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testExcluir() {
-		fail("Not yet implemented");
+		
+		Partida partida = new Partida("Brasil", "Argentina");
+		PartidaGerenciar.inserir(partida);
+		
+		assertTrue(PartidaGerenciar.getMapPartidas().containsValue(partida));
 	}
 
 }

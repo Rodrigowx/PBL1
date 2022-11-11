@@ -156,7 +156,9 @@ public class JogadorDAOImpl implements JogadorDAO {
 				mapJogadores.get(idJogador).setPosicao(posicao);
 				System.out.println("Posicao alterada com sucesso!");
 
-			} else if (opcaoMenu == 3) { // EDITA CARTÕES AMARELO
+			} /*
+			comentei aqui pois não precisamos mais dessa edição.
+			else if (opcaoMenu == 3) { // EDITA CARTÕES AMARELO
 
 				System.out.println("Informe a nova quantidade de cartoes amarelos: ");
 				// Integer novoCartA = scan.nextInt();
@@ -180,7 +182,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 				mapJogadores.get(idJogador).setGols(novoGols);
 				System.out.println("Gols alterado com sucesso!");
 
-			}
+			}*/
 			return true;
 		}
 		return false;

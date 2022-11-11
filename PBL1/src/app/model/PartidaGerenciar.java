@@ -4,39 +4,71 @@ import java.util.*;
 
 public class PartidaGerenciar {
 
-	private static Map<String, Partida> mapPartidas = new HashMap<String, Partida>(); // É MELHOR USAR MAP OU LIST PARA
-																						// PARTIDAS??
+	private static Map<String, Partida> mapPartidas = new HashMap<String, Partida>();
 
-	// função para retornar o map de Partidas
+	/**
+	 * Função para retornar o map de Partidas
+	 * 
+	 * @return mapPartidas
+	 */
 	public static Map<String, Partida> getMapPartidas() {
 		return mapPartidas;
 	}
 
+	/**
+	 * Inserir partida na lista
+	 * 
+	 * @param partida
+	 * @return boolean
+	 */
 	public static boolean inserir(Partida partida) {
 		mapPartidas.put(partida.getCodPart(), partida);// **
 		return false;
 	}
 
-	public static boolean editar(String idPartida, int opcaoMenu) {
+	/**
+	 * Função responsável por pesquisar pelo nome da seleção.
+	 * 
+	 * @param nomeSelecao
+	 */
+	public void pesquisarSelecao(String nomeSelecao) {
+		mapPartidas.forEach((id, partida) -> {
+			if (partida.getTime1().equals(nomeSelecao) || partida.getTime2().equals(nomeSelecao)) {
+				System.out.println("ID: " + id);
+				System.out.println(partida.getTime1() + "\t" + partida.getGolsTime1() + " X " + partida.getGolsTime2()
+						+ "\t" + partida.getTime2());
+				System.out.println("DATA: " + partida.getData());
+				System.out.println("HORARIO: " + partida.getHorario());
+				System.out.println("LOCAL: " + partida.getLocal());
+				System.out.println();
 
-		// edição desse foi feito na main, precisa passar pra cá????? Mas ver como fica
-		// as verificações
-
-		return false;
-	}
-
-	public static void excluir(String idPartida, Map<String, Jogador> mapJogadores) {
-		mapPartidas.remove(idPartida);
-		for (Jogador atualJog : mapJogadores.values()) {
-			for (PartidaJogador atualJogPartida : atualJog.getPartidasJogador()) {
-				if (atualJogPartida.getCodPartida().equals(idPartida)) {
-					atualJog.getPartidasJogador().remove(atualJogPartida);
-				}
 			}
-		}
-
+		});
 	}
 
+	/**
+	 * Função responsável por pesquisar partida pela data.
+	 * 
+	 * @param data
+	 */
+	public void pesquisarPartidaData(String data) {
+		mapPartidas.forEach((id, partida) -> {
+			if (partida.getData().equals(data)) {
+				System.out.println("ID: " + id);
+				System.out.println(partida.getTime1() + "\t" + partida.getGolsTime1() + " X " + partida.getGolsTime2()
+						+ "\t" + partida.getTime2());
+				System.out.println("DATA: " + partida.getData());
+				System.out.println("HORARIO: " + partida.getHorario());
+				System.out.println("LOCAL: " + partida.getLocal());
+				System.out.println();
+
+			}
+		});
+	}
+
+	/**
+	 * Função responsável por listar.
+	 */
 	public void listar() {
 
 		System.out.println("\nLISTAGEM DAS PARTIDAS: \n");

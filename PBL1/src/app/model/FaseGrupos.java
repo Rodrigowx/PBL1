@@ -28,6 +28,8 @@ public class FaseGrupos {
 	 */
 	public boolean verificaGrupos(String opcaoMenu) {
 		
+		Integer limiteSelecoes = 4;
+		
 		List<Selecao> grupo = mapGrupos.get(opcaoMenu);
 		
 		if (grupo == null) {
@@ -36,7 +38,7 @@ public class FaseGrupos {
 		}else if (grupo.isEmpty()) {
 			return false;
 			
-		}else if (grupo.size() == 4) {
+		}else if (grupo.size() == limiteSelecoes) {
 			return true; //retorna true (que a lista está cheia)
 		}
 		

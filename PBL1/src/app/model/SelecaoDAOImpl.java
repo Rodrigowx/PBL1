@@ -177,8 +177,6 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 				listaSelecoes.remove(atual);
 				System.out.println("Excluido com sucesso!");
 				return a;
-			} else {
-				return null;
 			}
 
 		}

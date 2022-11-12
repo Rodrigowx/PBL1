@@ -70,17 +70,20 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		}
 		return null;
 	}
-	
+
 	public boolean verificaTotal() {
-		
-		/**Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores cadastrados, pois
-		 * as partidas só podem ser iniciadas com pelo menos essa quantidade em cada time (min 7 e max 11)
+
+		/**
+		 * Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores
+		 * cadastrados, pois as partidas só podem ser iniciadas com pelo menos essa
+		 * quantidade em cada time (min 7 e max 11)
 		 */
-		
-		for(Selecao selecao : listaSelecoes) {
-			if (selecao.getJogadores().size() >= 0) {//MUDAR O 0 PARA 7 DEPOIS DOS TESTESSSSSSS****
+
+		int totalJog = 7;
+		for (Selecao selecao : listaSelecoes) {
+			if (selecao.getJogadores().size() >= totalJog) {
 				continue;
-			}else {
+			} else {
 				return false;
 			}
 		}
@@ -106,7 +109,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	public List<String> getLista2() {
 		return nomesSelecao;
 	}
-	
+
 	// ------------------------------------------------------------------------
 
 	/**

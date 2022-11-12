@@ -92,12 +92,12 @@ public class Main extends Application {
 				// INSERIR SELECAO
 				case 1:// ---------------------------------------------------------------------------------
 					System.out.println("\n -> Digite o nome da nova Selecao: ");
-					String nomeS = read.nextLine();
+					String nomeS = read.nextLine().trim();
 
 					// VERIFICAÇÃO SE O ESSA SELEÇAO JÁ FOI INSERIDA ANTES
 					while (SelecaoDAO.checarNome(nomeS)) {// ***caso dê erro
 						System.err.println("\nSelecao ja cadastrada! Digite o nome da nova Selecao: ");
-						nomeS = read.nextLine();
+						nomeS = read.nextLine().trim();
 						;
 					}
 
@@ -168,7 +168,7 @@ public class Main extends Application {
 					}
 
 					System.out.println("\n -> Digite o nome do Jogador: ");
-					String nomeJ = read.nextLine();
+					String nomeJ = read.nextLine().trim();
 
 					// POSIÇÕES PRÉ ESTABELEIDAS PARA O USUÁRIO ESCOLHER
 					System.out.println("\n -> Escolha qual a posicao do Jogador: ");
@@ -197,33 +197,23 @@ public class Main extends Application {
 							escolhaPos = Funcoes.leituraInt();
 						}
 					}
-					/*
-					 * Comentei aq pra mudar gols e cartoes.
-					 * System.out.println("\n -> Digite quantos cartoes-amarelo o jogador possui: "
-					 * ); Integer cartA = Funcoes.leituraInt();
-					 * System.out.println("\n -> Digite quantos cartoes-vermelho o jogador possui: "
-					 * ); Integer cartV = Funcoes.leituraInt();
-					 * System.out.println("\n -> Digite quantos gols o jogador ja fez: "); Integer
-					 * gols = Funcoes.leituraInt();
-					 */
 					// ADICIONANDO JOGADOR EM UMA SELEÇÃO
 					System.out.println("\n -> Digite qual dessas eh a Selecao do Jogador: ");
 					for (String selecao : SelecaoDAO.getLista2()) {
 						System.out.println("-" + selecao);
 					}
-					String escolhaSel = read.nextLine();
+					String escolhaSel = read.nextLine().trim();
 
 					Selecao selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 
 					while (selecaoJog == null) {
 						System.err.println("\nSelecao nao cadastrada! Digite novamente: ");
-						escolhaSel = read.nextLine();
+						escolhaSel = read.nextLine().trim();
 						selecaoJog = SelecaoDAO.verificaSelecao(escolhaSel);
 					}
 
-					// Verifica se essa seleção já possui o número máximo de jogadores (11)***MUDAR
-					// AQUI
-					if (selecaoJog.getJogadores().size() == 2) {
+					// Verifica se essa seleção já possui o número máximo de jogadores (11)
+					if (selecaoJog.getJogadores().size() == 11) {
 						System.err.println(
 								"Essa Selecao ja alcancou seu limite de jogadores! Nao foi possivel cadastrar o Jogador.");
 						break;
@@ -232,7 +222,7 @@ public class Main extends Application {
 					// CRIANDO O JOGADOR
 					Date data = new Date();
 					Jogador novoJog = new Jogador(sdf.format(data), nomeJ, posicao, selecaoJog);
-					
+
 					ArrayList<PartidaJogador> listaJogPart = new ArrayList<>();
 					novoJog.setPartidasJogador(listaJogPart);
 
@@ -415,26 +405,6 @@ public class Main extends Application {
 									System.err.println("Falha na edicao!");
 								}
 								break;
-
-							/*
-							 * Comentei aqui pois n precisa mais dessa edicao case 3:
-							 * 
-							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
-							 * 
-							 * } else { System.err.println("Falha na edicao!"); } break;
-							 * 
-							 * case 4:
-							 * 
-							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
-							 * 
-							 * } else { System.err.println("Falha na edicao!"); } break;
-							 * 
-							 * case 5:
-							 * 
-							 * if (JogadorDAO.editar(idPesquisa, dado)) { loopCase = false; continue;
-							 * 
-							 * } else { System.err.println("Falha na edicao!"); } break;
-							 */
 							default:
 								System.err.println("\nOpcao Invalida!");
 							}
@@ -700,7 +670,7 @@ public class Main extends Application {
 
 			// MENU PARA A FASE 1
 			System.out.println(
-					"1 - GERENCIAR PARTIDAS \n2 - GERENCIAR JOGADORES \n3 - GERENCIAR ARBITROS \n4 - GERENCIAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
+					"1 - GERENCIAR PARTIDAS \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
 
 			// O programa ler a opção escolhida pelo usuario
 			Integer menu2 = Funcoes.leituraInt();
@@ -714,8 +684,7 @@ public class Main extends Application {
 				while (loopPart) {
 					System.out.println("\n==GERENCIAR PARTIDAS==");
 					System.out.println("\nESCOLHA UMA DAS OPCOES: ");
-					System.out.println(
-							"1 - INSERIR PARTIDA \n2 - EDITAR PARTIDA \n3 - EXCLUIR PARTIDA \n4 - LISTAR PARTIDAS \n5 - VOLTAR");
+					System.out.println("1 - INSERIR PARTIDA \n2 - LISTAR PARTIDAS \n3 - VOLTAR");
 					Integer menuPartida = Funcoes.leituraInt();
 
 					switch (menuPartida) {
@@ -915,99 +884,7 @@ public class Main extends Application {
 
 						break;
 					// --------------------------------------------------------------------------------------
-					case 2: // EDITAR PARTIDA
-
-						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
-							System.out.println(
-									"\n Nao eh possivel editar Partidas, pois ainda nao ha nenhuma cadastrada!");
-							break;
-						}
-
-						System.out.println("\n*-ID DISPONIVEL EM LISTAR PARTIDAS-* \nInforme o ID da Partida: ");
-						String idPartida = read.nextLine();
-
-						if (PartidaGerenciar.getMapPartidas().containsKey(idPartida)) {
-
-							Partida partidaEdit = PartidaGerenciar.getMapPartidas().get(idPartida);
-
-							System.out.println("\nINFORME O QUE DESEJA EDITAR DA PARTIDA: " + partidaEdit.getTime1()
-									+ " x " + partidaEdit.getTime2());
-							System.out.println("1 - DATA\n2 - HORARIO\n3 - LOCAL\n4 - VOLTAR");
-							Integer opcaoEdit = Funcoes.leituraInt();
-
-							switch (opcaoEdit) {
-							case 1:
-								System.out.println("Informe a data ATUALIZADA da partida (dd/mm/aaaa): ");
-								String novaData = read.nextLine();
-
-								// Chama a função que Verifica se a data informada pelo usuário possui um
-								// formato válido
-								while (Funcoes.verificaDatas(novaData)) {
-									System.out.println("Formato Invalido para data! Digite novamente: ");
-									data = read.nextLine();
-								}
-
-								partidaEdit.setData(novaData);
-								System.out.println("\nData da Partida editada com sucesso!");
-
-								break;
-							case 2:// --------------------------------------------------------------------------------
-								System.out.println("Informe o horario ATUALIZADO da partida (hh:mm): ");
-								String novoHor = read.nextLine();
-								partidaEdit.setHorario(novoHor);
-								System.out.println("\nHorario da Partida editado com sucesso!");
-
-								break;
-							case 3: // --------------------------------------------------------------------------------
-								System.out.println("Informe o local ATUALIZADO da partida: ");
-								String novoLocal = read.nextLine();
-								partidaEdit.setLocal(novoLocal);
-								System.out.println("\nLocal da Partida editado com sucesso!");
-
-								break;
-							case 4:
-								break;
-							default:
-								System.err.println("Opção Invalida");
-							}
-
-						} else {
-							System.out.println("ID nao encontrado!");
-						}
-
-						break;
-
-					case 3: // EXCLUIR PARTIDA
-
-						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
-							System.out.println(
-									"\nNao eh possivel excluir Partidas, pois ainda nao ha nenhuma cadastrada!");
-							break;
-						}
-
-						System.out.println(
-								"\n*-ID DISPONIVEL EM LISTAR PARTIDAS-* \nInforme o ID da Partida que deseja excluir: ");
-						String idPartida1 = read.nextLine();
-
-						if (PartidaGerenciar.getMapPartidas().containsKey(idPartida1)) {
-
-							Partida partidaExc = PartidaGerenciar.getMapPartidas().get(idPartida1);
-
-							PartidaGerenciar.excluir(idPartida1, JogadorDAO.getMap());
-							Funcoes.atualizarDadosJog(JogadorDAO);
-							PartidasGeradas.get(partidaExc.getGrupo()).add(partidaExc); // Adicionando novamente a
-																						// partida no map de
-																						// PartidasGeradas
-
-							System.out.println("\nPartida " + partidaExc.getTime1() + " x " + partidaExc.getTime2()
-									+ " excluida com sucesso! ");
-
-						} else {
-							System.out.println("\nID nao encontrado!");
-						}
-						break;
-
-					case 4: // LISTAR PARTIDAS
+					case 2: // LISTAR PARTIDAS
 
 						if (PartidaGerenciar.getMapPartidas().isEmpty()) {
 							System.out.println("\nAinda nao ha partidas cadastradas!");
@@ -1018,7 +895,7 @@ public class Main extends Application {
 						PartGerenciar.listar();
 						break;
 
-					case 5: // voltar para o Menu Anterior
+					case 3: // voltar para o Menu Anterior
 						loopPart = false;
 						break;
 					default:
@@ -1028,124 +905,70 @@ public class Main extends Application {
 				break;
 
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			// GERENCIAR JOGADORES
+			// LISTAR JOGADORES
 			case 2:
-
-				// MENU JOGADOR
-				boolean loopJog = true;
-				while (loopJog) {
-					System.out.println("\n==GERENCIAR JOGADORES==");// Indicador de qual menu o usuário está
-					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println(
-							"1 - INSERIR JOGADOR \n2 - EDITAR JOGADOR \n3 - EXCLUIR JOGADOR\n4 - LISTAR JOGADORES \n5 - VOLTAR");
-					Integer menuJogador = Funcoes.leituraInt();
-
-					switch (menuJogador) {
-					case 1: // inserir
-
-						break;
-					case 2: // editar
-
-						break;
-					case 3: // excluir
-
-						System.out.println("Informe o ID do Jogador que deseja excluir: ");
-						String IdJog = read.nextLine();
-						boolean verificarId = JogadorDAO.checarID(IdJog);
-						if (verificarId) {
-							Jogador atual = JogadorDAO.excluir(IdJog);
-							if (atual == null) {
-								System.err.println("Falha na exclusão");
-								break;
-							} else {
-								atual.getSelecao().getJogadores().remove(atual);
-							}
-						} else {
-							System.out.println("ID do jogador nao encontrado!");
-						}
-						break;
-
-					case 4: // listar
-						JogadorDAO.listar();
-						break;
-					case 5: // voltar para o Menu Anterior
-						loopJog = false;
-						break;
-					default:
-						System.out.println("\nDigite uma opcao valida!");
-					}
-				}
+				JogadorDAO.listar();
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
-			// GERENCIAR ARBITROS
+			// LISTAR ARBITROS
 			case 3:
-
-				boolean loopArb = true;
-				while (loopArb) {
-					System.out.println("\n==GERENCIAR ARBITROS==");// Indicador de qual menu o usuário está
-					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println(
-							"1 - INSERIR ARBITRO \n2 - EDITAR ARBITRO \n3 - EXCLUIR ARBITRO \n4 - LISTAR ARBITROS \n5 - VOLTAR");
-					Integer menuArb = Funcoes.leituraInt();
-
-					switch (menuArb) {
-					case 1: // inserir
-
-						break;
-					case 2: // editar
-
-						break;
-					case 3: // excluir
-						break;
-					case 4: // listar
-
-						break;
-					case 5: // voltar para o Menu Anterior
-						loopArb = false;
-						break;
-					default:
-						System.out.println("\nDigite uma opcao valida!");
-					}
-				}
-
+				ArbitroDAO.listar();
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
-			// GERENCIAR TECNICOS
+			// LISTAR TECNICOS
 			case 4:
-
-				boolean loopTec = true;
-				while (loopTec) {
-					System.out.println("\n==GERENCIAR TECNICOS==");// Indicador de qual menu o usuário está
-					System.out.println("ESCOLHA UMA DAS OPCOES: ");
-					System.out.println(
-							"1 - INSERIR TECNICO \n2 - EDITAR TECNICO \n3 - EXCLUIR TECNICO \n4 - LISTAR TECNICOS \n5 - VOLTAR");
-					Integer menuTec = Funcoes.leituraInt();
-
-					switch (menuTec) {
-					case 1: // inserir
-
-						break;
-					case 2: // editar
-
-						break;
-					case 3: // excluir
-						break;
-					case 4: // listar
-
-						break;
-					case 5: // voltar para o Menu Anterior
-						loopTec = false;
-						break;
-					default:
-						System.out.println("\nDigite uma opcao valida!");
-					}
-				}
+				TecnicoDAO.listar();
 				break;
 
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			// PESQUISAR
 			case 5:
-
+				System.out.println("Informe a opcao que deseja pesquisar:");
+				System.out.println(
+						"1 - Pesquisar por nome de selecao  2 - Data da partida  3 - Categoria (Jogador,Arbitro,Tecnico)");
+				int casePesquisa = Funcoes.leituraInt();
+				switch (casePesquisa) {
+				// PESQUISA NOME SELECAO
+				case 1:
+					System.out.println("Informe o nome da Selecao: ");
+					String nomeSelPesq = read.nextLine();
+					PartGerenciar.pesquisarSelecao(nomeSelPesq);
+					break;
+				// PESQUISA POR DATA DE PARTIDAS
+				case 2:
+					System.out.println("Informe uma data para pesquisar partida: ");
+					String dataPesquisar = read.nextLine();
+					PartGerenciar.pesquisarPartidaData(dataPesquisar);
+					break;
+				// PESQUISA POR CATEGORIA
+				case 3:
+					System.out.println("Digite: 1- Arbitro 2- Jogador 3- Tecnico: ");
+					int categoriaMenu = Funcoes.leituraInt();
+					System.out.println("Informe o nome que deseja pesquisar: ");
+					String nomePesqCategoria = read.nextLine().trim();
+					switch (categoriaMenu) {
+					// CATEGORIA ARBITRO
+					case 1:
+						Funcoes.pesquisarCategoria(nomePesqCategoria, categoriaMenu, JogadorDAO, TecnicoDAO,
+								ArbitroDAO);
+						break;
+					// CATEGORIA JOGADOR
+					case 2:
+						Funcoes.pesquisarCategoria(nomePesqCategoria, categoriaMenu, JogadorDAO, TecnicoDAO,
+								ArbitroDAO);
+						break;
+					// CATEGORIA TECNICO
+					case 3:
+						Funcoes.pesquisarCategoria(nomePesqCategoria, categoriaMenu, JogadorDAO, TecnicoDAO,
+								ArbitroDAO);
+						break;
+					default:
+						System.out.println("Opcao Invalida");
+					}
+					break;
+				default:
+					System.out.println("Opcao invalida!");
+				}
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
 			// ENCERRAR

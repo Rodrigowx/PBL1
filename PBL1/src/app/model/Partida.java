@@ -5,8 +5,8 @@ package app.model;
  */
 
 public class Partida {
-	
-	//ATRIBUTOS
+
+	// ATRIBUTOS
 	private String codPart;
 	private String data;
 	private String horario;
@@ -16,16 +16,16 @@ public class Partida {
 	private Integer golsTime1;
 	private Integer golsTime2;
 	private String grupo;
-	
-	//CONSTRUTOR
+
+	// CONSTRUTOR
 	public Partida(String time1, String time2) {
 		super();
 		this.time1 = time1;
 		this.time2 = time2;
 
 	}
-	
-	//GETTERS E SETTERS
+
+	// GETTERS E SETTERS
 
 	public String getCodPart() {
 		return codPart;
@@ -98,5 +98,5 @@ public class Partida {
 	public void setGrupo(String grupo) {
 		this.grupo = grupo;
 	}
-	
+
 }

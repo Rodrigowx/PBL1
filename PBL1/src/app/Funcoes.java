@@ -75,12 +75,13 @@ public class Funcoes {
 	 * @param selecoes
 	 * @return
 	 */
-	public static boolean verificaçãoFase1(FaseGrupos grupos, SelecaoDAOImpl selecoes) {
 
+	public static boolean verificaçãoFase1(FaseGrupos grupos, SelecaoDAOImpl selecoes) {
+		int totalSelecao = 32;
 		if (grupos.getMapGrupos().isEmpty()) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois nao ha Selecoes cadastradas!");
 			return true;
-		} else if (selecoes.getLista1().size() < 2) { // MUDAR PARA 32 DEPOIS DOS TESTESSSSSSSSSSSSS
+		} else if (selecoes.getLista1().size() < totalSelecao) {
 			System.out.println(
 					"\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
 			return true;
@@ -133,6 +134,12 @@ public class Funcoes {
 		}
 	}
 
+	/**
+	 * Função responsavel para exibir jogadores com seus IDs.
+	 * 
+	 * @param time
+	 * @param SelecaoDAO
+	 */
 	public static void exibirJogadores(String time, SelecaoDAOImpl SelecaoDAO) {
 		for (Selecao selAtual : SelecaoDAO.getLista1()) {
 			if (selAtual.getNome() == time) {
@@ -144,6 +151,12 @@ public class Funcoes {
 		}
 	}
 
+	/**
+	 * Função responsável por inserir o objeto PartidaJogador em jogadores.
+	 * 
+	 * @param partidaAtual
+	 * @param SelecaoDAO
+	 */
 	public static void inserirPartidaJog(Partida partidaAtual, SelecaoDAOImpl SelecaoDAO) {
 		for (Selecao atual : SelecaoDAO.getLista1()) {
 			if (partidaAtual.getTime1().equals(atual.getNome())) {
@@ -163,12 +176,18 @@ public class Funcoes {
 		}
 	}
 
+	/**
+	 * Checa se o ID existe na lista
+	 * 
+	 * @param ID
+	 * @param nomeSelecao
+	 * @param SelecaoDAO
+	 * @return jogAtual
+	 */
 	public static Jogador checarID(String ID, String nomeSelecao, SelecaoDAOImpl SelecaoDAO) {
 		for (Selecao selAtual : SelecaoDAO.getLista1()) {
-			System.out.println(selAtual.getNome());
 			if (nomeSelecao.equals(selAtual.getNome())) {
 				for (Jogador jogAtual : selAtual.getJogadores()) {
-					System.out.println(jogAtual.getNome());
 					if (jogAtual.getCodJog().equals(ID)) {
 						return jogAtual;
 					} else {
@@ -180,6 +199,14 @@ public class Funcoes {
 		return null;
 	}
 
+	/**
+	 * Responsavel por cadastrar gols da partida e e atulizar gols dos jogadores
+	 * 
+	 * @param golsTime
+	 * @param partidaEscolhida
+	 * @param SelecaoDAO
+	 * @param time
+	 */
 	public static void cadastrarGolsPartida(int golsTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
 			String time) {
 		Jogador jogadorIdOK;
@@ -225,6 +252,14 @@ public class Funcoes {
 		System.out.println("Gols inseridos com sucesso");
 	}
 
+	/**
+	 * Cadastra cartão vermelho nos jogadores por partida
+	 * 
+	 * @param cartoesDoTime
+	 * @param partidaEscolhida
+	 * @param SelecaoDAO
+	 * @param time
+	 */
 	public static void cadastrarCartaoVermelho(int cartoesDoTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
 			String time) {
 		Jogador jogadorIdOk;
@@ -270,6 +305,14 @@ public class Funcoes {
 		System.out.println("Cartoes inseridos com sucesso!");
 	}
 
+	/**
+	 * Cadastra cartão Amarelo nos jogadores por partida.
+	 * 
+	 * @param cartoesDoTime
+	 * @param partidaEscolhida
+	 * @param SelecaoDAO
+	 * @param time
+	 */
 	public static void cadastrarCartaoAmarelo(int cartoesDoTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
 			String time) {
 		Jogador jogadorIdOk;
@@ -315,27 +358,77 @@ public class Funcoes {
 		System.out.println("Cartoes inseridos com sucesso!");
 	}
 
+	/**
+	 * Função responsavel para atualizar dados gerais de gols e cartoes dos
+	 * jogadores.
+	 * 
+	 * @param jogadorDao
+	 */
+
 	public static void atualizarDadosJog(JogadorDAOImpl jogadorDao) {
-			jogadorDao.getMap().forEach((id, jogador) -> {
-				int geralGols = 0;
-				int geralCartaoA = 0;
-				int geralCartaoV = 0;
-				for (PartidaJogador partAtual : jogador.getPartidaJogador()) {
-					if (jogador.getPartidaJogador().isEmpty()) {
-						System.out.println("Nao existe partida cadastrada, nao foi possivel atualizar dados");
-						jogador.setGols(0);
-						jogador.setCartAmarelo(0);
-						jogador.setCartVermelho(0);
-					} else {
-						geralGols += partAtual.getGols();
-						geralCartaoA += partAtual.getCartoesA();
-						geralCartaoV += partAtual.getCartoesV();
-					}
-					jogador.setGols(geralGols);
-					jogador.setCartAmarelo(geralCartaoA);
-					jogador.setCartVermelho(geralCartaoV);
+		jogadorDao.getMap().forEach((id, jogador) -> {
+			int geralGols = 0;
+			int geralCartaoA = 0;
+			int geralCartaoV = 0;
+			for (PartidaJogador partAtual : jogador.getPartidaJogador()) {
+				if (jogador.getPartidaJogador().isEmpty()) {
+					System.out.println("Nao existe partida cadastrada, nao foi possivel atualizar dados");
+					jogador.setGols(0);
+					jogador.setCartAmarelo(0);
+					jogador.setCartVermelho(0);
+				} else {
+					geralGols += partAtual.getGols();
+					geralCartaoA += partAtual.getCartoesA();
+					geralCartaoV += partAtual.getCartoesV();
 				}
-			});
+				jogador.setGols(geralGols);
+				jogador.setCartAmarelo(geralCartaoA);
+				jogador.setCartVermelho(geralCartaoV);
+			}
+		});
+	}
+
+	/**
+	 * Função responsável pela pesquisar os nomes em comum por categoria.
+	 * 
+	 * @param pesquisa
+	 * @param categoria
+	 * @param jogadorDao
+	 * @param tecnicoDao
+	 * @param arbitroDao
+	 */
+	public static void pesquisarCategoria(String pesquisa, int categoria, JogadorDAOImpl jogadorDao,
+			TecnicoDAOImpl tecnicoDao, ArbitroDAOImpl arbitroDao) {
+		switch (categoria) {
+		case 1:
+			System.out.println("Categoria Arbitro:\n");
+			for (String atualArbitro : arbitroDao.getLista2()) {
+				if (atualArbitro.contains(pesquisa)) {
+					System.out.println("- " + atualArbitro + "\n");
+				}
+			}
+			break;
+		case 2:
+			System.out.println("Categoria Jogador:\n");
+			for (String atualJogador : jogadorDao.getLista()) {
+				if (atualJogador.contains(pesquisa)) {
+					System.out.println("- " + atualJogador + "\n");
+				}
+			}
+			break;
+		case 3:
+			System.out.println("Categoria Tecnico:\n");
+			for (String atualTecnico : tecnicoDao.getLista2()) {
+				if (atualTecnico.contains(pesquisa)) {
+					System.out.println("- " + atualTecnico + "\n");
+				}
+			}
+			break;
+		default:
+			System.out.println("Categoria invalida!");
+
 		}
+
+	}
 
 }

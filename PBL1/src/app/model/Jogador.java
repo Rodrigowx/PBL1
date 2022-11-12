@@ -21,8 +21,7 @@ public class Jogador {
 	private ArrayList<PartidaJogador> partidasJogador;
 
 	// CONSTRUTOR
-	public Jogador(String codJog, String nome, String posicao,
-			Selecao selecao) {
+	public Jogador(String codJog, String nome, String posicao, Selecao selecao) {
 		super();
 		this.codJog = codJog;
 		this.nome = nome;

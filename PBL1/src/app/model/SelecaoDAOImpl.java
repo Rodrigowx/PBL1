@@ -215,4 +215,47 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			}
 		}
 	}
+	
+	/**
+	 * Essa função tem o objetivo de ...
+	 * @param partida
+	 */
+	
+	public void atualizaPontuacao(Partida partida) {
+		
+		Integer golsTime1, golsTime2;
+		Selecao time1 = null, time2 = null;
+		String timeGanhador = null;
+		
+		golsTime1 = partida.getGolsTime1();
+		golsTime2 = partida.getGolsTime2();
+		
+		//Percorre a lista de seleçoes para selecionar os objetos Selecao dos times da partida
+		for (Selecao selecao : listaSelecoes) {
+			if (selecao.getNome().equals(partida.getTime1())) {
+				time1 = selecao;
+			} else if (selecao.getNome().equals(partida.getTime2())) {
+				time2 = selecao;
+			} else {
+				continue;
+			}
+		}
+		
+		//Selecionando qual foi o time ganhador ou se houve empate e adicionando os pontos 
+		if (golsTime1 > golsTime2) {
+			Integer pontos = time1.getPontuacaoFaseG() + 3; //Quando um time ganha uma partida, 3 pontos são acrescentados na fase de Grupos
+			time1.setPontuacaoFaseG(pontos);
+			
+		} else if (golsTime1 < golsTime2) {
+			Integer pontos = time1.getPontuacaoFaseG() + 3;
+			time1.setPontuacaoFaseG(pontos);
+			
+		} else if (golsTime1.equals(golsTime2)) {
+			Integer pontos1 = time1.getPontuacaoFaseG() + 1; //
+			Integer pontos2 = time2.getPontuacaoFaseG() + 1;
+			
+			time1.setPontuacaoFaseG(pontos1);
+			time2.setPontuacaoFaseG(pontos2);
+		}
+	}
 }

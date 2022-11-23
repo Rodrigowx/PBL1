@@ -14,7 +14,7 @@ public class Selecao {
 	private List<Jogador> jogadores;
 	private Tecnico tecnico = null;
 	private String grupo;
-	private Integer pontuacaoFaseG;
+	private Integer pontuacaoFaseG = 0;
 
 	// CONSTRUTOR
 	public Selecao(String nome, List<Jogador> jogadores, String grupo) {

@@ -841,6 +841,8 @@ public class Main extends Application {
 						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime2());
+						
+						SelecaoDAO.atualizaPontuacao(partidaEscolhida); //coloca e atualiza a pontuação das 2 Seleçoes
 
 						// INSERIR CARTAO VERMELHO TIME 1
 						System.out.println(

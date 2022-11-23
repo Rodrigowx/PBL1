@@ -225,7 +225,6 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		
 		Integer golsTime1, golsTime2;
 		Selecao time1 = null, time2 = null;
-		String timeGanhador = null;
 		
 		golsTime1 = partida.getGolsTime1();
 		golsTime2 = partida.getGolsTime2();

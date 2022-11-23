@@ -5,12 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Collection;
 
 import app.model.ArbitroDAOImpl;
-import app.model.Selecao;
-import app.model.SelecaoDAOImpl;
 import app.model.Arbitro;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 
 class ArbitroDAOTest {
 	

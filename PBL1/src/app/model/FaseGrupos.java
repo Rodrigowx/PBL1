@@ -112,17 +112,7 @@ public class FaseGrupos {
 		return mapPartidasGeradas;
 	}
 	
-	public void pontuaSelecoes(Map<String, Partida> mapPartidas, ArrayList<Selecao> listaSelecoes) {
-		
-		//percorre a lista de seleçoes e organiza por grupo
-		
-		mapPartidas.forEach((id, partida) -> {
-			
-			
-					
-		});
-		
-	}
+	
 	
 	public void classificacaoFaseGrupos() {
 		

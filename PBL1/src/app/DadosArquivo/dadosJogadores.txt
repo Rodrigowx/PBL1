@@ -168,11 +168,83 @@ Andreas Skov Olsen;Atacante
 Martin Braithwaite;Atacante
 
 Tunisia
+Aymen Dahmen;Goleiro
+Mouez Hassen;Goleiro
+Aymen Balbouli;Goleiro
+Mohamed Drager;Zagueiro
+Wajdi Kechrida;Zagueiro
+Bilel Ifa;Zagueiro
+Ellyes Skhiri;Meia
+Aissa Laidouni;Meia
+Ferjani Sassi;Meia
+Seifeddine Jaziri;Atacante
+Naim Sliti;Atacante
+
 Franca
+Hugo Lloris;Goleiro
+Steve Mandanda;Goleiro
+Alphonse Areola;Goleiro
+Benjamin Pavard;Zagueiro
+Jules Koundé;Zagueiro
+Axel Disasi;Zagueiro
+Adrien Rabiot;Meia
+Aurélien Tchouaméni;Meia
+Youssouf Fofana;Meia
+Karim Benzema;Atacante
+Kylian Mbappé;Atacante
+
 Australia
+Maty Ryan;Goleiro
+Andrew Redmayne;Goleiro
+Danny Vukovic;Goleiro
+Milos Degenek;Zagueiro
+Aziz Behich;Zagueiro
+Joel King;Zagueiro
+Aaron Mooy;Meia
+Jackson Irvine;Meia
+Ajdin Hrustic;Meia
+Awer Mabil;Atacante
+Mathew Leckie;Atacante
+
 Alemanha
+Manuel Neuer;Goleiro
+Marc-André ter Stegen;Goleiro
+Kevin Trapp;Goleiro
+Antonio Rüdiger;Zagueiro
+Matthias Ginter;Zagueiro
+Niklas Süle;Zagueiro
+Joshua Kimmich;Meia
+Mario Götze;Meia
+Ilkay Gündogan;Meia
+Thomas Müller;Atacante
+Leroy Sané;Atacante
+
 Japao
+Shuichi Gonda;
+Daniel Schmidt;
+Eiji Kawashima;
+Miki Yamane;
+Hiroki Sakai;
+Maya Yoshida;
+Wataru Endo;
+Hidemasa Morita;
+Ao Tanaka;
+Daizen Maeda;
+Takuma Asano;
+
 Costa Rica
+
+
+
+
+
+
+
+
+
+
+
+
 Espanha
 Suica
 Camaroes

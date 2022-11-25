@@ -125,7 +125,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 		listaSelecoes.add(selecao); // **
 		nomesSelecao.add(selecao.getNome());
-		System.out.println("Inserido com sucesso!");
+		
 		return true;
 	}
 
@@ -242,7 +242,9 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		
 		//Selecionando qual foi o time ganhador ou se houve empate e adicionando os pontos 
 		if (golsTime1 > golsTime2) {
-			Integer pontos = time1.getPontuacaoFaseG() + 3; //Quando um time ganha uma partida, 3 pontos são acrescentados na fase de Grupos
+			
+			//Quando um time ganha uma partida, 3 pontos são acrescentados na fase de Grupos
+			Integer pontos = time1.getPontuacaoFaseG() + 3; 
 			time1.setPontuacaoFaseG(pontos);
 			
 		} else if (golsTime1 < golsTime2) {
@@ -250,7 +252,9 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			time1.setPontuacaoFaseG(pontos);
 			
 		} else if (golsTime1.equals(golsTime2)) {
-			Integer pontos1 = time1.getPontuacaoFaseG() + 1; //
+			
+			//Quando o resultado da partida foi um empate, 1 ponto é acrescentado em cada Seleção
+			Integer pontos1 = time1.getPontuacaoFaseG() + 1;
 			Integer pontos2 = time2.getPontuacaoFaseG() + 1;
 			
 			time1.setPontuacaoFaseG(pontos1);

@@ -1,3 +1,4 @@
+Senegal
 Édouard Mendy;Goleiro
 Alfred Gomis;Goleiro
 Seny Dieng;Goleiro
@@ -10,9 +11,178 @@ Idrissa Gana Gueye;Meia
 Bamba Dieng;Atacante
 Boulaye Dia;Atacante
 
+Holanda
 Justin Bijlow;Goleiro
 Remko Pasveer;Goleiro
 Andries Noppert;Goleiro
 Daley Blind;Zagueiro
 Stefan de Vrij;Zagueiro
 Virgil van Dijk;Zagueiro
+Frenkie de Jong;Meia
+Steven Berghuis;Meia
+Davy Klaassen;Meia
+Memphis Depay;Atacante
+Luuk de Jong;Atacante
+
+Catar
+Saad Al Sheeb;Goleiro
+Meshaal Barsham;Goleiro
+Yousef Hassan;Goleiro
+Ismaeel Mohammad;Zagueiro
+Pedro Miguel "Ró-Ró";Zagueiro
+Tarek Salman;Zagueiro
+Abdulaziz Hatem;Meia
+Karim Boudiaf;Meia
+Ali Assadalla;Meia
+Khalid Muneer;Atacante
+Ahmed Alaaeldin;Atacante
+
+Equador
+Moisés Ramírez;Goleiro
+Alexander Dominguez;Goleiro
+Hernán Galíndez;Goleiro
+Robert Arboleda;Zagueiro
+Piero Hincapié;Zagueiro
+Pervis Estupiñan;Zagueiro
+Carlos Gruezo;Meia
+José Cifuentes;Meia
+Alan Franco;Meia
+Djorkaeff Reasco;Atacante
+Kevin Rodríguez;Atacante
+
+Argentina
+Franco Armani;Goleiro
+Emiliano Martínez;Goleiro
+Geronimo Rulli;Goleiro
+Gonzalo Montiel;Zagueiro
+Nahuel Molina;Zagueiro
+Germán Pezzella;Zagueiro
+Leandro Paredes;Meia
+Thiago Almada;Meia
+Rodrigo De Paul;Meia
+Lionel Messi;Atacante
+Lautaro Martínez;Atacante
+
+Arabia Saudita
+Mohammed Al-Yami;Goleiro
+Nawaf Al-Aqidi;Goleiro
+Mohammed Al-Owais;Goleiro
+Yasser Al-Shahrani;Zagueiro
+Ali Al-Bulaihi;Zagueiro
+Abdulelah Al-Amri;Zagueiro
+Salman Al-Faraj;Meia
+Riyadh Sharahili;Meia
+Ali Al-Hassan;Meia
+Nawaf Al-Abed;Atacante
+Haitham Asiri;Atacante
+
+Mexico
+Guillermo Ochoa;Goleiro
+Alfredo Talavera;Goleiro
+Rodolfo Cota;Goleiro
+Jorge Sánchez;Zagueiro
+Kevin Álvarez;Zagueiro
+Néstor Araujo;Zagueiro
+Andrés Guardado;Meia
+Héctor Herrera;Meia
+Charly Rodríguez;Meia
+Alexis Vega;Atacante
+Hirving 'Chucky';Atacante
+
+Polonia
+Wojciech Szczesny;Goleiro
+Lukasz Skorupski;Goleiro
+Kamil Grabara;Goleiro
+Kamil Glik;Zagueiro
+Bartosz Bereszyński;Zagueiro
+Jan Bednarek;Zagueiro
+Grzegorz Krychowiak;Meia
+Kamil Grosicki;Meia
+Piotr Zielinski;Meia
+Robert Lewandowski;Atacante
+Arkadiusz Milik;Atacante
+
+Inglaterra
+Aaron Ramsdale;Goleiro
+Nick Pope;Goleiro
+Jordan Pickford;Goleiro
+Trent Alexander-Arnold;Zagueiro
+Conor Coady;Zagueiro
+Eric Dier;Zagueiro
+Jude Bellingham;Meia
+Conor Gallagher;Meia
+Jordan Henderson;Meia
+Harry Kane;Atacante
+Phil Foden;Atacante
+
+Ira
+Alireza Beiranvand;Goleiro
+Amir Abedzadeh;Goleiro
+Hossein Hosseini;Goleiro
+Majid Hosseini;Zagueiro
+Hossein Kanaani;Zagueiro
+Shojae Khalilzadeh;Zagueiro
+Saeid Ezatolahi;Meia
+Ali Karimi;Meia
+Ahmad Nourollahi;Meia
+Mehdi Torabi;Atacante
+Saman Ghoddos;Atacante
+
+Estados Unidos
+Ethan Horvath;Goleiro
+Sean Johnson;Goleiro
+Matt Turner;Goleiro
+Cameron Carter-Vickers;Zagueiro
+Sergiño Dest;Zagueiro
+Aaron Long;Zagueiro
+Brenden Aaronson;Meia
+Kellyn Acosta;Meia
+Tyler Adams;Meia
+Jesús Ferreira;Atacante
+Jordan Morris;Atacante
+
+Pais de Gales
+Wayne Hennessey;Goleiro
+Danny Ward;Goleiro
+Adam Davies;Goleiro
+Ben Cabango;Zagueiro
+Ben Davies;Zagueiro
+Tom Lockyer;Zagueiro
+Sorba Thomas;Meia
+Joe Allen;Meia
+Matt Smith;Meia
+Gareth Bale;Atacante
+Kieffer Moore;Atacante
+
+Dinamarca
+Kasper Schmeichel;Goleiro
+Oliver Christensen;Goleiro
+Frederik Rönnow;Goleiro
+Simon Kjaer;Zagueiro
+Andreas Christensen;Zagueiro
+Joachim Andersen;Zagueiro
+Christian Eriksen;Meia
+Pierre-Emile Hojbjerg;Meia
+Thomas Delaney;Meia
+Andreas Skov Olsen;Atacante
+Martin Braithwaite;Atacante
+
+Tunisia
+Franca
+Australia
+Alemanha
+Japao
+Costa Rica
+Espanha
+Suica
+Camaroes
+Brasil
+Servia
+Marrocos
+Croacia
+Belgica
+Canada
+Uruguai
+Coreia do Sul
+Portugal
+Gana

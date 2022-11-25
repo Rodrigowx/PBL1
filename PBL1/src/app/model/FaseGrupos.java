@@ -111,5 +111,15 @@ public class FaseGrupos {
 		});
 		return mapPartidasGeradas;
 	}
+	
+	
+	
+	public void classificacaoFaseGrupos() {
+		
+		ArrayList<Selecao> selecoesOitavas = new ArrayList<>();
+		
+		
+		
+	}
 
 }

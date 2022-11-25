@@ -13,6 +13,8 @@ package app;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import app.DadosArquivo.DadosPréCadastro;
 import app.model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -58,6 +60,8 @@ public class Main extends Application {
 
 		FaseGrupos GruposCRUD = new FaseGrupos();
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
+		
+		DadosPréCadastro.LeituraArquivos(SelecaoDAO, GruposCRUD);
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -156,6 +160,7 @@ public class Main extends Application {
 					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO E NO MAP DOS GRUPOS
 					SelecaoDAO.inserir(novaSelecao);
 					GruposCRUD.atualizaGrupos(grupo, novaSelecao);
+					System.out.println("Inserido com sucesso!");
 					break;
 
 				// INSERIR JOGADOR
@@ -841,6 +846,8 @@ public class Main extends Application {
 						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime2());
+						
+						SelecaoDAO.atualizaPontuacao(partidaEscolhida); //coloca e atualiza a pontuação das 2 Seleçoes
 
 						// INSERIR CARTAO VERMELHO TIME 1
 						System.out.println(

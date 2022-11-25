@@ -1,0 +1,18 @@
+Édouard Mendy;Goleiro
+Alfred Gomis;Goleiro
+Seny Dieng;Goleiro
+Pape Abdou Cissé;Zagueiro
+Abdou Diallo;Zagueiro
+Ismail Jakobs;Zagueiro
+Pathé Ciss;Meia
+Krepin Diatta;Meia
+Idrissa Gana Gueye;Meia
+Bamba Dieng;Atacante
+Boulaye Dia;Atacante
+
+Justin Bijlow;Goleiro
+Remko Pasveer;Goleiro
+Andries Noppert;Goleiro
+Daley Blind;Zagueiro
+Stefan de Vrij;Zagueiro
+Virgil van Dijk;Zagueiro

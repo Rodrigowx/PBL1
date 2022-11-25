@@ -14,6 +14,7 @@ public class Selecao {
 	private List<Jogador> jogadores;
 	private Tecnico tecnico = null;
 	private String grupo;
+	private Integer pontuacaoFaseG = 0;
 
 	// CONSTRUTOR
 	public Selecao(String nome, List<Jogador> jogadores, String grupo) {
@@ -59,6 +60,14 @@ public class Selecao {
 
 	public void setGrupo(String grupo) {
 		this.grupo = grupo;
+	}
+	
+	public Integer getPontuacaoFaseG() {
+		return pontuacaoFaseG;
+	}
+
+	public void setPontuacaoFaseG(Integer pontuacaoFaseG) {
+		this.pontuacaoFaseG = pontuacaoFaseG;
 	}
 
 }

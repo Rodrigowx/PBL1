@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import app.model.FaseGrupos;
 import app.model.Jogador;
@@ -17,7 +18,8 @@ import app.model.SelecaoDAOImpl;
 
 public class DadosPréCadastro {
 	
-	private static SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
+	private static SimpleDateFormat sdf = new SimpleDateFormat("MyyyyHHmmssSSS");
+	static Random geradorAl = new Random();
 
 	public static void LeituraArquivos(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
 		
@@ -44,7 +46,7 @@ public class DadosPréCadastro {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao ler arquivo");
+			System.out.println("Erro ao ler arquivo. Erro: " + e.getMessage());
 		}
 		
 		//Leitura Jogadores
@@ -56,16 +58,23 @@ public class DadosPréCadastro {
 			String linha = "-";
 			
 			while (linha != null) {
-				linha = buffer.readLine();
+				linha = buffer.readLine();//leitura da divisória
+				
+				linha = buffer.readLine();//leitura do nome da Seleção
 				String selecao = linha;
-				while (linha != "-") {
-					
-					linha = buffer.readLine();
+				
+				if (linha == null) {break;}
+				
+				for (int i=0; i < 11; i++) {
+					linha = buffer.readLine();//leitura do nome do Jogador e sua Posição
+
 					String[] jogadoresPos = linha.split(";");
 					
 					Selecao selecaoJog = SelecaoDAO.verificaSelecao(selecao);
 					
+					Thread.sleep(1); //intervalo para não gerar códigos iguais
 					Date data = new Date();
+					
 					Jogador novoJog = new Jogador(sdf.format(data), jogadoresPos[0], jogadoresPos[1], selecaoJog);
 
 					ArrayList<PartidaJogador> listaJogPart = new ArrayList<>();
@@ -74,13 +83,11 @@ public class DadosPréCadastro {
 					// ADICIONANDO O JOGADOR NOVO NA LISTA DE SEU DAO E DA SUA SELEÇAO
 					JogadorDAO.inserir(novoJog);
 					selecaoJog.setJogadores(novoJog);
-					
-					linha = buffer.readLine();
 				}
 			}
 			
 		} catch(Exception e) {
-			System.out.println("Erro ao ler arquivo de Jogadores");
+			System.out.println("Erro ao ler arquivo de Jogadores. Erro: " + e.getMessage());
 		}
 	}
 }

@@ -1,3 +1,4 @@
+-
 Senegal
 Édouard Mendy;Goleiro
 Alfred Gomis;Goleiro
@@ -220,17 +221,17 @@ Thomas Müller;Atacante
 Leroy Sané;Atacante
 -
 Japao
-Shuichi Gonda;
-Daniel Schmidt;
-Eiji Kawashima;
-Miki Yamane;
-Hiroki Sakai;
-Maya Yoshida;
-Wataru Endo;
-Hidemasa Morita;
-Ao Tanaka;
-Daizen Maeda;
-Takuma Asano;
+Shuichi Gonda;Goleiro
+Daniel Schmidt;Goleiro
+Eiji Kawashima;Goleiro
+Miki Yamane;Zagueiro
+Hiroki Sakai;Zagueiro
+Maya Yoshida;Zagueiro
+Wataru Endo;Meia
+Hidemasa Morita;Meia
+Ao Tanaka;Meia
+Daizen Maeda;Atacante
+Takuma Asano;Atacante
 -
 Costa Rica
 Keylor Navas;Goleiro

@@ -230,6 +230,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 			System.out.println("QUANTIDADE DE GOLS: " + jogador.getGols());
 			System.out.println();
 		});
+		System.out.println("TOTAL DE JOGADORES: " + mapJogadores.size());
 	}
 
 	/**

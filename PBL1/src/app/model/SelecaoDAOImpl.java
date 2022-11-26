@@ -194,8 +194,8 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	@Override
 	public void listar() {
 		System.out.println("\nLISTAGEM DAS SELECOES:");
-		for (int i = 0; i < listaSelecoes.size(); i++) {
-			System.out.println("- " + listaSelecoes.get(i).getNome() + "\tGrupo: " + listaSelecoes.get(i).getGrupo());
+		for (Selecao selecao : listaSelecoes) {
+			System.out.println("- " + selecao.getNome() + "\tGrupo: " + selecao.getGrupo() + "\tPontuacao: " + selecao.getPontuacaoFaseG());
 		}
 	}
 

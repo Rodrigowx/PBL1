@@ -19,7 +19,6 @@ import app.model.SelecaoDAOImpl;
 public class DadosPréCadastro {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("MyyyyHHmmssSSS");
-	static Random geradorAl = new Random();
 
 	public static void LeituraArquivos(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
 		

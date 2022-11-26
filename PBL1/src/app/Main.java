@@ -675,7 +675,8 @@ public class Main extends Application {
 
 			// MENU PARA A FASE 1
 			System.out.println(
-					"1 - GERENCIAR PARTIDAS \n2 - LISTAR JOGADORES \n3 - LISTAR ARBITROS \n4 - LISTAR TECNICOS \n5 - PESQUISAR \n6 - SAIR");
+					"1 - GERENCIAR PARTIDAS \n2 - LISTAR SELECOES "
+					+ "\n3 - LISTAR JOGADORES \n4 - LISTAR ARBITROS \n5 - LISTAR TECNICOS \n6 - PESQUISAR \n7 - SAIR");
 
 			// O programa ler a opção escolhida pelo usuario
 			Integer menu2 = Funcoes.leituraInt();
@@ -835,7 +836,11 @@ public class Main extends Application {
 						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime1() + " fez: ");
 						int golsTime1 = Funcoes.leituraInt();
 						partidaEscolhida.setGolsTime1(golsTime1);
-						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						
+						if (golsTime1 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						}
+						
 						Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime1());
 
@@ -843,7 +848,11 @@ public class Main extends Application {
 						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime2() + " fez: ");
 						int golsTime2 = Funcoes.leituraInt();
 						partidaEscolhida.setGolsTime2(golsTime2);
-						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						
+						if (golsTime2 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						}
+						
 						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime2());
 						
@@ -853,7 +862,11 @@ public class Main extends Application {
 						System.out.println(
 								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime1() + " recebeu: ");
 						int cartaoVtime1 = Funcoes.leituraInt();
-						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						
+						if (cartaoVtime1 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						}
+
 						Funcoes.cadastrarCartaoVermelho(cartaoVtime1, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime1());
 
@@ -861,7 +874,11 @@ public class Main extends Application {
 						System.out.println(
 								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime2() + " recebeu: ");
 						int cartaoVtime2 = Funcoes.leituraInt();
-						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						
+						if (cartaoVtime2 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						}
+						
 						Funcoes.cadastrarCartaoVermelho(cartaoVtime2, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime2());
 
@@ -869,7 +886,11 @@ public class Main extends Application {
 						System.out.println(
 								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime1() + " recebeu: ");
 						int cartaoAtime1 = Funcoes.leituraInt();
-						Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						
+						if (cartaoAtime1 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
+						}
+						
 						Funcoes.cadastrarCartaoVermelho(cartaoAtime1, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime1());
 
@@ -877,7 +898,11 @@ public class Main extends Application {
 						System.out.println(
 								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime2() + " recebeu: ");
 						int cartaoAtime2 = Funcoes.leituraInt();
-						Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						
+						if (cartaoAtime2 > 0) {
+							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
+						}
+
 						Funcoes.cadastrarCartaoVermelho(cartaoAtime2, partidaEscolhida, SelecaoDAO,
 								partidaEscolhida.getTime2());
 
@@ -912,24 +937,28 @@ public class Main extends Application {
 				break;
 
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			// LISTAR JOGADORES
+			//LISTAR SELEÇOES
 			case 2:
+				SelecaoDAO.listar();
+				break;
+			// LISTAR JOGADORES
+			case 3:
 				JogadorDAO.listar();
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
 			// LISTAR ARBITROS
-			case 3:
+			case 4:
 				ArbitroDAO.listar();
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
 			// LISTAR TECNICOS
-			case 4:
+			case 5:
 				TecnicoDAO.listar();
 				break;
 
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 			// PESQUISAR
-			case 5:
+			case 6:
 				System.out.println("Informe a opcao que deseja pesquisar:");
 				System.out.println(
 						"1 - Pesquisar por nome de selecao  2 - Data da partida  3 - Categoria (Jogador,Arbitro,Tecnico)");
@@ -979,7 +1008,7 @@ public class Main extends Application {
 				break;
 			// -----------------------------------------------------------------------------------------------------------------------
 			// ENCERRAR
-			case 6:
+			case 7:
 				System.out.println("\nEncerrando programa...");
 				System.exit(0);
 

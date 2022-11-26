@@ -10,7 +10,7 @@ Krepin Diatta;Meia
 Idrissa Gana Gueye;Meia
 Bamba Dieng;Atacante
 Boulaye Dia;Atacante
-
+-
 Holanda
 Justin Bijlow;Goleiro
 Remko Pasveer;Goleiro
@@ -23,7 +23,7 @@ Steven Berghuis;Meia
 Davy Klaassen;Meia
 Memphis Depay;Atacante
 Luuk de Jong;Atacante
-
+-
 Catar
 Saad Al Sheeb;Goleiro
 Meshaal Barsham;Goleiro
@@ -36,7 +36,7 @@ Karim Boudiaf;Meia
 Ali Assadalla;Meia
 Khalid Muneer;Atacante
 Ahmed Alaaeldin;Atacante
-
+-
 Equador
 Moisés Ramírez;Goleiro
 Alexander Dominguez;Goleiro
@@ -49,7 +49,7 @@ José Cifuentes;Meia
 Alan Franco;Meia
 Djorkaeff Reasco;Atacante
 Kevin Rodríguez;Atacante
-
+-
 Argentina
 Franco Armani;Goleiro
 Emiliano Martínez;Goleiro
@@ -62,7 +62,7 @@ Thiago Almada;Meia
 Rodrigo De Paul;Meia
 Lionel Messi;Atacante
 Lautaro Martínez;Atacante
-
+-
 Arabia Saudita
 Mohammed Al-Yami;Goleiro
 Nawaf Al-Aqidi;Goleiro
@@ -75,7 +75,7 @@ Riyadh Sharahili;Meia
 Ali Al-Hassan;Meia
 Nawaf Al-Abed;Atacante
 Haitham Asiri;Atacante
-
+-
 Mexico
 Guillermo Ochoa;Goleiro
 Alfredo Talavera;Goleiro
@@ -88,7 +88,7 @@ Héctor Herrera;Meia
 Charly Rodríguez;Meia
 Alexis Vega;Atacante
 Hirving 'Chucky';Atacante
-
+-
 Polonia
 Wojciech Szczesny;Goleiro
 Lukasz Skorupski;Goleiro
@@ -101,7 +101,7 @@ Kamil Grosicki;Meia
 Piotr Zielinski;Meia
 Robert Lewandowski;Atacante
 Arkadiusz Milik;Atacante
-
+-
 Inglaterra
 Aaron Ramsdale;Goleiro
 Nick Pope;Goleiro
@@ -114,7 +114,7 @@ Conor Gallagher;Meia
 Jordan Henderson;Meia
 Harry Kane;Atacante
 Phil Foden;Atacante
-
+-
 Ira
 Alireza Beiranvand;Goleiro
 Amir Abedzadeh;Goleiro
@@ -127,7 +127,7 @@ Ali Karimi;Meia
 Ahmad Nourollahi;Meia
 Mehdi Torabi;Atacante
 Saman Ghoddos;Atacante
-
+-
 Estados Unidos
 Ethan Horvath;Goleiro
 Sean Johnson;Goleiro
@@ -140,7 +140,7 @@ Kellyn Acosta;Meia
 Tyler Adams;Meia
 Jesús Ferreira;Atacante
 Jordan Morris;Atacante
-
+-
 Pais de Gales
 Wayne Hennessey;Goleiro
 Danny Ward;Goleiro
@@ -153,7 +153,7 @@ Joe Allen;Meia
 Matt Smith;Meia
 Gareth Bale;Atacante
 Kieffer Moore;Atacante
-
+-
 Dinamarca
 Kasper Schmeichel;Goleiro
 Oliver Christensen;Goleiro
@@ -166,7 +166,7 @@ Pierre-Emile Hojbjerg;Meia
 Thomas Delaney;Meia
 Andreas Skov Olsen;Atacante
 Martin Braithwaite;Atacante
-
+-
 Tunisia
 Aymen Dahmen;Goleiro
 Mouez Hassen;Goleiro
@@ -179,7 +179,7 @@ Aissa Laidouni;Meia
 Ferjani Sassi;Meia
 Seifeddine Jaziri;Atacante
 Naim Sliti;Atacante
-
+-
 Franca
 Hugo Lloris;Goleiro
 Steve Mandanda;Goleiro
@@ -192,7 +192,7 @@ Aurélien Tchouaméni;Meia
 Youssouf Fofana;Meia
 Karim Benzema;Atacante
 Kylian Mbappé;Atacante
-
+-
 Australia
 Maty Ryan;Goleiro
 Andrew Redmayne;Goleiro
@@ -205,7 +205,7 @@ Jackson Irvine;Meia
 Ajdin Hrustic;Meia
 Awer Mabil;Atacante
 Mathew Leckie;Atacante
-
+-
 Alemanha
 Manuel Neuer;Goleiro
 Marc-André ter Stegen;Goleiro
@@ -218,7 +218,7 @@ Mario Götze;Meia
 Ilkay Gündogan;Meia
 Thomas Müller;Atacante
 Leroy Sané;Atacante
-
+-
 Japao
 Shuichi Gonda;
 Daniel Schmidt;
@@ -231,7 +231,7 @@ Hidemasa Morita;
 Ao Tanaka;
 Daizen Maeda;
 Takuma Asano;
-
+-
 Costa Rica
 Keylor Navas;Goleiro
 Esteban Alvarado;Goleiro
@@ -244,7 +244,7 @@ Celso Borges;Meia
 Youstin Salas;Meia
 Joel Campbell;Atacante
 Anthony Contreras;Atacante
-
+-
 Espanha
 Unai Simón;Goleiro
 David Raya;Goleiro
@@ -257,7 +257,7 @@ Rodri;Meia
 Pedri;Meia
 Pablo Sarabia;Atacante
 Nico Williams;Atacante
-
+-
 Suica
 Jonas Omlin;Goleiro
 Gregor Kobel;Goleiro
@@ -270,7 +270,7 @@ Ardon Jashari;Meia
 Fabian Frei;Meia
 Breel Embolo;Atacante
 Renato Steffen;Atacante
-
+-
 Camaroes
 André Onana;Goleiro
 Devis Epassy;Goleiro
@@ -283,7 +283,7 @@ Samuel Gouet;Meia
 Pierre Kunde;Meia
 Georges-Kévin N'Koudou;Atacante
 Vincent Aboubakar;Atacante
-
+-
 Brasil
 Alisson;Goleiro
 Ederson;Goleiro
@@ -296,7 +296,7 @@ Fabinho;Meia
 Fred;Meia
 Richarlison;Atacante
 Raphinha;Atacante
-
+-
 Servia
 Vanja Milinkovic-Savic;Goleiro
 Predrag Rajkovic;Goleiro
@@ -309,7 +309,7 @@ Filip Kostic;Meia
 Darko Lazovic;Meia
 Dusan Vlahovic;Atacante
 Aleksandar Mitrovic;Atacante
-
+-
 Marrocos
 Yassine Bounou;Goleiro
 Munir Mohamedi;Goleiro
@@ -322,7 +322,7 @@ Selim Amallah;Meia
 Ilias Chair;Meia
 Youssef En-Nesyri;Atacante
 Anass Zaroury;Atacante
-
+-
 Croacia
 Dominik Livakovic;Goleiro
 Ivica Ivusic;Goleiro
@@ -335,7 +335,7 @@ Mateo Kovacic;Meia
 Marcelo Brozovic;Meia
 Ivan Perisic;Atacante
 Andrej Kramaric;Atacante
-
+-
 Belgica
 Thibaut Courtois;Goleiro
 Simon Mignolet;Goleiro
@@ -348,7 +348,7 @@ Kevin De Bruyne;Meia
 Yannick Carrasco;Meia
 Eden Hazard;Atacante
 Dries Mertens;Atacante
-
+-
 Canada
 James Pantemis;Goleiro
 Milan Borjan;Goleiro
@@ -361,7 +361,7 @@ Mark-Anthony Kaye;Meia
 Liam Fraser;Meia
 Liam Millar;Atacante
 Lucas Cavallini;Atacante
-
+-
 Uruguai
 Fernando Muslera;Goleiro
 Sergio Rochet;Goleiro
@@ -374,7 +374,7 @@ Manuel Ugarte;Meia
 Matías Vecino;Meia
 Luis Suárez;Atacante
 Edinson Cavani;Atacante
-
+-
 Coreia do Sul
 Kim Seung-Gyu;Goleiro
 Jo Hyeon-Woo;Goleiro
@@ -387,7 +387,7 @@ Son Jun-Ho;Meia
 Paik Seung-ho;Meia
 Hwang Ui-Jo;Atacante
 Cho Gue-Sung;Atacante
-
+-
 Portugal
 Rui Patrício;Goleiro
 Diogo Costa;Goleiro
@@ -400,7 +400,7 @@ Bernardo Silva;Meia
 João Mário;Meia
 Cristiano Ronaldo;Atacante
 André Silva;Atacante
-
+-
 Gana
 Manaf Nurudeen;Goleiro
 Danlad Ibrahim;Goleiro

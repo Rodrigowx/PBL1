@@ -61,7 +61,7 @@ public class Main extends Application {
 		FaseGrupos GruposCRUD = new FaseGrupos();
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
 		
-		DadosPréCadastro.LeituraArquivos(SelecaoDAO, GruposCRUD);
+		DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 

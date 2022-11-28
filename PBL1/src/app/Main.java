@@ -1,5 +1,5 @@
 /**
-Autores: Rodrigo de Matos Ferreira e Nathille Cerqueira Alves
+Autores: Rodrigo de Matos Ferreira e Nathielle Cerqueira Alves
 Componente Curricular: MI Algoritmos II
 Concluido em: 03/10/2022
 Declaro que este código foi elaborado por mim de forma individual e não contém nenhum

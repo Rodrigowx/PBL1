@@ -1,13 +1,13 @@
 package app.DadosArquivo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import app.model.FaseGrupos;
 import app.model.Jogador;
@@ -23,7 +23,9 @@ public class DadosPréCadastro {
 	public static void LeituraArquivos(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
 		
 		try {
-			FileInputStream arquivo = new FileInputStream("/Users/josen/git/PBL1/PBL1/src/app/DadosArquivo/arquivoDeDados.txt");
+			String arquivoPath = new File("src/app/DadosArquivo/arquivoDeDados.txt").getAbsolutePath();
+
+			FileInputStream arquivo = new FileInputStream(arquivoPath);
 			InputStreamReader input = new InputStreamReader(arquivo);
 			BufferedReader buffer = new BufferedReader(input);
 			
@@ -50,7 +52,9 @@ public class DadosPréCadastro {
 		
 		//Leitura Jogadores
 		try {
-			FileInputStream arquivoJog = new FileInputStream("/Users/josen/git/PBL1/PBL1/src/app/DadosArquivo/dadosJogadores.txt");
+			String arquivoJogPath = new File("src/app/DadosArquivo/dadosJogadores.txt").getAbsolutePath();
+			
+			FileInputStream arquivoJog = new FileInputStream(arquivoJogPath);
 			InputStreamReader input = new InputStreamReader(arquivoJog);
 			BufferedReader buffer = new BufferedReader(input);
 			

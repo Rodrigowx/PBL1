@@ -20,6 +20,12 @@ public class DadosPréCadastro {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("MyyyyHHmmssSSS");
 
+	/**
+	 * 
+	 * @param SelecaoDAO
+	 * @param JogadorDAO
+	 * @param GruposCRUD
+	 */
 	public static void LeituraArquivos(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
 		
 		try {
@@ -93,4 +99,15 @@ public class DadosPréCadastro {
 			System.out.println("Erro ao ler arquivo de Jogadores. Erro: " + e.getMessage());
 		}
 	}
+	
+	/**
+	 * 
+	 * @param SelecaoDAO
+	 * @param JogadorDAO
+	 * @param GruposCRUD
+	 */
+	public static void LeituraTecnicoArbitro(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
+		
+	}
+	
 }

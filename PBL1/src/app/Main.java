@@ -18,8 +18,8 @@ import app.DadosArquivo.DadosPréCadastro;
 import app.model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 /**
@@ -28,22 +28,59 @@ import javafx.fxml.FXMLLoader;
  * 
  */
 
-public class Main extends Application {
+public class Main extends Application {	
+	
+	private static Stage stage;
+	
+	//COLOCANDO AS TELAS COMO ATRIBUTO DA MAIN
+	private static Scene MainScene;
+	
+	private static Scene Selecoes1Scene;
+	private static Scene SelecoesInserirScene;
+	private static Scene SelecoesEditarScene;
+	private static Scene SelecoesExcluirScene;
+	private static Scene SelecoesListarScene;
+	
+	private static Scene Jogador1Scene;
+	private static Scene JogadorInserirScene;
+	private static Scene JogadorEditarScene;
+	private static Scene JogadorExcluirScene;
+	private static Scene JogadorListarScene;
+	
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("app.fxml"));
-			Scene scene = new Scene(root, 400, 400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
+			stage = primaryStage;
+			Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
+			MainScene = new Scene(fxmlMainW);
+			
+			Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
+			Selecoes1Scene = new Scene(fxmlSelecoes1);
+			
+			
+			
+			primaryStage.setScene(MainScene);
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void trocarTelas(String tela) {
+		switch(tela) {
+		case "SelecoesPage1":
+			stage.setScene(Selecoes1Scene);
+			break;
+		case "JogadorPage1":
+			stage.setScene(Jogador1Scene);
+			break;
+		}
+	}
 
 	public static void main(String[] args) {
-		// launch(args);
+		launch(args);
 
 		// PARA A LEITURA DAS VARIÁVEIS
 		Scanner read = new Scanner(System.in);

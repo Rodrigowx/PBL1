@@ -43,7 +43,7 @@ public class SelecoesPage1 {
 
     @FXML
     void btnInserirSelAction(ActionEvent event) {
-
+    	Main.trocarTelas("Selecoes_InserirPage");
     }
 
     @FXML
@@ -54,7 +54,6 @@ public class SelecoesPage1 {
     @FXML
     void btnReturnAction(ActionEvent event) {
     	Main.trocarTelas("MainWindow");
-
     }
 
     @FXML

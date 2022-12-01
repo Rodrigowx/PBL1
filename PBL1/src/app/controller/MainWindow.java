@@ -36,7 +36,7 @@ public class MainWindow {
 
     @FXML
     void goArbitrosPage1(ActionEvent event) {
-
+    	Main.trocarTelas("ArbitroPage1");
     }
 
     @FXML
@@ -46,19 +46,17 @@ public class MainWindow {
 
     @FXML
     void goJogadoresPage1(ActionEvent event) {
-    	Main.trocarTelas("JogadorPage1");
-    	
+    	Main.trocarTelas("JogadorPage1"); 	
     }
 
     @FXML
     void goSelecoesPage1(ActionEvent event) { 
     	Main.trocarTelas("SelecoesPage1");
-
     }
 
     @FXML
     void goTecnicosPage1(ActionEvent event) {
-
+    	Main.trocarTelas("TecnicoPage1");
     }
 
     @FXML

@@ -2,6 +2,8 @@ package app.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,52 +17,52 @@ public class JogadorPage1 {
     private URL location;
 
     @FXML
-    private Button btnEditarSel;
+    private Button btnEditarJog;
 
     @FXML
-    private Button btnExcluirSel;
+    private Button btnExcluirJog;
 
     @FXML
-    private Button btnInserirSel;
+    private Button btnInserirJog;
 
     @FXML
-    private Button btnListarSel;
+    private Button btnListarJog;
 
     @FXML
-    private Button btnReturn;
+    private Button btnReturnJog;
 
     @FXML
-    void btnEditarSelAction(ActionEvent event) {
+    void btnEditarJogAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnExcluirSelAction(ActionEvent event) {
+    void btnExcluirJogAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnInserirSelAction(ActionEvent event) {
+    void btnInserirJogAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnListarSelAction(ActionEvent event) {
+    void btnListarJogAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnReturnAction(ActionEvent event) {
-
+    void btnReturnJogAction(ActionEvent event) {
+    	Main.trocarTelas("MainWindow");
     }
 
     @FXML
     void initialize() {
-        assert btnEditarSel != null : "fx:id=\"btnEditarSel\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
-        assert btnExcluirSel != null : "fx:id=\"btnExcluirSel\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
-        assert btnInserirSel != null : "fx:id=\"btnInserirSel\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
-        assert btnListarSel != null : "fx:id=\"btnListarSel\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
-        assert btnReturn != null : "fx:id=\"btnReturn\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
+        assert btnEditarJog != null : "fx:id=\"btnEditarJog\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
+        assert btnExcluirJog != null : "fx:id=\"btnExcluirJog\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
+        assert btnInserirJog != null : "fx:id=\"btnInserirJog\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
+        assert btnListarJog != null : "fx:id=\"btnListarJog\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
+        assert btnReturnJog != null : "fx:id=\"btnReturnJog\" was not injected: check your FXML file 'JogadorPage1.fxml'.";
 
     }
 

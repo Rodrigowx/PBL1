@@ -32,7 +32,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="288.0" layoutY="144.0" prefHeight="362.0" prefWidth="278.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="288.0" layoutY="141.0" prefHeight="362.0" prefWidth="278.0" spacing="15.0">
          <children>
             <Button fx:id="btnSelecoes" mnemonicParsing="false" onAction="#goSelecoesPage1" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Seleções">
                <font>

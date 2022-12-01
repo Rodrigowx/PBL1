@@ -37,14 +37,12 @@ public class Main extends Application {
 	
 	private static Scene Selecoes1Scene;
 	private static Scene SelecoesInserirScene;
-	private static Scene SelecoesEditarScene;
-	private static Scene SelecoesExcluirScene;
+	private static Scene SelecoesEditarExcluirScene;
 	private static Scene SelecoesListarScene;
 	
 	private static Scene Jogador1Scene;
 	private static Scene JogadorInserirScene;
-	private static Scene JogadorEditarScene;
-	private static Scene JogadorExcluirScene;
+	private static Scene JogadorEditarExcluirScene;
 	private static Scene JogadorListarScene;
 	
 	private static Scene Tecnico1Scene;
@@ -70,9 +68,27 @@ public class Main extends Application {
 			
 			Parent fxmlArbitro1 = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage1.fxml"));
 			Arbitro1Scene = new Scene(fxmlArbitro1);
+			
 			//----------------------------------------------------------------------------------------------
 			Parent fxmlInserirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_InserirPage.fxml"));
 			SelecoesInserirScene = new Scene(fxmlInserirSel);
+			
+			Parent fxmlEditarExcluirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_EditarExcluirPage.fxml"));
+			SelecoesEditarExcluirScene = new Scene(fxmlEditarExcluirSel);
+			
+			Parent fxmlListarSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_ListarPage.fxml"));
+			SelecoesListarScene = new Scene(fxmlListarSel);
+			
+			//-----------------------------------------------------------------------------------------------
+			
+			Parent fxmlInserirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_InserirPage.fxml"));
+			JogadorInserirScene = new Scene(fxmlInserirJog);
+			
+			Parent fxmlEditarExcluirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_EditarExcluirPage.fxml"));
+			JogadorEditarExcluirScene = new Scene(fxmlEditarExcluirJog);
+			
+			Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
+			JogadorListarScene = new Scene(fxmlListarJog);
 			
 			primaryStage.setScene(MainScene);
 			primaryStage.show();
@@ -87,15 +103,33 @@ public class Main extends Application {
 		case "MainWindow":
 			stage.setScene(MainScene);
 			break;
+			
 		case "SelecoesPage1":
 			stage.setScene(Selecoes1Scene);
 			break;
 		case "Selecoes_InserirPage":
 			stage.setScene(SelecoesInserirScene);
 			break;
+		case "Selecoes_EditarExcluirPage":
+			stage.setScene(SelecoesEditarExcluirScene);
+			break;
+		case "Selecoes_ListarPage":
+			stage.setScene(SelecoesListarScene);
+			break;
+			
 		case "JogadorPage1":
 			stage.setScene(Jogador1Scene);
 			break;
+		case "Jogador_InserirPage":
+			stage.setScene(JogadorInserirScene);
+			break;
+		case "Jogador_EditarExcluirPage":
+			stage.setScene(JogadorEditarExcluirScene);
+			break;
+		case "Jogador_ListarPage":
+			stage.setScene(JogadorListarScene);
+			break;
+			
 		case "TecnicoPage1":
 			stage.setScene(Tecnico1Scene);
 			break;
@@ -420,7 +454,7 @@ public class Main extends Application {
 					if (verificar) {
 						System.out.println("\n -> Digite o novo nome da Selecao: ");
 						String novoNomeS = read.nextLine();
-						SelecaoDAO.editar(novoNomeSelecao, novoNomeS);
+						SelecaoDAO.editar(novoNomeSelecao, novoNomeS, "A");
 
 					} else {
 						System.err.println("Selecao nao cadastrada!");
@@ -547,9 +581,9 @@ public class Main extends Application {
 					System.out.println("Informe o nome da Selecao: ");
 					String NomeSelecao = read.nextLine();
 
-					boolean verificar = SelecaoDAO.checarNome(NomeSelecao);
+					boolean verificar = SelecaoDAOImpl.checarNome(NomeSelecao);
 					if (verificar) {
-						Selecao obj = SelecaoDAO.excluir(NomeSelecao);
+						Selecao obj = SelecaoDAO.excluir(NomeSelecao);					
 						if (obj == null) {
 							System.err.println("Falha ao excluir!");
 						} else {

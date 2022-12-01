@@ -15,7 +15,7 @@ public class FaseGrupos {
 	 * 
 	 * @return Map dos Grupos
 	 */
-	public Map<String, List<Selecao>> getMapGrupos() {
+	public static Map<String, List<Selecao>> getMapGrupos() {
 		return mapGrupos;
 	}
 

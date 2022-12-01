@@ -19,8 +19,8 @@ import javafx.scene.paint.Color;
 
 public class Selecoes_InserirPage {
 	
-	private SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
-	private FaseGrupos GruposCRUD = new FaseGrupos();
+	protected static SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
+	protected static FaseGrupos GruposCRUD = new FaseGrupos();
 
     @FXML
     private Button btnAddSel;
@@ -56,7 +56,7 @@ public class Selecoes_InserirPage {
     		} else if (GruposCRUD.verificaGrupos(grupoSel)) {
 				labelMessage.setText("Esse Grupo já está completo!");
 				return;
-			} else if (SelecaoDAO.checarNome(nomeSelecao)) {
+			} else if (SelecaoDAOImpl.checarNome(nomeSelecao)) {
 				labelMessage.setText("Essa Selecao já está cadastrada!");
 				return;
 			}
@@ -65,7 +65,7 @@ public class Selecoes_InserirPage {
     		
     		System.out.println(novaSelecao.getGrupo());
     		SelecaoDAO.inserir(novaSelecao);
-    		GruposCRUD.atualizaGrupos(grupoSel, novaSelecao); 		
+    		GruposCRUD.atualizaGrupos(grupoSel, novaSelecao); 
 
 		} catch (Exception e) {
 			this.labelMessage.setText("Não foi possível cadastrar a Seleção!");

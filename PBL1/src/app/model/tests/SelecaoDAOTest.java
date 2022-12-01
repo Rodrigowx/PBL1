@@ -143,9 +143,9 @@ class SelecaoDAOTest {
 		
 		String novoNome = "Inglaterra";
 		
-		assertFalse(selecaoDAOImpl.editar("Teodoro Matos", novoNome));
+		assertFalse(selecaoDAOImpl.editar("Teodoro Matos", novoNome, "A"));
 		
-		selecaoDAOImpl.getLista2().remove("England");
+		SelecaoDAOImpl.getLista2().remove("England");
 		zerandoListasEstaticas(selecaoDAOImpl);
 	}
 
@@ -161,10 +161,10 @@ class SelecaoDAOTest {
 		
 		String novoNome = "Inglaterra";
 		
-		assertTrue(selecaoDAOImpl.editar(nomeSelecao, novoNome));
-		assertTrue(selecaoDAOImpl.checarNome(novoNome));
+		assertTrue(selecaoDAOImpl.editar(nomeSelecao, novoNome, "B"));
+		assertTrue(SelecaoDAOImpl.checarNome(novoNome));
 		
-		selecaoDAOImpl.getLista2().remove("England");
+		SelecaoDAOImpl.getLista2().remove("England");
 		zerandoListasEstaticas(selecaoDAOImpl);	
 	}
 
@@ -184,8 +184,8 @@ class SelecaoDAOTest {
 		selecaoDAOImpl.inserir(selecao);
 		
 		assertEquals(selecao, selecaoDAOImpl.excluir(nomeSelecao));
-		assertFalse(selecaoDAOImpl.getLista1().contains(selecao));
-		assertFalse(selecaoDAOImpl.getLista2().contains(nomeSelecao));
+		assertFalse(SelecaoDAOImpl.getLista1().contains(selecao));
+		assertFalse(SelecaoDAOImpl.getLista2().contains(nomeSelecao));
 		zerandoListasEstaticas(selecaoDAOImpl);
 	}
 

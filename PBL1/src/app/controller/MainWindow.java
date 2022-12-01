@@ -4,11 +4,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.Main;
+import app.DadosArquivo.DadosPréCadastro;
+import app.model.FaseGrupos;
+import app.model.JogadorDAOImpl;
+import app.model.SelecaoDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class MainWindow {
+	
+	private static SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
+	private static FaseGrupos GruposCRUD = new FaseGrupos();
+	private static JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
 
     @FXML
     private ResourceBundle resources;
@@ -61,7 +69,8 @@ public class MainWindow {
 
     @FXML
     void preSetAction(ActionEvent event) {
-
+    	//COLOCAR BARRA CARREGANDO OS DADOS E MENSAGEM NO FINAL
+    	DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
     }
 
     @FXML

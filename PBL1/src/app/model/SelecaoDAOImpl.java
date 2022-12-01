@@ -13,7 +13,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	private static List<String> nomesSelecao = new ArrayList<String>();
 
 	// ------------------------------------------------------------------------
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 		if (nomesSelecao.isEmpty()) {
 			return false;
 		} else {
@@ -97,7 +97,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @return Lista Selecao.
 	 */
 
-	public ArrayList<Selecao> getLista1() {
+	public static ArrayList<Selecao> getLista1() {
 		return listaSelecoes;
 	}
 
@@ -106,7 +106,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * 
 	 * @return Lista de nomes da Selecao.
 	 */
-	public List<String> getLista2() {
+	public static List<String> getLista2() {
 		return nomesSelecao;
 	}
 
@@ -139,21 +139,25 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 */
 
 	@Override
-	public boolean editar(String nomeSelecao, String novoNome) {
-
-		for (int i = 0; i < listaSelecoes.size(); i++) {
-
-			if (listaSelecoes.get(i).getNome().equals(nomeSelecao)) {
-
-				listaSelecoes.get(i).setNome(novoNome);// mudando o nome no objeto
-
+	public boolean editar(String nomeSelecao, String novoNome, String novoGrupo) {
+		
+		for(Selecao selecao : listaSelecoes) {
+			if(selecao.getNome().equals(nomeSelecao)) {
+				selecao.setNome(novoNome);// mudando o nome no objeto
+				
 				// tirando o nome antigo da segunda lista e adicionando o novo
 				int index = nomesSelecao.indexOf(nomeSelecao);
 				nomesSelecao.remove(index);
 				nomesSelecao.add(novoNome);
-
-				System.out.println("Editado com sucesso!");
-				return true;
+				
+				if(selecao.getGrupo().equals(novoGrupo)) {
+					return true;
+				} else{
+					FaseGrupos.getMapGrupos().get(selecao.getGrupo()).remove(selecao);
+					FaseGrupos.getMapGrupos().get(novoGrupo).add(selecao);
+					selecao.setGrupo(novoGrupo);
+					return true;
+				}
 			}
 		}
 		return false;
@@ -178,7 +182,8 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			if (atual.getNome().equals(nomeSelecao) == true) {
 				Selecao a = atual;
 				listaSelecoes.remove(atual);
-				System.out.println("Excluido com sucesso!");
+				FaseGrupos.getMapGrupos().get(a.getGrupo()).remove(a);//removendo do map de grupos
+				
 				return a;
 			}
 

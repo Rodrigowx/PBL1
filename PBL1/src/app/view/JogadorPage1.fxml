@@ -9,10 +9,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.JogadorPage1">
    <children>
-      <VBox alignment="CENTER" layoutX="278.0" layoutY="146.0" prefHeight="362.0" prefWidth="278.0" spacing="15.0">
+      <VBox alignment="CENTER" layoutX="288.0" layoutY="145.0" prefHeight="362.0" prefWidth="278.0" spacing="15.0">
          <children>
             <Button fx:id="btnInserirJog" mnemonicParsing="false" onAction="#btnInserirJogAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Inserir Jogador">
                <font>
@@ -29,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnEditarJog" mnemonicParsing="false" onAction="#btnEditarJogAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Editar Jogador">
+            <Button fx:id="btnEditExcJog" mnemonicParsing="false" onAction="#btnEditExcJogAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Editar ou Excluir Jogador">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -43,21 +42,6 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
-            <Button fx:id="btnExcluirJog" mnemonicParsing="false" onAction="#btnExcluirJogAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Excluir Jogador">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" offsetX="2.0" offsetY="2.0">
-                     <color>
-                        <Color red="0.5568627715110779" green="0.5568627715110779" blue="0.5568627715110779" />
-                     </color>
-                  </DropShadow>
-               </effect>
             </Button>
             <Button fx:id="btnListarJog" mnemonicParsing="false" onAction="#btnListarJogAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Listar Jogadores">
                <font>

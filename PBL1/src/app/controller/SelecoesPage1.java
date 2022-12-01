@@ -17,10 +17,7 @@ public class SelecoesPage1 {
     private URL location;
 
     @FXML
-    private Button btnEditarSel;
-
-    @FXML
-    private Button btnExcluirSel;
+    private Button btnEditExcSel;
 
     @FXML
     private Button btnInserirSel;
@@ -32,12 +29,8 @@ public class SelecoesPage1 {
     private Button btnReturn;
 
     @FXML
-    void btnEditarSelAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnExcluirSelAction(ActionEvent event) {
+    void btnEditExcSelAction(ActionEvent event) {	
+    	Main.trocarTelas("Selecoes_EditarExcluirPage");
 
     }
 
@@ -48,7 +41,7 @@ public class SelecoesPage1 {
 
     @FXML
     void btnListarSelAction(ActionEvent event) {
-
+    	Main.trocarTelas("Selecoes_ListarPage");
     }
 
     @FXML
@@ -58,8 +51,7 @@ public class SelecoesPage1 {
 
     @FXML
     void initialize() {
-        assert btnEditarSel != null : "fx:id=\"btnEditarSel\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";
-        assert btnExcluirSel != null : "fx:id=\"btnExcluirSel\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";
+        assert btnEditExcSel != null : "fx:id=\"btnEditarSel\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";
         assert btnInserirSel != null : "fx:id=\"btnInserirSel\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";
         assert btnListarSel != null : "fx:id=\"btnListarSel\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";
         assert btnReturn != null : "fx:id=\"btnReturn\" was not injected: check your FXML file 'SelecoesPage1.fxml'.";

@@ -59,35 +59,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnListarSel" mnemonicParsing="false" onAction="#btnListarSelAction" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Listar Seleções">
+            <Button fx:id="btnListarSel" mnemonicParsing="false" onAction="#btnListarSelAction" prefHeight="45.0" prefWidth="230.0" text="Listar Seleções">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" offsetX="2.0" offsetY="2.0">
-                     <color>
-                        <Color red="0.5568627715110779" green="0.5568627715110779" blue="0.5568627715110779" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
-            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnAction" prefHeight="46.0" prefWidth="138.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50;" text="Voltar">
+            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnAction" prefHeight="46.0" prefWidth="138.0" text="Voltar">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
-               <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" offsetX="2.0" offsetY="2.0">
-                     <color>
-                        <Color red="0.5568627715110779" green="0.5568627715110779" blue="0.5568627715110779" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
          </children>
       </VBox>

@@ -47,6 +47,8 @@ public class Main extends Application {
 	private static Scene JogadorExcluirScene;
 	private static Scene JogadorListarScene;
 	
+	private static Scene Tecnico1Scene;
+	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -58,7 +60,11 @@ public class Main extends Application {
 			Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
 			Selecoes1Scene = new Scene(fxmlSelecoes1);
 			
+			Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
+			Jogador1Scene = new Scene(fxmlJogador1);
 			
+			//Parent fxmlTecnico1 = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage1.fxml"));
+			//Tecnico1Scene = new Scene(fxmlTecnico1);
 			
 			primaryStage.setScene(MainScene);
 			primaryStage.show();
@@ -70,13 +76,19 @@ public class Main extends Application {
 	
 	public static void trocarTelas(String tela) {
 		switch(tela) {
+		case "MainWindow":
+			stage.setScene(MainScene);
+			break;
 		case "SelecoesPage1":
 			stage.setScene(Selecoes1Scene);
 			break;
 		case "JogadorPage1":
 			stage.setScene(Jogador1Scene);
 			break;
-		}
+		case "TecnicoPage1":
+			stage.setScene(Tecnico1Scene);
+			break;
+		}			
 	}
 
 	public static void main(String[] args) {

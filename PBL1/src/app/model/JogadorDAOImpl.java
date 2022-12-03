@@ -25,7 +25,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 	 * @param nome
 	 * @return vericação de execução.
 	 */
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 
 		if (nomesJogadores.isEmpty()) {
 			return false;
@@ -41,7 +41,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Função para verificar se o ID informado pelo usuário está na Map de Joadpres
+	 * Função para verificar se o ID informado pelo usuário está na Map de Jogadores
 	 * 
 	 * @param ID do jogador
 	 * @return resultado da verificação
@@ -68,7 +68,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 	 * @return Map dos jogadores
 	 */
 
-	public Map<String, Jogador> getMap() {
+	public static Map<String, Jogador> getMap() {
 		return mapJogadores;
 	}
 
@@ -79,7 +79,7 @@ public class JogadorDAOImpl implements JogadorDAO {
 	 * @return lista do nome dos jogadores
 	 */
 
-	public List<String> getLista() {
+	public static List<String> getLista() {
 		return nomesJogadores;
 	}
 	// ------------------------------------------------------------------------
@@ -106,86 +106,36 @@ public class JogadorDAOImpl implements JogadorDAO {
 	 */
 
 	@Override
-	public boolean editar(String idJogador, int opcaoMenu) {
+	public boolean editar(String idJogador, String novoNome, String novaPosicao, Selecao novaSelecao) {
 
 		if (mapJogadores.containsKey(idJogador)) {
-
-			// Condicional para a opção que o usuário colocou no menu na main
-
-			if (opcaoMenu == 1) { // EDITA NOME
-
-				System.out.println("Informe o novo nome: ");
-				String novoNome = scan.nextLine();
-
-				// tirando o nome antigo da segunda lista de jogadores
+			
+			if (!(novoNome.isBlank())) { //EDITANDO O NOME
+				//tirando o nome antigo da segunda lista de jogadores
 				int index = nomesJogadores.indexOf(mapJogadores.get(idJogador).getNome());
 				nomesJogadores.remove(index);
 
 				mapJogadores.get(idJogador).setNome(novoNome);// mudando o nome do objeto
 				nomesJogadores.add(novoNome); // adicionando o novo nome na segunda lista
-
-				System.out.println("Nome editado com sucesso!");
-
-			} else if (opcaoMenu == 2) { // EDITA POSIÇÃO
-
-				System.out.println("\n -> Escolha qual a posicao do Jogador: ");
-				System.out.println("1 - Goleiro \n2 - Zagueiro \n3 - Meia \n4 - Atacante");
-
-				Integer novaPosic = Funcoes.leituraInt();
-				String posicao = null;
-				while (posicao == null) {
-					switch (novaPosic) {
-					case 1:
-						posicao = "Goleiro";
-						break;
-					case 2:
-						posicao = "Zagueiro";
-						break;
-					case 3:
-						posicao = "Meia";
-						break;
-					case 4:
-						posicao = "Atacante";
-						break;
-					default:
-						System.out.println("Escolha uma posicao valida!");
-
-						novaPosic = Funcoes.leituraInt();
-					}
-				}
-				mapJogadores.get(idJogador).setPosicao(posicao);
-				System.out.println("Posicao alterada com sucesso!");
-
-			} /*
-			comentei aqui pois não precisamos mais dessa edição.
-			else if (opcaoMenu == 3) { // EDITA CARTÕES AMARELO
-
-				System.out.println("Informe a nova quantidade de cartoes amarelos: ");
-				// Integer novoCartA = scan.nextInt();
-				Integer novoCartA = Funcoes.leituraInt();
-				mapJogadores.get(idJogador).setCartAmarelo(novoCartA);
-				System.out.println("Cartao alterado com sucesso!");
-
-			} else if (opcaoMenu == 4) { // EDITA CARTÕES VERMELHO
-
-				System.out.println("Informe a nova quantidade de cartoes vermelhos: ");
-				// Integer novoCartV = scan.nextInt();
-				Integer novoCartV = Funcoes.leituraInt();
-				mapJogadores.get(idJogador).setCartVermelho(novoCartV);
-				System.out.println("Cartao alterado com sucesso!");
-
-			} else if (opcaoMenu == 5) { // EDITA QUANTIDADE DE GOLS
-
-				System.out.println("Informe a nova quantidade de gols: ");
-				// Integer novoGols = scan.nextInt();
-				Integer novoGols = Funcoes.leituraInt();
-				mapJogadores.get(idJogador).setGols(novoGols);
-				System.out.println("Gols alterado com sucesso!");
-
-			}*/
+				
+			} else if (novaPosicao != null) { //EDITANDO A POSIÇÃO
+				mapJogadores.get(idJogador).setPosicao(novaPosicao);
+				
+			} else if (novaSelecao != null) { //EDITANDO A SELEÇÃO
+				
+				Jogador jogador = mapJogadores.get(idJogador);			
+				Selecao antigaSelecao = jogador.getSelecao();
+				
+				//colocando o jogador na nova seleção
+				jogador.setSelecao(novaSelecao);
+				novaSelecao.setJogadores(jogador);
+				
+				//tirando o jogador da antiga seleção
+				antigaSelecao.getJogadores().remove(jogador);				
+			}
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -199,7 +149,6 @@ public class JogadorDAOImpl implements JogadorDAO {
 	public Jogador excluir(String idJogador) {
 
 		Jogador obj = mapJogadores.remove(idJogador);
-		System.out.println("Excluido com sucesso!");
 
 		for (String atual : nomesJogadores) {
 			if (atual.equals(obj.getNome()) == true) {

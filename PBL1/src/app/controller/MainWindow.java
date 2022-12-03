@@ -71,6 +71,8 @@ public class MainWindow {
     void preSetAction(ActionEvent event) {
     	//COLOCAR BARRA CARREGANDO OS DADOS E MENSAGEM NO FINAL
     	DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
+    	this.btnPreSet.setDisable(true); //o botão é desabilitado pois não pode ser acionado duas vezes o cadastro automático
+    	
     }
 
     @FXML

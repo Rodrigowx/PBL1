@@ -74,7 +74,8 @@ public class Selecoes_EditarExcluirPage extends Selecoes_InserirPage {
     	try {
     		labelMessage.setTextFill(Color.RED);
     		
-    		String escolhaSelecao = this.choiceSelecoes.getValue();    		
+    		String escolhaSelecao = this.choiceSelecoes.getValue();      		
+    		Selecao selecaoObj = SelecaoDAOImpl.verificaSelecao(escolhaSelecao);//pega o objeto da seleção escolhida
     		
     		String novoNome = novoNomeSel.getText();
     		String novoGrupo = choiceGrupoSel.getValue();
@@ -83,7 +84,7 @@ public class Selecoes_EditarExcluirPage extends Selecoes_InserirPage {
     		if (escolhaSelecao == null || novoNome.isBlank() || novoGrupo == null) {
         		labelMessage.setText("Espaços em branco!");
         		return;
-    		} else if (GruposCRUD.verificaGrupos(novoGrupo)) {
+    		} else if (GruposCRUD.verificaGrupos(novoGrupo) && !(selecaoObj.getGrupo().equals(novoGrupo))) {
 				labelMessage.setText("Esse Grupo já está completo!");
 				return;
 			} else if (SelecaoDAOImpl.checarNome(novoNome)) {
@@ -91,7 +92,7 @@ public class Selecoes_EditarExcluirPage extends Selecoes_InserirPage {
 				return;
 			}
     		
-    		Selecoes_InserirPage.SelecaoDAO.editar(escolhaSelecao, novoNome, novoGrupo);//excluindo a seleção
+    		Selecoes_InserirPage.SelecaoDAO.editar(escolhaSelecao, novoNome, novoGrupo);//editando a seleção
 
 		} catch (Exception e) {
 			this.labelMessage.setText("Não foi possível editar a Seleção!");

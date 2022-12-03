@@ -49,6 +49,8 @@ public class Main extends Application {
 	
 	private static Scene Arbitro1Scene;
 	
+	//declarar como atributo aqui os DAOs (VER ISSO DE DAO MELHOR DEPOIS!!!)
+	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -192,72 +194,7 @@ public class Main extends Application {
 				switch (insert) {
 				// INSERIR SELECAO
 				case 1:// ---------------------------------------------------------------------------------
-					System.out.println("\n -> Digite o nome da nova Selecao: ");
-					String nomeS = read.nextLine().trim();
 
-					// VERIFICAÇÃO SE O ESSA SELEÇAO JÁ FOI INSERIDA ANTES
-					while (SelecaoDAO.checarNome(nomeS)) {// ***caso dê erro
-						System.err.println("\nSelecao ja cadastrada! Digite o nome da nova Selecao: ");
-						nomeS = read.nextLine().trim();
-						;
-					}
-
-					// CRIANDO O OBJETO SELEÇÃO
-					List<Jogador> listaJogadores = new ArrayList<>(); // lista de jogadores para o atributo de Seleção
-
-					// perguntando ao usuário a qual Grupo a Seleção pertence
-					System.out.println("\n -> Escolha qual desses Grupos a Selecao pertence: ");
-					System.out.println(
-							"1 - Grupo A \n2 - Grupo B \n3 - Grupo C \n4 - Grupo D \n5 - Grupo E \n6 - Grupo F \n7 - Grupo G \n8 - Grupo H");
-
-					Integer escolhaGrup = Funcoes.leituraInt();
-					String grupo = null;
-
-					while (grupo == null) {
-						switch (escolhaGrup) {
-						case 1:
-							grupo = "A";
-							break;
-						case 2:
-							grupo = "B";
-							break;
-						case 3:
-							grupo = "C";
-							break;
-						case 4:
-							grupo = "D";
-							break;
-						case 5:
-							grupo = "E";
-							break;
-						case 6:
-							grupo = "F";
-							break;
-						case 7:
-							grupo = "G";
-							break;
-						case 8:
-							grupo = "H";
-							break;
-						default:
-							System.err.println("Escolha um Grupo valido!");
-							escolhaGrup = Funcoes.leituraInt();
-						}
-					}
-
-					// chama a função que verifica se esse grupo já está cheio, ou seja, com 4
-					// Seleções
-					if (GruposCRUD.verificaGrupos(grupo)) {
-						System.err.println("Esse Grupo ja esta completo! Nao foi possivel cadastrar a Selecao.");
-						break;
-					}
-
-					Selecao novaSelecao = new Selecao(nomeS, listaJogadores, grupo); // cria o novo objeto
-
-					// ADICIONANDO A SELECAO NOVA NA LISTA DE SEU DAO E NO MAP DOS GRUPOS
-					SelecaoDAO.inserir(novaSelecao);
-					GruposCRUD.atualizaGrupos(grupo, novaSelecao);
-					System.out.println("Inserido com sucesso!");
 					break;
 
 				// INSERIR JOGADOR
@@ -440,81 +377,10 @@ public class Main extends Application {
 
 				// EDITAR SELECAO
 				case 1:
-					if (SelecaoDAO.getLista1().isEmpty()) {
-						System.err.println("Nao existe selecoes cadastradas no sistema!");
-						break;
-					}
-					System.out.println("\n -> Digite o nome da Selecao que deseja editar: ");
-					String novoNomeSelecao = read.nextLine();
-
-					// CHAMAR A FUNÇÃO DO DAOIMPL DE SELECAO E VERIFICAR SE HÁ ESSE NOME NA LISTA,
-					// DEPOIS CHAMAR A FUNÇÃO EDITAR DO DAO
-					boolean verificar = SelecaoDAO.checarNome(novoNomeSelecao);
-
-					if (verificar) {
-						System.out.println("\n -> Digite o novo nome da Selecao: ");
-						String novoNomeS = read.nextLine();
-						SelecaoDAO.editar(novoNomeSelecao, novoNomeS, "A");
-
-					} else {
-						System.err.println("Selecao nao cadastrada!");
-					}
 					break;
 
 				// EDITAR JOGADOR
 				case 2:
-
-					if (JogadorDAO.getMap().isEmpty()) {
-						System.out.println(
-								"\n-- Voce nao pode editar um jogador agora, pois ainda nao ha Jogadores cadastrados! --");
-						break;
-					}
-
-					System.out.println("*-ID DISPONIVEL EM LISTAR JOGADORES-*\nInforme o ID do jogador: ");
-					String idPesquisa = read.nextLine();
-
-					if (JogadorDAO.getMap().containsKey(idPesquisa)) {
-						String nomeAtualJogador = JogadorDAO.getMap().get(idPesquisa).getNome();
-
-						boolean loopCase = true;
-
-						while (loopCase) {
-
-							System.out.println("\nINFORME O DADO QUE DESEJA EDITAR DE " + nomeAtualJogador);
-							System.out.println("1 - NOME\n2 - POSICAO\n");
-							Integer dado = Funcoes.leituraInt();
-
-							switch (dado) {
-
-							case 1:
-
-								if (JogadorDAO.editar(idPesquisa, dado)) {
-									loopCase = false;
-									continue;
-
-								} else {
-									System.err.println("Falha na edicao!");
-								}
-								break;
-
-							case 2:
-
-								if (JogadorDAO.editar(idPesquisa, dado)) {
-									loopCase = false;
-									continue;
-
-								} else {
-									System.err.println("Falha na edicao!");
-								}
-								break;
-							default:
-								System.err.println("\nOpcao Invalida!");
-							}
-						}
-					} else {
-						System.out.println("ID nao encontrado");
-						break;
-					}
 					break;
 
 				// EDITAR ARBITRO

@@ -32,7 +32,7 @@ public class Jogador {
 	// MÉTODOS
 
 	public String toString() {
-		return codJog;
+		return nome;
 	}
 
 	public String getCodJog() {

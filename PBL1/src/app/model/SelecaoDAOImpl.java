@@ -54,7 +54,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @return objeto da Seleção
 	 */
 
-	public Selecao verificaSelecao(String nomeSelecao) {
+	public static Selecao verificaSelecao(String nomeSelecao) {
 
 		if (nomesSelecao.contains(nomeSelecao)) {
 
@@ -76,10 +76,10 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		/**
 		 * Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores
 		 * cadastrados, pois as partidas só podem ser iniciadas com pelo menos essa
-		 * quantidade em cada time (min 7 e max 11)
+		 * quantidade em cada time (min 11 e max 26)
 		 */
 
-		int totalJog = 7;
+		int totalJog = 11;
 		for (Selecao selecao : listaSelecoes) {
 			if (selecao.getJogadores().size() >= totalJog) {
 				continue;

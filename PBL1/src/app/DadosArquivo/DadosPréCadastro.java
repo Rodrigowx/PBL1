@@ -9,12 +9,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import app.model.Arbitro;
+import app.model.ArbitroDAOImpl;
 import app.model.FaseGrupos;
 import app.model.Jogador;
 import app.model.JogadorDAOImpl;
 import app.model.PartidaJogador;
 import app.model.Selecao;
 import app.model.SelecaoDAOImpl;
+import app.model.Tecnico;
+import app.model.TecnicoDAOImpl;
 
 public class DadosPréCadastro {
 	
@@ -106,8 +110,60 @@ public class DadosPréCadastro {
 	 * @param JogadorDAO
 	 * @param GruposCRUD
 	 */
-	public static void LeituraTecnicoArbitro(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
+	public static void LeituraTecnicoArbitro(SelecaoDAOImpl SelecaoDAO, TecnicoDAOImpl TecnicoDAO, ArbitroDAOImpl ArbitroDAO, FaseGrupos GruposCRUD) {
+		//LENDO TÉCNICOS
+		try {
+			String arquivoPath = new File("src/app/DadosArquivo/dadosTecnicos.txt").getAbsolutePath();
+
+			FileInputStream arquivoTec = new FileInputStream(arquivoPath);
+			InputStreamReader input = new InputStreamReader(arquivoTec);
+			BufferedReader buffer = new BufferedReader(input);
+			
+			String linha = buffer.readLine();	
+			
+			while (linha != null) {
+				
+				//separando nome da seleção e do técnico
+				String[] selTecnico = linha.split(";");
+				
+				Selecao selecao = SelecaoDAOImpl.verificaSelecao(selTecnico[0]);
+				
+				Tecnico novoTecnico = new Tecnico(selTecnico[1]);
+				selecao.setTecnico(novoTecnico);
+				novoTecnico.setSelecao(selecao);
+
+				// ADICIONAR O TECNICO NA LISTA DO DAO
+				TecnicoDAO.inserir(novoTecnico);
 		
+				linha = buffer.readLine();	
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao ler arquivo. Erro: " + e.getMessage());
+		}
+		
+		//LENDO ÁRBITROS
+		try {
+			String arquivoPath = new File("src/app/DadosArquivo/dadosArbitros.txt").getAbsolutePath();
+
+			FileInputStream arquivoArb = new FileInputStream(arquivoPath);
+			InputStreamReader input = new InputStreamReader(arquivoArb);
+			BufferedReader buffer = new BufferedReader(input);
+			
+			String linha = buffer.readLine();	
+			
+			while (linha != null) {
+				
+				// CRIANDO O ÁRBITRO E ADICIONANDO NA LISTA DO DAO
+				Arbitro novoArbitro = new Arbitro(linha);
+				ArbitroDAO.inserir(novoArbitro);
+		
+				linha = buffer.readLine();	
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao ler arquivo. Erro: " + e.getMessage());
+		}
 	}
 	
 }

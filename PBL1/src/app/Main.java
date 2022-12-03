@@ -46,6 +46,9 @@ public class Main extends Application {
 	private static Scene JogadorListarScene;
 	
 	private static Scene Tecnico1Scene;
+	private static Scene TecnicoInserirScene;
+	private static Scene TecnicoEditarExcluirScene;
+	private static Scene TecnicoListarScene;
 	
 	private static Scene Arbitro1Scene;
 	
@@ -92,6 +95,17 @@ public class Main extends Application {
 			Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
 			JogadorListarScene = new Scene(fxmlListarJog);
 			
+			//-----------------------------------------------------------------------------------------------
+			Parent fxmlInserirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_InserirPage.fxml"));
+			TecnicoInserirScene = new Scene(fxmlInserirTec);
+			
+			Parent fxmlEditarExcluirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_EditarExcluirPage.fxml"));
+			TecnicoEditarExcluirScene = new Scene(fxmlEditarExcluirTec);
+			
+			Parent fxmlListarTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_ListarPage.fxml"));
+			TecnicoListarScene = new Scene(fxmlListarTec);
+			
+			
 			primaryStage.setScene(MainScene);
 			primaryStage.show();
 			
@@ -135,6 +149,16 @@ public class Main extends Application {
 		case "TecnicoPage1":
 			stage.setScene(Tecnico1Scene);
 			break;
+		case "Tecnicos_InserirPage":
+			stage.setScene(TecnicoInserirScene);
+			break;
+		case "Tecnicos_EditarExcluirPage":
+			stage.setScene(TecnicoEditarExcluirScene);
+			break;
+		case "Tecnicos_ListarPage":
+			stage.setScene(TecnicoListarScene);
+			break;
+			
 		case "ArbitroPage1":
 			stage.setScene(Arbitro1Scene);
 			break;
@@ -161,6 +185,7 @@ public class Main extends Application {
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
 		
 		DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
+		DadosPréCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 

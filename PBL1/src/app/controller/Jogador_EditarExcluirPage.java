@@ -87,7 +87,7 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 		}
 		
 		labelMessage.setTextFill(Color.GREEN);
-    	labelMessage.setText("Jogador Excluido com sucesso!");
+    	labelMessage.setText("Jogador Excluído com sucesso!");
     	this.exibirJogadores(null);
 	}
 
@@ -109,22 +109,19 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 				this.labelMessage.setText("Selecione um Jogador na tabela!");
 				return;
 			}
-    		System.out.println("Oi");
+
     		//verificações
     		if (novoNomeJog.isBlank() && (novaPosicaoJog == null) && (novaSelecaoJog == null)) {
-    			System.out.println("q aq");
         		labelMessage.setText("Espaços em branco!");
         		return;
     		} else if (JogadorDAOImpl.checarNome(novoNomeJog)) {
-    			System.out.println("ou aq");
 				labelMessage.setText("Esse Jogador já está cadastrado!");
 				return;
 			} else if (novaSelecaoJog != null && novaSelecaoJog.getJogadores().size() == 26) {
-				System.out.println("ou aq");
 				labelMessage.setText("Essa Selecao ja alcancou seu limite de jogadores! (MÁXIMO DE 26 POR SELEÇÃO)");
 				return;
 			}
-    		System.out.println("Ola");
+
     		JogadorDAO.editar(selectedJog.getCodJog(), novoNomeJog, novaPosicaoJog, novaSelecaoJog);
     		
     		labelMessage.setTextFill(Color.GREEN);
@@ -156,7 +153,7 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 		obsSelecoes = FXCollections.observableArrayList(nomesSelecoes);
 		choiceSelJog.setItems(obsSelecoes);
 
-		// Avisando ao usuário que não é possível cadastrar o jogador pois não há
+		// Avisando ao usuário que não é possível cadastrar um jogador pois não há
 		// seleções cadastradas
 		if (nomesSelecoes.isEmpty()) {
 			labelMessage.setText("Não será possível editar um jogador, pois ainda não há Seleções cadastradas!");
@@ -184,7 +181,6 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 		carregarPosicoes(); //carregando posições na choice box
 
 		// Adicionando as colunas na tabela
-
 		TableColumn nomeCol = new TableColumn("Nome");
 		TableColumn posicaoCol = new TableColumn("Posição");
 		TableColumn selecaoCol = new TableColumn("Seleção");

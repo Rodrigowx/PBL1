@@ -14,7 +14,7 @@ package app;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import app.DadosArquivo.DadosPréCadastro;
+import app.DadosArquivo.DadosPreCadastro;
 import app.model.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -184,8 +184,8 @@ public class Main extends Application {
 		FaseGrupos GruposCRUD = new FaseGrupos();
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
 		
-		DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
-		DadosPréCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
+		DadosPreCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
+		DadosPreCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -302,7 +302,7 @@ public class Main extends Application {
 					String nomeAr = read.nextLine();
 
 					while (true) {
-						if (TecnicoDAO.checarNome(nomeAr)) {// verifica se já possui um Árbitro com esse nome
+						if (ArbitroDAO.checarNome(nomeAr)) {// verifica se já possui um Árbitro com esse nome
 							System.err.println("\nArbitro ja cadastrado! Digite o nome novamente: ");
 							nomeAr = read.nextLine();
 						} else {
@@ -435,14 +435,6 @@ public class Main extends Application {
 								"\n-- Voce nao pode editar um Tecnico agora, pois ainda nao ha Tecnicos cadastrados! --");
 						break;
 					}
-					System.out.println("Informe o nome do Tecnico que deseja editar: ");
-					String antigoTecnico = read.nextLine();
-					System.out.println("Agora informe o NOVO nome do Tecnico: ");
-					String novoTecnico = read.nextLine();
-					if (TecnicoDAO.editar(antigoTecnico, novoTecnico))
-						break;
-					else
-						System.err.println("Falha na edicao!");
 
 					break;
 

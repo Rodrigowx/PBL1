@@ -66,13 +66,14 @@ public class Selecoes_InserirPage {
     		System.out.println(novaSelecao.getGrupo());
     		SelecaoDAO.inserir(novaSelecao);
     		GruposCRUD.atualizaGrupos(grupoSel, novaSelecao); 
+    		
+    		labelMessage.setTextFill(Color.GREEN);
+        	labelMessage.setText("Seleção Inserida com Sucesso!");
 
 		} catch (Exception e) {
 			this.labelMessage.setText("Não foi possível cadastrar a Seleção!");
-		}
-   	
-    	labelMessage.setTextFill(Color.GREEN);
-    	labelMessage.setText("Seleção Inserida com Sucesso!");
+		}  	
+    	
     	this.nomeSel.clear();
 		this.choiceGrupoSel.setValue(null);
     }

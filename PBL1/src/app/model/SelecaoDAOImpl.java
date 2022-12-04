@@ -33,7 +33,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @param nomeSelecao
 	 * @return seleção
 	 */
-	public Selecao verificaTecnico(String nomeSelecao) {
+	public static Selecao verificaTecnico(String nomeSelecao) {
 
 		for (Selecao atual : listaSelecoes) {
 			if (atual.getNome().equals(nomeSelecao)) {

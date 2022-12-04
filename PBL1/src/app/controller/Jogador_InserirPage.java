@@ -69,7 +69,7 @@ public class Jogador_InserirPage {
 				labelMessage.setText("Esse Jogador já está cadastrado!");
 				return;
 			} else if (selecaoJog.getJogadores().size() == 26) {
-				labelMessage.setText("Essa Selecao ja alcancou seu limite de jogadores! (MÁXIMO DE 26 POR SELEÇÃO)");
+				labelMessage.setText("Essa Selecao já alcancou seu limite de jogadores! (MÁXIMO DE 26 POR SELEÇÃO)");
 				return;
 			}
     		
@@ -107,7 +107,7 @@ public class Jogador_InserirPage {
     	obsSelecoes = FXCollections.observableArrayList(nomesSelecoes);
     	choiceSelJog.setItems(obsSelecoes);
     	
-    	//Avisando ao usuário que não é possível cadastrar o jogador pois não há seleções cadastradas
+    	//Avisando ao usuário que não é possível cadastrar um jogador pois não há seleções cadastradas
     	if (nomesSelecoes.isEmpty()) {
     		labelMessage.setText("Não será possível cadastrar um jogador, pois ainda não há Seleções cadastradas!");
     	}

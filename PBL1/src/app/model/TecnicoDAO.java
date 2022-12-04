@@ -8,7 +8,7 @@ public interface TecnicoDAO {
 
 	public boolean inserir(Tecnico tecnico);
 
-	public boolean editar(String nomeTecnico, String novoNome);
+	public boolean editar(String nomeTecnico, String novoNome, Selecao novaSelecao);
 
 	public Tecnico excluir(String nomeTecnico);
 

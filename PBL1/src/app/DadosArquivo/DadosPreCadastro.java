@@ -20,7 +20,7 @@ import app.model.SelecaoDAOImpl;
 import app.model.Tecnico;
 import app.model.TecnicoDAOImpl;
 
-public class DadosPréCadastro {
+public class DadosPreCadastro {
 	
 	private static SimpleDateFormat sdf = new SimpleDateFormat("MyyyyHHmmssSSS");
 

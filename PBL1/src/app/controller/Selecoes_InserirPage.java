@@ -11,6 +11,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -79,9 +81,11 @@ public class Selecoes_InserirPage {
     }
 
     @FXML
-    void btnReturnAction(ActionEvent event) {
+    void btnReturnAction(ActionEvent event) throws Exception {
     	labelMessage.setText("");//Limpando o label de erro do cadastro da seleção
-    	Main.trocarTelas("SelecoesPage1");
+    	Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
+    	Main.trocarTelas1(fxmlSelecoes1);
+    	//Main.trocarTelas("SelecoesPage1");
     }
     
     @FXML

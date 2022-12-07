@@ -71,7 +71,7 @@ public class FaseGrupos {
 	 * @return map de todas as partidas geradas
 	 */
 
-	public Map<String, List<Partida>> gerarPartidas() {
+	public static Map<String, List<Partida>> gerarPartidas() {
 
 		Map<String, List<Partida>> mapPartidasGeradas = new HashMap<String, List<Partida>>(); // cria um Map para
 																								// armazenar as partidas

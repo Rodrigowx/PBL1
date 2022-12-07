@@ -14,6 +14,21 @@ public class PartidaGerenciar {
 	public static Map<String, Partida> getMapPartidas() {
 		return mapPartidas;
 	}
+	/**
+	 * Função para verificar se uma partida já foi cadastrada pelo usuário
+	 * @param time1
+	 * @param time2
+	 * @return
+	 */
+	public static boolean verificaPartida(Selecao time1, Selecao time2) {
+		
+		for(Partida partida : mapPartidas.values()) {
+			if (partida.getTime1().equals(time1.getNome()) && partida.getTime2().equals(time2.getNome())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Inserir partida na lista

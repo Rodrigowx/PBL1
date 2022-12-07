@@ -95,27 +95,6 @@ public class Funcoes {
 	}
 
 	/**
-	 * Essa função serve para verificar os dados de entrada tipo String para as
-	 * Datas
-	 * 
-	 * @param data
-	 * @return boolean
-	 */
-	public static boolean verificaDatas(String data) {
-		String dateFormat = "dd/MM/uuuu";
-
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(dateFormat)
-				.withResolverStyle(ResolverStyle.STRICT);
-
-		try {
-			LocalDate.parse(data, dateTimeFormatter);
-			return false;
-		} catch (DateTimeParseException e) {
-			return true;
-		}
-	}
-
-	/**
 	 * Essa função serve para verificar os dados de entrada tipo String para
 	 * horários
 	 * 

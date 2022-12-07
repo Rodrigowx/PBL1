@@ -45,12 +45,16 @@ public class Main extends Application {
 	private static Scene JogadorEditarExcluirScene;
 	private static Scene JogadorListarScene;
 	
-	private static Scene Tecnico1Scene;
-	private static Scene TecnicoInserirScene;
-	private static Scene TecnicoEditarExcluirScene;
-	private static Scene TecnicoListarScene;
+	private static Scene TecnicoScene;
+	//private static Scene TecnicoInserirScene;
+	//private static Scene TecnicoEditarExcluirScene;
+	//private static Scene TecnicoListarScene;
 	
-	private static Scene Arbitro1Scene;
+	private static Scene ArbitroScene;
+	
+	private static Scene FaseGruposScene;
+	
+	private static Scene PartidaScene;
 	
 	//declarar como atributo aqui os DAOs (VER ISSO DE DAO MELHOR DEPOIS!!!)
 	
@@ -62,17 +66,19 @@ public class Main extends Application {
 			Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
 			MainScene = new Scene(fxmlMainW);
 			
+			/**
+			 * 
 			Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
 			Selecoes1Scene = new Scene(fxmlSelecoes1);
 			
 			Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
 			Jogador1Scene = new Scene(fxmlJogador1);
 			
-			Parent fxmlTecnico1 = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage1.fxml"));
-			Tecnico1Scene = new Scene(fxmlTecnico1);
+			Parent fxmlTecnico = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage.fxml"));
+			TecnicoScene = new Scene(fxmlTecnico);
 			
-			Parent fxmlArbitro1 = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage1.fxml"));
-			Arbitro1Scene = new Scene(fxmlArbitro1);
+			Parent fxmlArbitro = FXMLLoader.load(getClass().getResource("/app/view/ArbitroPage.fxml"));
+			ArbitroScene = new Scene(fxmlArbitro);
 			
 			//----------------------------------------------------------------------------------------------
 			Parent fxmlInserirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_InserirPage.fxml"));
@@ -82,7 +88,8 @@ public class Main extends Application {
 			SelecoesEditarExcluirScene = new Scene(fxmlEditarExcluirSel);
 			
 			Parent fxmlListarSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_ListarPage.fxml"));
-			SelecoesListarScene = new Scene(fxmlListarSel);
+			SelecoesListarScene = new Scene(fxmlListarSel);<?xml version="1.0" encoding="UTF-8"?>
+
 			
 			//-----------------------------------------------------------------------------------------------
 			
@@ -96,15 +103,22 @@ public class Main extends Application {
 			JogadorListarScene = new Scene(fxmlListarJog);
 			
 			//-----------------------------------------------------------------------------------------------
-			Parent fxmlInserirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_InserirPage.fxml"));
-			TecnicoInserirScene = new Scene(fxmlInserirTec);
+			//Parent fxmlInserirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_InserirPage.fxml"));
+			//TecnicoInserirScene = new Scene(fxmlInserirTec);
 			
-			Parent fxmlEditarExcluirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_EditarExcluirPage.fxml"));
-			TecnicoEditarExcluirScene = new Scene(fxmlEditarExcluirTec);
+			//Parent fxmlEditarExcluirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_EditarExcluirPage.fxml"));
+			//TecnicoEditarExcluirScene = new Scene(fxmlEditarExcluirTec);
 			
-			Parent fxmlListarTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_ListarPage.fxml"));
-			TecnicoListarScene = new Scene(fxmlListarTec);
+			//Parent fxmlListarTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_ListarPage.fxml"));
+			//TecnicoListarScene = new Scene(fxmlListarTec);
 			
+			
+			Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
+			FaseGruposScene = new Scene(fxmlFaseGrupos);
+			
+			Parent fxmlPartidas = FXMLLoader.load(getClass().getResource("/app/view/PartidasPage.fxml"));
+			PartidaScene = new Scene(fxmlPartidas);
+			**/
 			
 			primaryStage.setScene(MainScene);
 			primaryStage.show();
@@ -112,6 +126,11 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void trocarTelas1(Parent parent) {
+		Scene scene = new Scene(parent);
+		stage.setScene(scene);
 	}
 	
 	public static void trocarTelas(String tela) {
@@ -147,20 +166,19 @@ public class Main extends Application {
 			break;
 			
 		case "TecnicoPage1":
-			stage.setScene(Tecnico1Scene);
-			break;
-		case "Tecnicos_InserirPage":
-			stage.setScene(TecnicoInserirScene);
-			break;
-		case "Tecnicos_EditarExcluirPage":
-			stage.setScene(TecnicoEditarExcluirScene);
-			break;
-		case "Tecnicos_ListarPage":
-			stage.setScene(TecnicoListarScene);
+			stage.setScene(TecnicoScene);
 			break;
 			
 		case "ArbitroPage1":
-			stage.setScene(Arbitro1Scene);
+			stage.setScene(ArbitroScene);
+			break;
+		
+		case "FaseGruposPage":
+			stage.setScene(FaseGruposScene);
+			break;
+			
+		case "PartidasPage":
+			stage.setScene(PartidaScene);
 			break;
 		}			
 	}

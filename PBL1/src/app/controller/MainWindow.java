@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,6 +13,8 @@ import app.model.SelecaoDAOImpl;
 import app.model.TecnicoDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
@@ -53,33 +56,41 @@ public class MainWindow {
     private Button btnTecnicos;
 
     @FXML
-    void goArbitrosPage1(ActionEvent event) {
-    	Main.trocarTelas("ArbitroPage1");
+    void goArbitrosPage1(ActionEvent event) throws Exception {
+    	Parent fxmlArbitro = FXMLLoader.load(getClass().getResource("/app/view/ArbitroPage.fxml"));
+    	Main.trocarTelas1(fxmlArbitro);
     }
 
     @FXML
-    void goFaseGruposPage1(ActionEvent event) {
-
+    void goFaseGruposPage1(ActionEvent event) throws Exception {
+    	Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
+    	Main.trocarTelas1(fxmlFaseGrupos);
+    	//Main.trocarTelas("FaseGruposPage");
     }
 
     @FXML
-    void goJogadoresPage1(ActionEvent event) {
-    	Main.trocarTelas("JogadorPage1"); 	
+    void goJogadoresPage1(ActionEvent event) throws Exception {
+    	Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
+    	Main.trocarTelas1(fxmlJogador1);
+    	//Main.trocarTelas("JogadorPage1"); 	
     }
 
     @FXML
-    void goSelecoesPage1(ActionEvent event) { 
-    	Main.trocarTelas("SelecoesPage1");
+    void goSelecoesPage1(ActionEvent event) throws Exception { 
+    	Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
+    	Main.trocarTelas1(fxmlSelecoes1);
+    	//Main.trocarTelas("SelecoesPage1");
     }
 
     @FXML
-    void goTecnicosPage1(ActionEvent event) {
-    	Main.trocarTelas("TecnicoPage1");
+    void goTecnicosPage1(ActionEvent event) throws Exception {
+    	Parent fxmlTecnico = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage.fxml"));
+    	Main.trocarTelas1(fxmlTecnico);
+    	//Main.trocarTelas("TecnicoPage1");
     }
 
     @FXML
     void preSetAction(ActionEvent event) {
-    	//COLOCAR BARRA CARREGANDO OS DADOS E MENSAGEM NO FINAL
     	DadosPreCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
     	DadosPreCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
     	this.btnPreSet.setDisable(true); //o botão é desabilitado pois não pode ser acionado duas vezes o cadastro automático

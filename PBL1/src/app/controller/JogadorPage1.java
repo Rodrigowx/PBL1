@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class JogadorPage1 {
@@ -29,23 +31,31 @@ public class JogadorPage1 {
     private Button btnReturnJog;
 
     @FXML
-    void btnEditExcJogAction(ActionEvent event) {
-    	Main.trocarTelas("Jogador_EditarExcluirPage");
+    void btnEditExcJogAction(ActionEvent event) throws Exception {
+    	Parent fxmlEditarExcluirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_EditarExcluirPage.fxml"));
+    	Main.trocarTelas1(fxmlEditarExcluirJog);
+    	//Main.trocarTelas("Jogador_EditarExcluirPage");
     }
 
     @FXML
-    void btnInserirJogAction(ActionEvent event) {
-    	Main.trocarTelas("Jogador_InserirPage");
+    void btnInserirJogAction(ActionEvent event) throws Exception {
+    	Parent fxmlInserirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_InserirPage.fxml"));
+    	Main.trocarTelas1(fxmlInserirJog);
+    	//Main.trocarTelas("Jogador_InserirPage");
     }
 
     @FXML
-    void btnListarJogAction(ActionEvent event) {
-    	Main.trocarTelas("Jogador_ListarPage");
+    void btnListarJogAction(ActionEvent event) throws Exception {
+    	Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
+    	Main.trocarTelas1(fxmlListarJog);
+    	//Main.trocarTelas("Jogador_ListarPage");
     }
 
     @FXML
-    void btnReturnJogAction(ActionEvent event) {
-    	Main.trocarTelas("MainWindow");
+    void btnReturnJogAction(ActionEvent event) throws Exception {
+    	Parent fxmlArb = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
+    	Main.trocarTelas1(fxmlArb);
+    	//Main.trocarTelas("MainWindow");
     }
 
     @FXML

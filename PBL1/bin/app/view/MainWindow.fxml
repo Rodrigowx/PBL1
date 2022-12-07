@@ -6,8 +6,6 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -15,11 +13,6 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.MainWindow">
    <children>
-      <ImageView fitHeight="626.0" fitWidth="919.0" layoutX="-17.0" layoutY="-28.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Downloads/pngwing.com%20-%202022-12-03T211117.075.png" />
-         </image>
-      </ImageView>
       <Label contentDisplay="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="40.0" prefWidth="800.0" style="-fx-border-radius: 50;" text="syscopa 3.0" textFill="#5b5b5b">
          <font>
             <Font name="Arial Bold" size="28.0" />
@@ -83,7 +76,7 @@
       </VBox>
       <Separator layoutX="219.0" layoutY="34.0" prefHeight="4.0" prefWidth="614.0" />
       <Separator layoutX="27.0" layoutY="530.0" prefHeight="4.0" prefWidth="418.0" />
-      <Label alignment="CENTER_RIGHT" layoutX="383.0" layoutY="521.0" prefHeight="18.0" prefWidth="449.0" text="SISTEMA PARA CONTROLE E ACOMPANHAMENTO DA COPA DO MUNDO" textFill="WHITE">
+      <Label alignment="CENTER_RIGHT" layoutX="383.0" layoutY="521.0" prefHeight="18.0" prefWidth="449.0" text="SISTEMA PARA CONTROLE E ACOMPANHAMENTO DA COPA DO MUNDO" textFill="#bfbfbf">
          <font>
             <Font name="Dubai Regular" size="12.0" />
          </font>

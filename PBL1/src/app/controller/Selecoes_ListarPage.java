@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,8 +26,10 @@ public class Selecoes_ListarPage {
 	private ObservableList<Selecao> dadosSelecoes;
 
 	@FXML
-	void btnReturnAction(ActionEvent event) {
-		Main.trocarTelas("SelecoesPage1");
+	void btnReturnAction(ActionEvent event) throws Exception {
+		Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
+    	Main.trocarTelas1(fxmlSelecoes1);
+		//Main.trocarTelas("SelecoesPage1");
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -8,36 +8,29 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PartidasPage">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PartidasPage">
    <children>
-      <Label contentDisplay="CENTER" layoutX="27.0" layoutY="14.0" prefHeight="40.0" prefWidth="800.0" style="-fx-border-radius: 50;" text="syscopa 3.0" textFill="#5b5b5b">
-         <font>
-            <Font name="Arial Bold" size="28.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-      </Label>
-      <Label layoutX="52.0" layoutY="81.0" text="SELECIONE DE QUAL GRUPO É A PARTIDA:">
+      <VBox alignment="CENTER" layoutX="436.0" layoutY="143.0" prefHeight="258.0" prefWidth="384.0" style="-fx-border-color: #000000; -fx-border-radius: 40;">
+         <children>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="530.0" layoutY="391.0" stroke="WHITE" strokeType="INSIDE" width="187.0" />
+      <Label layoutX="63.0" layoutY="71.0" text="SELECIONE DE QUAL GRUPO É A PARTIDA:">
          <font>
             <Font name="Dubai Regular" size="18.0" />
          </font>
       </Label>
-      <Separator layoutX="219.0" layoutY="34.0" prefHeight="4.0" prefWidth="614.0" />
-      <TableView fx:id="tabelaPartidas" layoutX="446.0" layoutY="59.0" prefHeight="457.0" prefWidth="387.0">
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <ChoiceBox fx:id="choiceGrupoPart" layoutX="165.0" layoutY="120.0" prefHeight="31.0" prefWidth="107.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-background-color: ffffff; -fx-border-radius: 50;" />
-      <VBox alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="189.0" prefHeight="206.0" prefWidth="79.0" spacing="33.0">
+      <Separator layoutX="179.0" layoutY="36.0" prefHeight="3.0" prefWidth="655.0" />
+      <ChoiceBox fx:id="choiceGrupoPart" layoutX="174.0" layoutY="105.0" prefHeight="31.0" prefWidth="107.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-background-color: ffffff; -fx-border-radius: 50;" />
+      <VBox alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="171.0" prefHeight="206.0" prefWidth="79.0" spacing="33.0">
          <children>
             <Label text="Partida:">
                <font>
@@ -64,11 +57,11 @@
             <Insets left="5.0" />
          </opaqueInsets>
       </VBox>
-      <VBox alignment="BOTTOM_LEFT" layoutX="126.0" layoutY="189.0" prefHeight="200.0" prefWidth="278.0" spacing="30.0">
+      <VBox alignment="BOTTOM_LEFT" layoutX="121.0" layoutY="172.0" onMouseMoved="#atualizarLabels" prefHeight="206.0" prefWidth="258.0" spacing="30.0">
          <children>
             <ComboBox fx:id="choicePartida" onMouseClicked="#exibirPartidasDoGrupo" prefHeight="27.0" prefWidth="285.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
-            <DatePicker fx:id="datePickerPart" />
-            <TextField fx:id="horaPartida" prefHeight="31.0" prefWidth="104.0" promptText="hh:mm" style="-fx-border-radius: 50; -fx-background-radius: 50;" VBox.vgrow="ALWAYS">
+            <DatePicker fx:id="datePickerPart" editable="false" />
+            <TextField fx:id="horaPartida" prefHeight="31.0" prefWidth="182.0" promptText="hh:mm" style="-fx-border-radius: 50; -fx-background-radius: 50;" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="15.0" />
                </font>
@@ -80,77 +73,69 @@
             </TextField>
          </children>
       </VBox>
-      <Label alignment="CENTER" layoutX="192.0" layoutY="425.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;" textFill="#0b247e">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="192.0" layoutY="483.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="27.0" layoutY="456.0" text="Gols:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="290.0" layoutY="460.0" prefHeight="20.0" prefWidth="15.0" text="X">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="golsTime1" layoutX="126.0" layoutY="424.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="golsTime2" layoutX="126.0" layoutY="482.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Label fx:id="labelMessage" layoutX="25.0" layoutY="160.0" prefHeight="18.0" prefWidth="404.0" textFill="RED">
+      <Label fx:id="labelMessage" layoutX="31.0" layoutY="144.0" prefHeight="18.0" prefWidth="398.0" textFill="RED">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnEditPart" layoutX="650.0" layoutY="543.0" mnemonicParsing="false" onAction="#btnEditPartAction" prefHeight="46.0" prefWidth="152.0" style="-fx-background-radius: 50;" text="Editar Partida">
+      <Label fx:id="labelTime1" alignment="CENTER" layoutX="580.0" layoutY="163.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font size="15.0" />
          </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="27.0" layoutY="585.0" text="Cartões:">
+      </Label>
+      <Label fx:id="labelTime2" alignment="CENTER" layoutX="580.0" layoutY="221.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="459.0" layoutY="193.0" text="Gols:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="32.0" layoutX="131.0" layoutY="583.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff321" height="32.0" layoutX="303.0" layoutY="583.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-      <TextField fx:id="cartaoVTime1" layoutX="172.0" layoutY="559.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+      <TextField fx:id="golsTime1" layoutX="514.0" layoutY="162.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="cartaoVTime2" layoutX="172.0" layoutY="601.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+      <TextField fx:id="golsTime2" layoutX="514.0" layoutY="220.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="cartaoAmTime1" layoutX="336.0" layoutY="559.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+      <Label layoutX="459.0" layoutY="314.0" text="Cartões:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="32.0" layoutX="553.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff321" height="32.0" layoutX="698.0" layoutY="315.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
+      <TextField fx:id="cartaoVTime1" layoutX="594.0" layoutY="290.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="cartaoAmTime2" layoutX="336.0" layoutY="601.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+      <TextField fx:id="cartaoVTime2" layoutX="594.0" layoutY="332.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="btnAddPart" layoutX="479.0" layoutY="543.0" mnemonicParsing="false" onAction="#btnAddPartAction" prefHeight="46.0" prefWidth="152.0" style="-fx-background-radius: 50;" text="Inserir Partida">
+      <TextField fx:id="cartaoAmTime1" layoutX="731.0" layoutY="291.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="cartaoAmTime2" layoutX="731.0" layoutY="333.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label alignment="CENTER" layoutX="678.0" layoutY="198.0" prefHeight="20.0" prefWidth="15.0" text="X">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnPopUp" layoutX="535.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnPopUpAction" prefHeight="32.0" prefWidth="178.0" style="-fx-background-radius: 50;" text="Selecionar Jogadores">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -158,13 +143,41 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnDelPart" layoutX="564.0" layoutY="602.0" mnemonicParsing="false" onAction="#btnDelPartAction" prefHeight="46.0" prefWidth="152.0" style="-fx-background-color: E58787; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: #919191;" text="Excluir Partida">
+      <Label contentDisplay="CENTER" layoutX="17.0" layoutY="15.0" prefHeight="40.0" prefWidth="640.0" style="-fx-border-radius: 50;" text="syscopa 3.0" textFill="#5b5b5b">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="Arial Bold" size="28.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
-      </Button>
+      </Label>
+      <HBox alignment="CENTER" layoutX="188.0" layoutY="452.0" prefHeight="62.0" prefWidth="496.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#btnReturnAction" prefHeight="46.0" prefWidth="107.0" style="-fx-background-radius: 50;" text="Voltar">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnAddPart" mnemonicParsing="false" onAction="#btnAddPartAction" prefHeight="46.0" prefWidth="152.0" style="-fx-background-radius: 50;" text="Inserir Partida">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnListDelJog" mnemonicParsing="false" onAction="#btnListDelJogAction" prefHeight="46.0" prefWidth="200.0" style="-fx-background-color: E58787; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: #919191;" text="Listar/ Excluir Partidas">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

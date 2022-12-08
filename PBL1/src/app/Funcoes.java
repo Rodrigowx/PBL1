@@ -25,26 +25,23 @@ public class Funcoes {
 	 * try-catch trata esse erro
 	 */
 
-	public static Integer leituraInt() {
-
-		String dadoLeitura;
+	public static Integer verificaInteiro(String dadoLeitura) {
 		Integer dadoLeituraInt = null;
 		boolean finish = true;
 
 		while (finish) {
 			try {
-				dadoLeitura = read.nextLine();
 				dadoLeituraInt = Integer.parseInt(dadoLeitura);
 
 				// Caso não dê erro, agora verifica se a entrada é um numero positivo
 				if (dadoLeituraInt < 0) {
-					System.err.println("Apenas numeros positivos!");
+					return null;
 				} else {
 					finish = false;
 				}
 
 			} catch (NumberFormatException erro) {
-				System.err.println("Digite apenas numeros!");
+				return null;
 			}
 		}
 		return dadoLeituraInt;
@@ -78,10 +75,10 @@ public class Funcoes {
 
 	public static boolean verificaçãoFase1(FaseGrupos grupos, SelecaoDAOImpl selecoes) {
 		int totalSelecao = 32;
-		if (grupos.getMapGrupos().isEmpty()) {
+		if (FaseGrupos.getMapGrupos().isEmpty()) {
 			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois nao ha Selecoes cadastradas!");
 			return true;
-		} else if (selecoes.getLista1().size() < totalSelecao) {
+		} else if (SelecaoDAOImpl.getLista1().size() < totalSelecao) {
 			System.out.println(
 					"\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
 			return true;
@@ -137,7 +134,7 @@ public class Funcoes {
 	 * @param SelecaoDAO
 	 */
 	public static void inserirPartidaJog(Partida partidaAtual, SelecaoDAOImpl SelecaoDAO) {
-		for (Selecao atual : SelecaoDAO.getLista1()) {
+		for (Selecao atual : SelecaoDAOImpl.getLista1()) {
 			if (partidaAtual.getTime1().equals(atual.getNome())) {
 				for (Jogador jogAtual : atual.getJogadores()) {
 					PartidaJogador jogPartida = new PartidaJogador(partidaAtual.getCodPart(), jogAtual.getCodJog());
@@ -145,7 +142,7 @@ public class Funcoes {
 				}
 			}
 		}
-		for (Selecao atual : SelecaoDAO.getLista1()) {
+		for (Selecao atual : SelecaoDAOImpl.getLista1()) {
 			if (partidaAtual.getTime2().equals(atual.getNome())) {
 				for (Jogador jogAtual : atual.getJogadores()) {
 					PartidaJogador jogPartida = new PartidaJogador(partidaAtual.getCodPart(), jogAtual.getCodJog());
@@ -186,49 +183,14 @@ public class Funcoes {
 	 * @param SelecaoDAO
 	 * @param time
 	 */
-	public static void cadastrarGolsPartida(int golsTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
-			String time) {
-		Jogador jogadorIdOK;
-		int golsContabilizados = 0;
-		int golGeral = 0;
-		while (true) {
-			if (golsContabilizados < golsTime) {
-				while (true) {
-
-					System.out.println("Informe o ID do jogador que marcou algum gol(restam "
-							+ (golsTime - golsContabilizados) + " gol(s) para cadastrar): \n");
-					String idAtual = read.nextLine();
-					jogadorIdOK = checarID(idAtual, time, SelecaoDAO);
-					if (jogadorIdOK.equals(null)) {
-						System.out.println("ID nao encontrado!\n");
-					} else {
-						break;
-					}
+	public static void cadastrarGolsPartida(Jogador jogador, int golsJog, Partida partida, Selecao time) {
+			for (PartidaJogador atualPart : jogador.getPartidaJogador()) {
+				if (atualPart.getCodPartida().equals(partida.getCodPart())) {
+					atualPart.inserirGols(golsJog);
+					Integer golGeral = jogador.getGols() + golsJog;
+					jogador.setGols(golGeral);
 				}
-
-				System.out.println("Quantos gols o jogador " + jogadorIdOK.getCodJog() + " fez:\n");
-				int totalGolsJog = leituraInt();
-				if (golsContabilizados > 0) {
-					while (totalGolsJog > (golsTime - golsContabilizados)) {
-						System.out.println("Quantidade maior que o(s) gol(s) informado(s)!");
-						System.out.println("Digite novamente!");
-						totalGolsJog = leituraInt();
-					}
-				}
-				for (PartidaJogador atualPart : jogadorIdOK.getPartidaJogador()) {
-					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
-						atualPart.inserirGols(totalGolsJog);
-						golGeral = jogadorIdOK.getGols() + totalGolsJog;
-						jogadorIdOK.setGols(golGeral);
-						golsContabilizados += totalGolsJog;
-
-					}
-				}
-			} else {
-				break;
 			}
-		}
-		System.out.println("Gols inseridos com sucesso");
 	}
 
 	/**

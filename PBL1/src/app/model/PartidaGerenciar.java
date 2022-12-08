@@ -2,6 +2,8 @@ package app.model;
 
 import java.util.*;
 
+import app.controller.FaseGruposPage;
+
 public class PartidaGerenciar {
 
 	private static Map<String, Partida> mapPartidas = new HashMap<String, Partida>();
@@ -14,21 +16,6 @@ public class PartidaGerenciar {
 	public static Map<String, Partida> getMapPartidas() {
 		return mapPartidas;
 	}
-	/**
-	 * Função para verificar se uma partida já foi cadastrada pelo usuário
-	 * @param time1
-	 * @param time2
-	 * @return
-	 */
-	public static boolean verificaPartida(Selecao time1, Selecao time2) {
-		
-		for(Partida partida : mapPartidas.values()) {
-			if (partida.getTime1().equals(time1.getNome()) && partida.getTime2().equals(time2.getNome())) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * Inserir partida na lista
@@ -39,6 +26,30 @@ public class PartidaGerenciar {
 	public static boolean inserir(Partida partida) {
 		mapPartidas.put(partida.getCodPart(), partida);// **
 		return false;
+	}
+	
+	public static void editar() {
+		
+	}
+	
+	public static void excluir(Partida partida) {
+		
+		//retirando os dados do objeto excluído
+		partida.setData(null);
+		partida.setGolsTime1(null);
+		partida.setGolsTime2(null);
+		partida.setHorario(null);
+		partida.setLocal(null);
+		
+		mapPartidas.remove(partida);
+		
+		//retornando a partida para a lista de partidas geradas para ser cadastrada novamente
+		FaseGruposPage.getPartidasGeradas().get(partida.getGrupo()).add(partida);
+		
+		//chamando a função que retira os dados da partida dos jogadores
+		
+		
+		return;
 	}
 
 	/**

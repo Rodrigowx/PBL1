@@ -121,6 +121,7 @@ public class Main extends Application {
 			**/
 			
 			primaryStage.setScene(MainScene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 			
 		} catch (Exception e) {
@@ -131,6 +132,7 @@ public class Main extends Application {
 	public static void trocarTelas1(Parent parent) {
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
+		stage.setResizable(false);
 	}
 	
 	public static void trocarTelas(String tela) {
@@ -799,10 +801,12 @@ public class Main extends Application {
 
 						// Chama a função que Verifica se a data informada pelo usuário possui um
 						// formato válido
+						
+						/**
 						while (Funcoes.verificaDatas(data)) {
 							System.out.println("Formato Invalido para data! Digite novamente: ");
 							data = read.nextLine();
-						}
+						}*/
 
 						partidaEscolhida.setData(data);
 

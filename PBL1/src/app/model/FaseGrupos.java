@@ -89,10 +89,6 @@ public class FaseGrupos {
 
 			for (Selecao atual1 : selecoes) {
 
-				// int index = ListaSelTemp.indexOf(atual1); //Identifica qual o index da
-				// seleção atual do for...
-				// ListaSelTemp.remove(index);// ...e remove ele da lista para não gerar
-				// partidas repetidas
 				ListaSelTemp.remove(atual1);
 
 				for (Selecao atual2 : ListaSelTemp) {
@@ -102,6 +98,7 @@ public class FaseGrupos {
 
 					Partida partidaNova = new Partida(time1, time2); // cria o objeto com os times/Seleções que irão
 																		// competir
+					partidaNova.setGrupo(grupo);
 					PartidasGrupo.add(partidaNova); // adiciona a Partida criada na lista de Partidas desse Grupo
 				}
 			}
@@ -110,16 +107,6 @@ public class FaseGrupos {
 															// percorrido no Map de TODAS as Partidas
 		});
 		return mapPartidasGeradas;
-	}
-	
-	
-	
-	public void classificacaoFaseGrupos() {
-		
-		ArrayList<Selecao> selecoesOitavas = new ArrayList<>();
-		
-		
-		
 	}
 
 }

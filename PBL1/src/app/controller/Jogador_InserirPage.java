@@ -102,7 +102,7 @@ public class Jogador_InserirPage {
     void btnReturnAction(ActionEvent event) throws Exception {
     	labelMessage.setText("");
     	Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
-    	Main.trocarTelas1(fxmlJogador1);
+    	Main.trocarTelas(fxmlJogador1);
     	//Main.trocarTelas("JogadorPage1");
     }
     

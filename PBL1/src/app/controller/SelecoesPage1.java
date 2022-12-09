@@ -33,7 +33,7 @@ public class SelecoesPage1 {
     @FXML
     void btnEditExcSelAction(ActionEvent event) throws Exception {	
     	Parent fxmlEditarExcluirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_EditarExcluirPage.fxml"));
-    	Main.trocarTelas1(fxmlEditarExcluirSel);
+    	Main.trocarTelas(fxmlEditarExcluirSel);
     	//Main.trocarTelas("Selecoes_EditarExcluirPage");
 
     }
@@ -41,21 +41,21 @@ public class SelecoesPage1 {
     @FXML
     void btnInserirSelAction(ActionEvent event) throws Exception {
     	Parent fxmlInserirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_InserirPage.fxml"));
-    	Main.trocarTelas1(fxmlInserirSel);
+    	Main.trocarTelas(fxmlInserirSel);
     	//Main.trocarTelas("Selecoes_InserirPage");
     }
 
     @FXML
     void btnListarSelAction(ActionEvent event) throws Exception {
     	Parent fxmlListarSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_ListarPage.fxml"));
-    	Main.trocarTelas1(fxmlListarSel);
+    	Main.trocarTelas(fxmlListarSel);
     	//Main.trocarTelas("Selecoes_ListarPage");
     }
 
     @FXML
     void btnReturnAction(ActionEvent event) throws Exception {
     	Parent fxmlArb = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
-    	Main.trocarTelas1(fxmlArb);
+    	Main.trocarTelas(fxmlArb);
     	//Main.trocarTelas("MainWindow");
     }
 

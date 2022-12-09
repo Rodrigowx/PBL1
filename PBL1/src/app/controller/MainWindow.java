@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import app.Funcoes;
 import app.Main;
 import app.DadosArquivo.DadosPreCadastro;
 import app.model.ArbitroDAOImpl;
@@ -58,35 +59,37 @@ public class MainWindow {
     @FXML
     void goArbitrosPage1(ActionEvent event) throws Exception {
     	Parent fxmlArbitro = FXMLLoader.load(getClass().getResource("/app/view/ArbitroPage.fxml"));
-    	Main.trocarTelas1(fxmlArbitro);
+    	Main.trocarTelas(fxmlArbitro);
     }
 
     @FXML
     void goFaseGruposPage1(ActionEvent event) throws Exception {
+    	//verificação se tudo já está cadastrado
+    	Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO);
+    	
     	Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
-    	Main.trocarTelas1(fxmlFaseGrupos);
+    	Main.trocarTelas(fxmlFaseGrupos);
     	//Main.trocarTelas("FaseGruposPage");
     }
 
     @FXML
     void goJogadoresPage1(ActionEvent event) throws Exception {
     	Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
-    	Main.trocarTelas1(fxmlJogador1);
+    	Main.trocarTelas(fxmlJogador1);
     	//Main.trocarTelas("JogadorPage1"); 	
     }
 
     @FXML
     void goSelecoesPage1(ActionEvent event) throws Exception { 
     	Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
-    	Main.trocarTelas1(fxmlSelecoes1);
+    	Main.trocarTelas(fxmlSelecoes1);
     	//Main.trocarTelas("SelecoesPage1");
     }
 
     @FXML
-    void goTecnicosPage1(ActionEvent event) throws Exception {
+    void goTecnicosPage(ActionEvent event) throws Exception {
     	Parent fxmlTecnico = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage.fxml"));
-    	Main.trocarTelas1(fxmlTecnico);
-    	//Main.trocarTelas("TecnicoPage1");
+    	Main.trocarTelas(fxmlTecnico);
     }
 
     @FXML

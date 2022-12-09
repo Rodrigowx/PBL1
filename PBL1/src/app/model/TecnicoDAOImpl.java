@@ -31,6 +31,15 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 			}
 		}
 	}
+	
+	public static boolean verificaTotal() {
+		int totalTecnicos = 32;
+		if (listaTecnicos.size() == totalTecnicos) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	// ------------------------------------------------------------------------
 

@@ -84,7 +84,7 @@ public class Selecoes_InserirPage {
     void btnReturnAction(ActionEvent event) throws Exception {
     	labelMessage.setText("");//Limpando o label de erro do cadastro da seleção
     	Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
-    	Main.trocarTelas1(fxmlSelecoes1);
+    	Main.trocarTelas(fxmlSelecoes1);
     	//Main.trocarTelas("SelecoesPage1");
     }
     

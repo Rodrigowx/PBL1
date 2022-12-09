@@ -33,28 +33,28 @@ public class JogadorPage1 {
     @FXML
     void btnEditExcJogAction(ActionEvent event) throws Exception {
     	Parent fxmlEditarExcluirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_EditarExcluirPage.fxml"));
-    	Main.trocarTelas1(fxmlEditarExcluirJog);
+    	Main.trocarTelas(fxmlEditarExcluirJog);
     	//Main.trocarTelas("Jogador_EditarExcluirPage");
     }
 
     @FXML
     void btnInserirJogAction(ActionEvent event) throws Exception {
     	Parent fxmlInserirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_InserirPage.fxml"));
-    	Main.trocarTelas1(fxmlInserirJog);
+    	Main.trocarTelas(fxmlInserirJog);
     	//Main.trocarTelas("Jogador_InserirPage");
     }
 
     @FXML
     void btnListarJogAction(ActionEvent event) throws Exception {
     	Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
-    	Main.trocarTelas1(fxmlListarJog);
+    	Main.trocarTelas(fxmlListarJog);
     	//Main.trocarTelas("Jogador_ListarPage");
     }
 
     @FXML
     void btnReturnJogAction(ActionEvent event) throws Exception {
     	Parent fxmlArb = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
-    	Main.trocarTelas1(fxmlArb);
+    	Main.trocarTelas(fxmlArb);
     	//Main.trocarTelas("MainWindow");
     }
 

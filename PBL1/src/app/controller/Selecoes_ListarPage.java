@@ -28,7 +28,7 @@ public class Selecoes_ListarPage {
 	@FXML
 	void btnReturnAction(ActionEvent event) throws Exception {
 		Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
-    	Main.trocarTelas1(fxmlSelecoes1);
+    	Main.trocarTelas(fxmlSelecoes1);
 		//Main.trocarTelas("SelecoesPage1");
 	}
 

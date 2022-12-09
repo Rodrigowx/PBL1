@@ -42,7 +42,7 @@ public class Jogador_ListarPage {
     @FXML
     void btnReturnAction(ActionEvent event) throws Exception {
     	Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
-    	Main.trocarTelas1(fxmlJogador1);
+    	Main.trocarTelas(fxmlJogador1);
     	//Main.trocarTelas("JogadorPage1");
     }
 
@@ -66,7 +66,7 @@ public class Jogador_ListarPage {
      		TableColumn posicaoCol = new TableColumn("Posição");
      		TableColumn cartACol = new TableColumn("Cartões Amarelos");
      		TableColumn cartVCol = new TableColumn("Cartões Vermelhos");
-     		TableColumn golsCol = new TableColumn("Quantidade de Gols");
+     		TableColumn golsCol = new TableColumn("Gols");
 
      		IDCol.setCellValueFactory(new PropertyValueFactory<Jogador, String>("codJog"));
      		nomeCol.setCellValueFactory(new PropertyValueFactory<Jogador, String>("nome"));

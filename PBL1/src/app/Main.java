@@ -30,35 +30,44 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {	
 	
+	//declarando os DAO's como atributo para melhor acesso de toda a aplicação
+	private ArbitroDAOImpl ArbitroDAO = new ArbitroDAOImpl();
+	private JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
+	private SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
+	private TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
+
+	private FaseGrupos GruposCRUD = new FaseGrupos();
+	private PartidaGerenciar PartGerenciar = new PartidaGerenciar();
+	
 	private static Stage stage;
 	
-	//COLOCANDO AS TELAS COMO ATRIBUTO DA MAIN
 	private static Scene MainScene;
-	
-	private static Scene Selecoes1Scene;
-	private static Scene SelecoesInserirScene;
-	private static Scene SelecoesEditarExcluirScene;
-	private static Scene SelecoesListarScene;
-	
-	private static Scene Jogador1Scene;
-	private static Scene JogadorInserirScene;
-	private static Scene JogadorEditarExcluirScene;
-	private static Scene JogadorListarScene;
-	
-	private static Scene TecnicoScene;
-	//private static Scene TecnicoInserirScene;
-	//private static Scene TecnicoEditarExcluirScene;
-	//private static Scene TecnicoListarScene;
-	
-	private static Scene ArbitroScene;
-	
-	private static Scene FaseGruposScene;
-	
-	private static Scene PartidaScene;
-	
-	//declarar como atributo aqui os DAOs (VER ISSO DE DAO MELHOR DEPOIS!!!)
-	
-	
+
+	public ArbitroDAOImpl getArbitroDAO() {
+		return ArbitroDAO;
+	}
+
+	public JogadorDAOImpl getJogadorDAO() {
+		return JogadorDAO;
+	}
+
+	public SelecaoDAOImpl getSelecaoDAO() {
+		return SelecaoDAO;
+	}
+
+	public TecnicoDAOImpl getTecnicoDAO() {
+		return TecnicoDAO;
+	}
+
+	public FaseGrupos getGruposCRUD() {
+		return GruposCRUD;
+	}
+
+	public PartidaGerenciar getPartGerenciar() {
+		return PartGerenciar;
+	}
+
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -103,8 +112,6 @@ public class Main extends Application {
 			JogadorListarScene = new Scene(fxmlListarJog);
 			
 			//-----------------------------------------------------------------------------------------------
-			//Parent fxmlInserirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_InserirPage.fxml"));
-			//TecnicoInserirScene = new Scene(fxmlInserirTec);
 			
 			//Parent fxmlEditarExcluirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_EditarExcluirPage.fxml"));
 			//TecnicoEditarExcluirScene = new Scene(fxmlEditarExcluirTec);
@@ -129,60 +136,10 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void trocarTelas1(Parent parent) {
+	public static void trocarTelas(Parent parent) {
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setResizable(false);
-	}
-	
-	public static void trocarTelas(String tela) {
-		switch(tela) {
-		case "MainWindow":
-			stage.setScene(MainScene);
-			break;
-			
-		case "SelecoesPage1":
-			stage.setScene(Selecoes1Scene);
-			break;
-		case "Selecoes_InserirPage":
-			stage.setScene(SelecoesInserirScene);
-			break;
-		case "Selecoes_EditarExcluirPage":
-			stage.setScene(SelecoesEditarExcluirScene);
-			break;
-		case "Selecoes_ListarPage":
-			stage.setScene(SelecoesListarScene);
-			break;
-			
-		case "JogadorPage1":
-			stage.setScene(Jogador1Scene);
-			break;
-		case "Jogador_InserirPage":
-			stage.setScene(JogadorInserirScene);
-			break;
-		case "Jogador_EditarExcluirPage":
-			stage.setScene(JogadorEditarExcluirScene);
-			break;
-		case "Jogador_ListarPage":
-			stage.setScene(JogadorListarScene);
-			break;
-			
-		case "TecnicoPage1":
-			stage.setScene(TecnicoScene);
-			break;
-			
-		case "ArbitroPage1":
-			stage.setScene(ArbitroScene);
-			break;
-		
-		case "FaseGruposPage":
-			stage.setScene(FaseGruposScene);
-			break;
-			
-		case "PartidasPage":
-			stage.setScene(PartidaScene);
-			break;
-		}			
 	}
 
 	public static void main(String[] args) {
@@ -867,8 +824,6 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
 
-						Funcoes.cadastrarCartaoVermelho(cartaoVtime1, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime1());
 
 						// INSERIR CARTAO VERMELHO TIME 2
 						System.out.println(
@@ -879,8 +834,6 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
 						
-						Funcoes.cadastrarCartaoVermelho(cartaoVtime2, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime2());
 
 						// INSERIR CARTAO AMARELO TIME 1
 						System.out.println(
@@ -891,8 +844,6 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
 						
-						Funcoes.cadastrarCartaoVermelho(cartaoAtime1, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime1());
 
 						// INSERIR CARTAO AMARELO TIME 2
 						System.out.println(
@@ -903,8 +854,6 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
 
-						Funcoes.cadastrarCartaoVermelho(cartaoAtime2, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime2());
 
 						// INSERIR PARTIDA
 						PartidaGerenciar.inserir(partidaEscolhida);

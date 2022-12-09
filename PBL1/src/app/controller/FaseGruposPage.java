@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -43,14 +44,15 @@ public class FaseGruposPage {
     }
 
     @FXML
-    void btnListAction(ActionEvent event) {
-
+    void btnListAction(ActionEvent event) throws Exception {
+    	Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
+    	Main.trocarTelas(fxmlListarJog);
     }
 
     @FXML
     void btnPartidasAction(ActionEvent event) throws Exception {
     	Parent fxmlPartidas = FXMLLoader.load(getClass().getResource("/app/view/PartidasPage.fxml"));
-    	Main.trocarTelas1(fxmlPartidas);
+    	Main.trocarTelas(fxmlPartidas);
     	//Main.trocarTelas("PartidasPage");
     }
 

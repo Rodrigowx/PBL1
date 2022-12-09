@@ -1,8 +1,12 @@
 package app.controller;
 
+import java.io.IOException;
+
 import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -48,8 +52,9 @@ public class ArbitroPage {
     }
 
     @FXML
-    void btnReturnAction(ActionEvent event) {
-    	Main.trocarTelas("MainWindow");
+    void btnReturnAction(ActionEvent event) throws Exception {
+    	Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
+    	Main.trocarTelas(fxmlMainW);
     }
 
     @FXML

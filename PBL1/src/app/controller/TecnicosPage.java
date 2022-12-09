@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -172,8 +175,9 @@ public class TecnicosPage {
 	}
 
     @FXML
-    void btnReturnAction(ActionEvent event) {
-    	Main.trocarTelas("MainWindow");
+    void btnReturnAction(ActionEvent event) throws Exception {
+    	Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
+    	Main.trocarTelas(fxmlMainW);
     }
 
     @FXML

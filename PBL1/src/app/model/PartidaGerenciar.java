@@ -16,6 +16,15 @@ public class PartidaGerenciar {
 	public static Map<String, Partida> getMapPartidas() {
 		return mapPartidas;
 	}
+	
+	public static Partida retornaPartida(Selecao time1, Selecao time2) {
+		for(Partida partida : mapPartidas.values()) {
+			if (partida.getTime1().equals(time1.getNome()) && partida.getTime2().equals(time2.getNome())) {
+				return partida;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * Inserir partida na lista

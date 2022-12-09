@@ -31,6 +31,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,44 +41,59 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class PartidasPage extends popUpGolsCart {
-	
+public class PartidasPage {
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
 
 	@FXML
 	private Button btnAddPart;
-	
+
 	@FXML
 	private Button btnListDelJog;
-	
-	@FXML
-    private Button btnPopUp;
-	
-	@FXML
-    private Button btnReturn;
 
 	@FXML
-	private TextField cartaoAmTime1;
+	private Button btnOk;
 
 	@FXML
-	private TextField cartaoAmTime2;
+	private Button btnReturn;
 
 	@FXML
-	private TextField cartaoVTime1;
+	private ComboBox<Integer> cartAJog1;
 
 	@FXML
-	private TextField cartaoVTime2;
+	private ComboBox<Integer> cartAJog2;
+
+	@FXML
+	private ComboBox<Integer> cartVJog1;
+
+	@FXML
+	private ComboBox<Integer> cartVJog2;
 
 	@FXML
 	private ChoiceBox<String> choiceGrupoPart;
-
+	
 	private List<String> grupos = new ArrayList<>();
 
 	private ObservableList<String> obsGrupos;
 
 	@FXML
-	private ComboBox<String> choicePartida;
+	private ComboBox<Jogador> choiceJogador1;
 
+	@FXML
+	private ComboBox<Jogador> choiceJogador2;
+	
+	private List<Jogador> jogadoresTime1 = new ArrayList<>();
+
+	private ObservableList<Jogador> obsJogadores1;
+
+	
+	private List<Jogador> jogadoresTime2 = new ArrayList<>();
+
+	private ObservableList<Jogador> obsJogadores2;
+
+	@FXML
+	private ComboBox<String> choicePartida;
+	
 	private List<String> partidasGrupo = new ArrayList<>();
 
 	private ObservableList<String> obsPartidas;
@@ -86,63 +102,59 @@ public class PartidasPage extends popUpGolsCart {
 	private DatePicker datePickerPart;
 
 	@FXML
-	private TextField golsTime1;
+	private ComboBox<Integer> golsJog1;
 
 	@FXML
-	private TextField golsTime2;
+	private ComboBox<Integer> golsJog2;
 
 	@FXML
 	private TextField horaPartida;
 
 	@FXML
-	private Label labelMessage;
-	
-	@FXML
-    private Label labelTime1;
+	private Label labelExibirTime1;
 
-    @FXML
-    private Label labelTime2;
+	@FXML
+	private Label labelExibirTime2;
+
+	@FXML
+	private Label labelMessage;
 
 	@FXML
 	private TextField localPartida;
+
+	private List<Integer> numInteiros = new ArrayList<>();
+
+	private ObservableList<String> obsNum;
 
 	@FXML
 	void btnAddPartAction(ActionEvent event) {
 		try {
 			labelMessage.setTextFill(Color.RED);
-			
-			//tirando os valores informados
+
+			// tirando os valores informados
 			String grupo = this.choiceGrupoPart.getValue();
 			String partidaTimes = this.choicePartida.getValue();
 			LocalDate getDate = this.datePickerPart.getValue();
 			String horario = this.horaPartida.getText();
 			String local = this.localPartida.getText();
-			
-			String golsTime1 = this.golsTime1.getText();
-			String golsTime2 = this.golsTime2.getText();
-			String cartVTime1 = this.cartaoVTime1.getText();
-			String cartVTime2 = this.cartaoVTime2.getText();
-			String cartATime1 = this.cartaoAmTime1.getText();
-			String cartATime2 = this.cartaoAmTime2.getText();
-			
-			//verificação dos dados informados
-			if (grupo == null || partidaTimes == null || getDate == null || horario.isBlank() || local.isBlank() ||
-					golsTime1.isBlank() || golsTime2.isBlank() || cartVTime1.isBlank() || cartVTime2.isBlank() || 
-						cartATime1.isBlank() || cartATime2.isBlank()) {
-        		labelMessage.setText("Há espaços em branco!");
-        		return;
+
+			// verificação dos dados informados
+			if (grupo == null || partidaTimes == null || getDate == null || horario.isBlank() || local.isBlank()) {
+				labelMessage.setText("Há espaços em branco!");
+				return;
 			}
-			
-			//colocando a data no formato brasileiro
+
+			// colocando a data no formato brasileiro
 			String data = getDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-			
-			//encontrando o objeto seleção dos times da partida informados
+
+			// encontrando o objeto seleção dos times da partida informados
 			String[] selecoes = partidaTimes.split(" X ");
-					
+
 			Selecao time1 = SelecaoDAOImpl.verificaSelecao(selecoes[0]);
 			Selecao time2 = SelecaoDAOImpl.verificaSelecao(selecoes[1]);
-			
-			//procurando o objeto da Partida informada pelo usuário na lista de Partidas geradas
+
+			// procurando o objeto da Partida informada pelo usuário na lista de Partidas
+			// geradas
 			List<Partida> listaDePartidas = FaseGruposPage.getPartidasGeradas().get(grupo);
 			Partida partidaEscolhida = null;
 			for (Partida partAtual : listaDePartidas) {
@@ -150,112 +162,75 @@ public class PartidasPage extends popUpGolsCart {
 					partidaEscolhida = partAtual;
 				}
 			}
-			
-			//setando as informações
+
+			// setando as informações
 			Date dataP = new Date();
 			String codPart = sdf.format(dataP);
 			partidaEscolhida.setCodPart(codPart);
-			
+
 			partidaEscolhida.setData(data);
 			partidaEscolhida.setHorario(horario);
 			partidaEscolhida.setLocal(local);
-			
+
 			// Inserindo partida em todos jogadores.
 			Funcoes.inserirPartidaJog(partidaEscolhida, new SelecaoDAOImpl());
-			
+
 			/**
 			 * COLOCAR AQUI A PARTE DOS GOLS E CARTÔES
 			 */
-			//verificar se fez tudoo, ver como
-			
-			
+			// verificar se fez tudoo, ver como
+
 			PartidaGerenciar.inserir(partidaEscolhida);
 			listaDePartidas.remove(partidaEscolhida);
-			
-			
+
 			labelMessage.setTextFill(Color.GREEN);
-        	labelMessage.setText("Partida cadastrada com Sucesso!"); 
-			
-		} catch(Exception e) {
+			labelMessage.setText("Partida cadastrada com Sucesso!");
+
+		} catch (Exception e) {
 			this.labelMessage.setText("Erro ao cadastrar partida!");
 		}
 		this.clearAll();
 	}
-	
+
 	@FXML
-    void btnListDelJogAction(ActionEvent event) throws Exception {
+	void btnListDelJogAction(ActionEvent event) throws Exception {
 		Parent fxmlPartListExc = FXMLLoader.load(getClass().getResource("/app/view/partidaListarExcluirPage.fxml"));
 		Main.trocarTelas1(fxmlPartListExc);
-    }
-	
+	}
+
 	@FXML
-    void btnPopUpAction(ActionEvent event) {
-		
-		//tirando os valores informados
-		String partidaTimes = this.choicePartida.getValue();
-		String grupo = this.choiceGrupoPart.getValue();
-		
-		Integer golsTime1 = this.golsTime1.getText();
-		String golsTime2 = this.golsTime2.getText();
-		String cartVTime1 = this.cartaoVTime1.getText();
-		String cartVTime2 = this.cartaoVTime2.getText();
-		String cartATime1 = this.cartaoAmTime1.getText();
-		String cartATime2 = this.cartaoAmTime2.getText();
-		
-		String[] selecoes = partidaTimes.split(" X ");
-		
-		Selecao time1 = SelecaoDAOImpl.verificaSelecao(selecoes[0]);
-		Selecao time2 = SelecaoDAOImpl.verificaSelecao(selecoes[1]);
-		
-		//procurando o objeto da Partida informada pelo usuário na lista de Partidas geradas
-		List<Partida> listaDePartidas = FaseGruposPage.getPartidasGeradas().get(grupo);
-		Partida partida = null;
-		for (Partida partAtual : listaDePartidas) {
-			if (partAtual.getTime1().equals(time1.getNome()) && partAtual.getTime2().equals(time2.getNome())) {
-				partida = partAtual;
-			}
-		}
-		
-		this.cadastrarGols(partida, time1, time2, golsTime1, golsTime2);
-		this.cadastrarCartoes(partida, totalCartVTime1, totalCartVTime2, totalCartATime1, totalCartATime2);
-    }
-	
-	@FXML
-    void atualizarLabels(MouseEvent event) {
+	void atualizarLabels(MouseEvent event) {
 		String partidaTimes = choicePartida.getValue();
 		if (partidaTimes != null) {
 			String[] selecoes = partidaTimes.split(" X ");
-		
+
 			Selecao time1 = SelecaoDAOImpl.verificaSelecao(selecoes[0]);
 			Selecao time2 = SelecaoDAOImpl.verificaSelecao(selecoes[1]);
-		
-			labelTime1.setText(time1.getNome().toUpperCase());
-			labelTime2.setText(time2.getNome().toUpperCase());
-			
-			if (!(golsTime1.getText().isBlank() || golsTime2.getText().isBlank() || cartaoVTime1.getText().isBlank() 
-					|| cartaoVTime2.getText().isBlank() || cartaoAmTime1.getText().isBlank() || cartaoAmTime2.getText().isBlank())) {
-				this.btnPopUp.setDisable(false);
-			}
-			
+
+			// iniciando a inserção de gols e cartões pelos gols da primeira seleção
+			this.labelExibirTime1.setText(time1.getNome().toUpperCase());
+			this.labelExibirTime2.setText(time2.getNome().toUpperCase());
+
+			carregarJogadores(time1, time2);
+
 		}
-    }
+	}
 
 	@FXML
 	void exibirPartidasDoGrupo(MouseEvent event) {
-		this.partidasGrupo.clear(); //limpa a lista para o comboBox para não exibir as mesmo itens
+		this.partidasGrupo.clear(); // limpa a lista para o comboBox para não exibir as mesmo itens
 		carregarPartidas();
 	}
-	
+
 	@FXML
-    void btnReturnAction(ActionEvent event) throws Exception {
+	void btnReturnAction(ActionEvent event) throws Exception {
 		Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
-    	Main.trocarTelas1(fxmlFaseGrupos);
-    }
+		Main.trocarTelas1(fxmlFaseGrupos);
+	}
 
 	@FXML
 	void initialize() {
 		carregarGrupos();
-		this.btnPopUp.setDisable(true);
 	}
 
 	public void carregarGrupos() {
@@ -272,44 +247,70 @@ public class PartidasPage extends popUpGolsCart {
 		choiceGrupoPart.setItems(obsGrupos);
 	}
 
-	
-	public void carregarPartidas() {	
+	public void carregarPartidas() {
 		try {
-			
+
 			String grupo = this.choiceGrupoPart.getValue();
-			
+
 			if (grupo != null) {
 				List<Partida> partidas = FaseGruposPage.getPartidasGeradas().get(grupo);
 
 				// pegando os times das partidas geradas do grupo para exibir nas opções do
 				// choiche box
-				
+
 				for (int i = 0; i < partidas.size(); i++) {
 					partidasGrupo.add(partidas.get(i).getTime1() + " X " + partidas.get(i).getTime2());
 				}
 
 				obsPartidas = FXCollections.observableArrayList(partidasGrupo);
 				choicePartida.setItems(obsPartidas);
-			
+
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
+	public void inserirGols() {
+
+	}
+
+	public void inserirCartões() {
+
+	}
+
+	public void carregarJogadores(Selecao time1, Selecao time2) {
+		try {
+			jogadoresTime1.addAll(time1.getJogadores());
+			jogadoresTime2.addAll(time2.getJogadores());
+
+			obsJogadores1 = FXCollections.observableArrayList(jogadoresTime1);
+			choiceJogador1.setItems(obsJogadores1);
+
+			obsJogadores2 = FXCollections.observableArrayList(jogadoresTime2);
+			choiceJogador2.setItems(obsJogadores2);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 	public void clearAll() {
 		this.choiceGrupoPart.setValue(null);
 		this.choicePartida.setValue(null);
 		this.datePickerPart.setValue(null);
 		this.horaPartida.clear();
 		this.localPartida.clear();
-		this.golsTime1.clear();
-		this.golsTime2.clear();
-		this.cartaoVTime1.clear();
-		this.cartaoVTime2.clear();
-		this.cartaoAmTime1.clear();
-		this.cartaoAmTime2.clear();
-		this.btnPopUp.setDisable(true);
 	}
+	
+	@FXML
+    void btnOkAction(ActionEvent event) {
+
+    }
+	
+	@FXML
+    void movimentoBtn(MouseEvent event) {
+		this.btnOk.setTextFill(Color.GREEN);
+    }
 
 }

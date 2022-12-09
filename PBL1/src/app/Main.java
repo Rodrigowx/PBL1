@@ -843,8 +843,7 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
 						
-						Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime1());
+						//Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO, partidaEscolhida.getTime1());
 
 						// GOLS DO TIME 2
 						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime2() + " fez: ");
@@ -855,8 +854,7 @@ public class Main extends Application {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
 						
-						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
-								partidaEscolhida.getTime2());
+						//Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO, partidaEscolhida.getTime2());
 						
 						SelecaoDAO.atualizaPontuacao(partidaEscolhida); //coloca e atualiza a pontuação das 2 Seleçoes
 

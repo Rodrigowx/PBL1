@@ -12,24 +12,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PartidasPage">
    <children>
-      <VBox alignment="CENTER" layoutX="436.0" layoutY="143.0" prefHeight="258.0" prefWidth="384.0" style="-fx-border-color: #000000; -fx-border-radius: 40;">
-         <children>
-            <Separator prefWidth="200.0" />
-         </children>
-      </VBox>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="20.0" layoutX="530.0" layoutY="391.0" stroke="WHITE" strokeType="INSIDE" width="187.0" />
-      <Label layoutX="63.0" layoutY="71.0" text="SELECIONE DE QUAL GRUPO É A PARTIDA:">
+      <Label layoutX="27.0" layoutY="68.0" text="SELECIONE DE QUAL GRUPO É A PARTIDA:">
          <font>
             <Font name="Dubai Regular" size="18.0" />
          </font>
       </Label>
       <Separator layoutX="179.0" layoutY="36.0" prefHeight="3.0" prefWidth="655.0" />
-      <ChoiceBox fx:id="choiceGrupoPart" layoutX="174.0" layoutY="105.0" prefHeight="31.0" prefWidth="107.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-background-color: ffffff; -fx-border-radius: 50;" />
+      <ChoiceBox fx:id="choiceGrupoPart" layoutX="373.0" layoutY="69.0" prefHeight="31.0" prefWidth="107.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-background-color: ffffff; -fx-border-radius: 50;" />
       <VBox alignment="BOTTOM_LEFT" layoutX="27.0" layoutY="171.0" prefHeight="206.0" prefWidth="79.0" spacing="33.0">
          <children>
             <Label text="Partida:">
@@ -57,7 +50,7 @@
             <Insets left="5.0" />
          </opaqueInsets>
       </VBox>
-      <VBox alignment="BOTTOM_LEFT" layoutX="121.0" layoutY="172.0" onMouseMoved="#atualizarLabels" prefHeight="206.0" prefWidth="258.0" spacing="30.0">
+      <VBox alignment="BOTTOM_LEFT" layoutX="111.0" layoutY="172.0" onMouseMoved="#atualizarLabels" prefHeight="206.0" prefWidth="228.0" spacing="30.0">
          <children>
             <ComboBox fx:id="choicePartida" onMouseClicked="#exibirPartidasDoGrupo" prefHeight="27.0" prefWidth="285.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
             <DatePicker fx:id="datePickerPart" editable="false" />
@@ -73,76 +66,11 @@
             </TextField>
          </children>
       </VBox>
-      <Label fx:id="labelMessage" layoutX="31.0" layoutY="144.0" prefHeight="18.0" prefWidth="398.0" textFill="RED">
+      <Label fx:id="labelMessage" layoutX="31.0" layoutY="144.0" prefHeight="18.0" prefWidth="334.0" textFill="RED">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="labelTime1" alignment="CENTER" layoutX="580.0" layoutY="163.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="labelTime2" alignment="CENTER" layoutX="580.0" layoutY="221.0" prefHeight="30.0" prefWidth="211.0" style="-fx-border-color: #000000; -fx-border-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="459.0" layoutY="193.0" text="Gols:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="golsTime1" layoutX="514.0" layoutY="162.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="golsTime2" layoutX="514.0" layoutY="220.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Label layoutX="459.0" layoutY="314.0" text="Cartões:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="32.0" layoutX="553.0" layoutY="314.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff321" height="32.0" layoutX="698.0" layoutY="315.0" stroke="BLACK" strokeType="INSIDE" width="22.0" />
-      <TextField fx:id="cartaoVTime1" layoutX="594.0" layoutY="290.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="cartaoVTime2" layoutX="594.0" layoutY="332.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="cartaoAmTime1" layoutX="731.0" layoutY="291.0" prefHeight="32.0" prefWidth="60.0" promptText="time 1" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="cartaoAmTime2" layoutX="731.0" layoutY="333.0" prefHeight="32.0" prefWidth="60.0" promptText="time 2" style="-fx-border-radius: 50; -fx-background-radius: 50;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <Label alignment="CENTER" layoutX="678.0" layoutY="198.0" prefHeight="20.0" prefWidth="15.0" text="X">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnPopUp" layoutX="535.0" layoutY="382.0" mnemonicParsing="false" onAction="#btnPopUpAction" prefHeight="32.0" prefWidth="178.0" style="-fx-background-radius: 50;" text="Selecionar Jogadores">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Label contentDisplay="CENTER" layoutX="17.0" layoutY="15.0" prefHeight="40.0" prefWidth="640.0" style="-fx-border-radius: 50;" text="syscopa 3.0" textFill="#5b5b5b">
          <font>
             <Font name="Arial Bold" size="28.0" />
@@ -179,5 +107,76 @@
             </Button>
          </children>
       </HBox>
+      <Label layoutX="547.0" layoutY="99.0" text="Gols e Cartões:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <HBox layoutX="371.0" layoutY="134.0" prefHeight="268.0" prefWidth="471.0" spacing="5.0" style="-fx-border-radius: 40; -fx-border-color: #000000;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="242.0" prefWidth="228.0" spacing="10.0">
+               <children>
+                  <Label fx:id="labelExibirTime1" alignment="CENTER" prefHeight="26.0" prefWidth="177.0" style="-fx-border-color: #9e9e9e; -fx-border-radius: 50; -fx-background-color: ffffff;" textFill="#9e9e9e">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="SELECIONE UM JOGADOR:" />
+                  <ComboBox fx:id="choiceJogador1" prefHeight="27.0" prefWidth="218.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="102.0" prefWidth="128.0" spacing="20.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" text="GOLS:" />
+                              <Label alignment="TOP_LEFT" text="CARTÕES VERMELHOS:" />
+                              <Label alignment="TOP_LEFT" text="CARTÕES AMARELOS:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="109.0" prefWidth="83.0" spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="golsJog1" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                              <ComboBox fx:id="cartVJog1" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                              <ComboBox fx:id="cartAJog1" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="242.0" prefWidth="228.0" spacing="10.0">
+               <children>
+                  <Label fx:id="labelExibirTime2" alignment="CENTER" prefHeight="26.0" prefWidth="177.0" style="-fx-border-color: #9e9e9e; -fx-border-radius: 50; -fx-background-color: ffffff;" textFill="#9e9e9e">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="SELECIONE UM JOGADOR:" />
+                  <ComboBox fx:id="choiceJogador2" prefHeight="27.0" prefWidth="218.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <VBox alignment="CENTER_RIGHT" prefHeight="102.0" prefWidth="128.0" spacing="20.0">
+                           <children>
+                              <Label alignment="TOP_LEFT" text="GOLS:" />
+                              <Label alignment="TOP_LEFT" text="CARTÕES VERMELHOS:" />
+                              <Label alignment="TOP_LEFT" text="CARTÕES AMARELOS:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="109.0" prefWidth="83.0" spacing="10.0">
+                           <children>
+                              <ComboBox fx:id="golsJog2" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                              <ComboBox fx:id="cartVJog2" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                              <ComboBox fx:id="cartAJog2" prefHeight="26.0" prefWidth="83.0" style="-fx-background-radius: 50;" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="btnOk" layoutX="561.0" layoutY="385.0" mnemonicParsing="false" onAction="#btnOkAction" onMouseMoved="#movimentoBtn" prefHeight="30.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-radius: 50;" text="OK" />
    </children>
 </AnchorPane>

@@ -248,7 +248,7 @@ public class PartidasPage {
 		this.golsJog1.setValue(0);
 		this.golsJog2.setValue(0);
 		this.cartAJog1.setValue(0);
-		this.cartAJog2 .setValue(0);
+		this.cartAJog2.setValue(0);
 		this.cartVJog1.setValue(0);
 		this.cartVJog2.setValue(0);
 		hBoxGolsCart.setDisable(true);
@@ -309,7 +309,7 @@ public class PartidasPage {
 		} else if (cartoesAm != 0) {
 			Funcoes.cadastrarCartaoAmarelo(jogador, cartoesAm, partida, time);
 		}
-	
+
 	}
 
 	public void carregarJogadores(Selecao time1, Selecao time2) {
@@ -408,19 +408,27 @@ public class PartidasPage {
 			if (jogadorTime1 != null) {
 				inserirGols(partida, jogadorTime1, time1, golsJog1);
 				inserirCartões(partida, jogadorTime1, time1, cartVJog1, cartAJog1);
-				this.totalGolsTime1 += this.golsJog1.getValue();
+				this.totalGolsTime1 += golsJog1;
+				this.labelTotalGols1.setText("Total de Gols: " + totalGolsTime1);
 				
 			} else if (jogadorTime2 != null) {
 				inserirGols(partida, jogadorTime2, time2, golsJog2);
 				inserirCartões(partida, jogadorTime2, time2, cartVJog2, cartAJog2);
-				this.totalGolsTime2 += this.golsJog2.getValue();
+				this.totalGolsTime2 += golsJog2;
+				this.labelTotalGols2.setText("Total de Gols: " + totalGolsTime2);
 			}
 
-			this.labelTotalGols1.setText("Total de Gols: " + totalGolsTime1);
-			this.labelTotalGols2.setText("Total de Gols: " + totalGolsTime2);
-			
 			labelMessage.setTextFill(Color.GREEN);
 			this.labelMessage.setText("Gols e Cartões inseridos!");	
+			
+			this.golsJog1.setValue(0);
+			this.golsJog2.setValue(0);
+			this.cartAJog1.setValue(0);
+			this.cartAJog2.setValue(0);
+			this.cartVJog1.setValue(0);
+			this.cartVJog2.setValue(0);
+			this.choiceJogador1.setValue(null);
+			this.choiceJogador2.setValue(null);
 	}
 
 	@FXML

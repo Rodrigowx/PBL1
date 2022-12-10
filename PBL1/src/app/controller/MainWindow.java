@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainWindow {
@@ -45,6 +46,8 @@ public class MainWindow {
     
     @FXML
     private Label labelMessage;
+    
+    private static Stage stage = new Stage();
 
     @FXML
     void goArbitrosPage1(ActionEvent event) throws Exception {
@@ -54,6 +57,7 @@ public class MainWindow {
 
     @FXML
     void goFaseGruposPage1(ActionEvent event) throws Exception {
+    	
     	//verificação se tudo já está cadastrado
     	int verificacoes = Funcoes.verificaçãoFase1();
     	switch (verificacoes) {
@@ -71,20 +75,15 @@ public class MainWindow {
 			break;
 		case 5:
 			//abrir popUp para o usuário confirmar
-			Stage stage = new Stage();
-			Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/popUpFaseG.fxml"));
-			Scene scene = new Scene(fxmlMainW);
+			
+			Parent fxmlPopUp = FXMLLoader.load(getClass().getResource("/app/view/popUpFaseG.fxml"));
+			Scene scene = new Scene(fxmlPopUp);
 			
 			stage.setScene(scene);
 			stage.setResizable(false);
-			
 			stage.showAndWait();
-			popUpFaseG.fechar(stage);
 			break;		
 		}
-    	
-    	Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
-    	Main.trocarTelas(fxmlFaseGrupos);
     }
 
     @FXML
@@ -113,6 +112,10 @@ public class MainWindow {
     	DadosPreCadastro.LeituraTecnicoArbitro(Main.getSelecaoDAO(), Main.getTecnicoDAO(), Main.getArbitroDAO(), Main.getGruposCRUD());
     	this.btnPreSet.setDisable(true); //o botão é desabilitado pois não pode ser acionado duas vezes o cadastro automático
     	
+    }
+    
+    public static void fecharPopUp() {
+    	stage.close();
     }
 
     @FXML

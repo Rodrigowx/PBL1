@@ -11,7 +11,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="523.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.popUpFaseG">
    <children>
       <Circle layoutX="57.0" layoutY="28.0" radius="19.0" stroke="BLACK" strokeType="INSIDE">
@@ -34,8 +33,7 @@
       </Circle>
       <HBox alignment="CENTER" layoutX="-5.0" layoutY="88.0" prefHeight="38.0" prefWidth="530.0" spacing="30.0" style="-fx-background-color: #e4e4e4;">
          <children>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#btnCancelAction" prefHeight="34.0" prefWidth="89.0" style="-fx-background-radius: 50;" text="CANCELAR" />
-            <Button fx:id="btnSim" mnemonicParsing="false" onAction="#btnSimAction" prefHeight="35.0" prefWidth="46.0" style="-fx-background-radius: 50;" text="SIM" />
+            <Button fx:id="btnSim" mnemonicParsing="false" onAction="#btnSimAction" prefHeight="26.0" prefWidth="102.0" style="-fx-background-radius: 50;" text="SIM" />
          </children>
          <padding>
             <Insets bottom="10.0" top="10.0" />

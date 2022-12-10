@@ -50,8 +50,7 @@ public class FaseGruposPage {
 
     @FXML
     void btnListAction(ActionEvent event) throws Exception {
-    	Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
-    	Main.trocarTelas(fxmlListarJog);
+    	
     }
 
     @FXML

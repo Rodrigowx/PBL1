@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -37,7 +38,7 @@ public class Selecoes_EditarExcluirPage extends Selecoes_InserirPage {
     private ChoiceBox<String> choiceGrupoSel;
 
     @FXML
-    private ChoiceBox<String> choiceSelecoes;
+    private ComboBox<String> choiceSelecoes;
     
     private List<String> nomesSelecoes = new ArrayList<>();
     
@@ -109,12 +110,11 @@ public class Selecoes_EditarExcluirPage extends Selecoes_InserirPage {
     void btnReturnAction(ActionEvent event) throws Exception {
     	Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
     	Main.trocarTelas(fxmlSelecoes1);
-    	//Main.trocarTelas("SelecoesPage1");
     }
     
     //função para carregar as seleções na choice box e atualizar a cada vez que ela é clicada
     @FXML
-    void choiceBoxSelecoes(MouseEvent event) {
+    void comboBoxSelecoes(MouseEvent event) {
     	nomesSelecoes = SelecaoDAOImpl.getLista2();
     	obsSelecoes = FXCollections.observableArrayList(nomesSelecoes);
     	choiceSelecoes.setItems(obsSelecoes);

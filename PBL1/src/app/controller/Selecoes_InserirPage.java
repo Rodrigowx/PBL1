@@ -65,7 +65,6 @@ public class Selecoes_InserirPage {
     		
     		Selecao novaSelecao = new Selecao(nomeSelecao, jogadoresList, grupoSel);
     		
-    		System.out.println(novaSelecao.getGrupo());
     		SelecaoDAO.inserir(novaSelecao);
     		GruposCRUD.atualizaGrupos(grupoSel, novaSelecao); 
     		

@@ -46,13 +46,10 @@ public class Selecoes_ListarPage {
 		grupoCol.setCellValueFactory(new PropertyValueFactory<Selecao, String>("grupo"));
 		pontuacaoCol.setCellValueFactory(new PropertyValueFactory<Selecao, Double>("pontuacaoFaseG"));
 
-		this.tabelaSelecoes.getColumns().addAll(nomeCol, tecnicoCol, grupoCol, pontuacaoCol);	
-	}
-	
-	@FXML
-    void exibirSeleções(MouseEvent event) {
+		this.tabelaSelecoes.getColumns().addAll(nomeCol, tecnicoCol, grupoCol, pontuacaoCol);
 		this.dadosSelecoes = FXCollections.observableArrayList(SelecaoDAOImpl.getLista1());
 		this.tabelaSelecoes.setItems(dadosSelecoes);
-    }
+	}
+
 
 }

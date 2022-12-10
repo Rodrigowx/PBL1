@@ -31,42 +31,17 @@ import javafx.fxml.FXMLLoader;
 public class Main extends Application {	
 	
 	//declarando os DAO's como atributo para melhor acesso de toda a aplicação
-	private ArbitroDAOImpl ArbitroDAO = new ArbitroDAOImpl();
-	private JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
-	private SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
-	private TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
+	private static ArbitroDAOImpl ArbitroDAO = new ArbitroDAOImpl();
+	private static JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
+	private static SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
+	private static TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
 
-	private FaseGrupos GruposCRUD = new FaseGrupos();
-	private PartidaGerenciar PartGerenciar = new PartidaGerenciar();
+	private static FaseGrupos GruposCRUD = new FaseGrupos();
+	private static PartidaGerenciar PartGerenciar = new PartidaGerenciar();
 	
 	private static Stage stage;
 	
 	private static Scene MainScene;
-
-	public ArbitroDAOImpl getArbitroDAO() {
-		return ArbitroDAO;
-	}
-
-	public JogadorDAOImpl getJogadorDAO() {
-		return JogadorDAO;
-	}
-
-	public SelecaoDAOImpl getSelecaoDAO() {
-		return SelecaoDAO;
-	}
-
-	public TecnicoDAOImpl getTecnicoDAO() {
-		return TecnicoDAO;
-	}
-
-	public FaseGrupos getGruposCRUD() {
-		return GruposCRUD;
-	}
-
-	public PartidaGerenciar getPartGerenciar() {
-		return PartGerenciar;
-	}
-
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -75,58 +50,6 @@ public class Main extends Application {
 			Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/MainWindow.fxml"));
 			MainScene = new Scene(fxmlMainW);
 			
-			/**
-			 * 
-			Parent fxmlSelecoes1 = FXMLLoader.load(getClass().getResource("/app/view/SelecoesPage1.fxml"));
-			Selecoes1Scene = new Scene(fxmlSelecoes1);
-			
-			Parent fxmlJogador1 = FXMLLoader.load(getClass().getResource("/app/view/JogadorPage1.fxml"));
-			Jogador1Scene = new Scene(fxmlJogador1);
-			
-			Parent fxmlTecnico = FXMLLoader.load(getClass().getResource("/app/view/TecnicoPage.fxml"));
-			TecnicoScene = new Scene(fxmlTecnico);
-			
-			Parent fxmlArbitro = FXMLLoader.load(getClass().getResource("/app/view/ArbitroPage.fxml"));
-			ArbitroScene = new Scene(fxmlArbitro);
-			
-			//----------------------------------------------------------------------------------------------
-			Parent fxmlInserirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_InserirPage.fxml"));
-			SelecoesInserirScene = new Scene(fxmlInserirSel);
-			
-			Parent fxmlEditarExcluirSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_EditarExcluirPage.fxml"));
-			SelecoesEditarExcluirScene = new Scene(fxmlEditarExcluirSel);
-			
-			Parent fxmlListarSel = FXMLLoader.load(getClass().getResource("/app/view/Selecoes_ListarPage.fxml"));
-			SelecoesListarScene = new Scene(fxmlListarSel);<?xml version="1.0" encoding="UTF-8"?>
-
-			
-			//-----------------------------------------------------------------------------------------------
-			
-			Parent fxmlInserirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_InserirPage.fxml"));
-			JogadorInserirScene = new Scene(fxmlInserirJog);
-			
-			Parent fxmlEditarExcluirJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_EditarExcluirPage.fxml"));
-			JogadorEditarExcluirScene = new Scene(fxmlEditarExcluirJog);
-			
-			Parent fxmlListarJog = FXMLLoader.load(getClass().getResource("/app/view/Jogador_ListarPage.fxml"));
-			JogadorListarScene = new Scene(fxmlListarJog);
-			
-			//-----------------------------------------------------------------------------------------------
-			
-			//Parent fxmlEditarExcluirTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_EditarExcluirPage.fxml"));
-			//TecnicoEditarExcluirScene = new Scene(fxmlEditarExcluirTec);
-			
-			//Parent fxmlListarTec = FXMLLoader.load(getClass().getResource("/app/view/Tecnicos_ListarPage.fxml"));
-			//TecnicoListarScene = new Scene(fxmlListarTec);
-			
-			
-			Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
-			FaseGruposScene = new Scene(fxmlFaseGrupos);
-			
-			Parent fxmlPartidas = FXMLLoader.load(getClass().getResource("/app/view/PartidasPage.fxml"));
-			PartidaScene = new Scene(fxmlPartidas);
-			**/
-			
 			primaryStage.setScene(MainScene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
@@ -134,6 +57,30 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static ArbitroDAOImpl getArbitroDAO() {
+		return ArbitroDAO;
+	}
+
+	public static JogadorDAOImpl getJogadorDAO() {
+		return JogadorDAO;
+	}
+
+	public static SelecaoDAOImpl getSelecaoDAO() {
+		return SelecaoDAO;
+	}
+
+	public static TecnicoDAOImpl getTecnicoDAO() {
+		return TecnicoDAO;
+	}
+
+	public static FaseGrupos getGruposCRUD() {
+		return GruposCRUD;
+	}
+
+	public static PartidaGerenciar getPartGerenciar() {
+		return PartGerenciar;
 	}
 	
 	public static void trocarTelas(Parent parent) {
@@ -570,9 +517,7 @@ public class Main extends Application {
 				/*
 				 * Verificação se o usuário já está apto para ir para a fase 1 (fase de grupos)
 				 */
-				if (Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO)) {
-					break;
-				}
+				
 				/* DEIXAR COMENTADO POR ENQUANTO PARA TESTES */
 
 				// confirma se o usuário realmente quer ir para a fase de grupos, pois ele não

@@ -1,36 +1,23 @@
 package app.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.Funcoes;
 import app.Main;
 import app.DadosArquivo.DadosPreCadastro;
-import app.model.ArbitroDAOImpl;
-import app.model.FaseGrupos;
-import app.model.JogadorDAOImpl;
-import app.model.SelecaoDAOImpl;
-import app.model.TecnicoDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class MainWindow {
-	
-	private static SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
-	private static FaseGrupos GruposCRUD = new FaseGrupos();
-	private static JogadorDAOImpl JogadorDAO = new JogadorDAOImpl();
-	private static TecnicoDAOImpl TecnicoDAO = new TecnicoDAOImpl();
-	private static ArbitroDAOImpl ArbitroDAO = new ArbitroDAOImpl();
+
 
     @FXML
     private ResourceBundle resources;
@@ -55,6 +42,9 @@ public class MainWindow {
 
     @FXML
     private Button btnTecnicos;
+    
+    @FXML
+    private Label labelMessage;
 
     @FXML
     void goArbitrosPage1(ActionEvent event) throws Exception {
@@ -65,11 +55,36 @@ public class MainWindow {
     @FXML
     void goFaseGruposPage1(ActionEvent event) throws Exception {
     	//verificação se tudo já está cadastrado
-    	Funcoes.verificaçãoFase1(GruposCRUD, SelecaoDAO);
+    	int verificacoes = Funcoes.verificaçãoFase1();
+    	switch (verificacoes) {
+		case 1:
+			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois não há Seleções cadastradas!");
+			break;
+		case 2:
+			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois o número de Seleções cadastradas é insuficiente!");
+			break;
+		case 3:
+			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois o número de Jogadores cadastrados é insuficiente!");
+			break;
+		case 4:
+			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois o número de Técnicos cadastrados é insuficiente!");
+			break;
+		case 5:
+			//abrir popUp para o usuário confirmar
+			Stage stage = new Stage();
+			Parent fxmlMainW = FXMLLoader.load(getClass().getResource("/app/view/popUpFaseG.fxml"));
+			Scene scene = new Scene(fxmlMainW);
+			
+			stage.setScene(scene);
+			stage.setResizable(false);
+			
+			stage.showAndWait();
+			popUpFaseG.fechar(stage);
+			break;		
+		}
     	
     	Parent fxmlFaseGrupos = FXMLLoader.load(getClass().getResource("/app/view/FaseGruposPage.fxml"));
     	Main.trocarTelas(fxmlFaseGrupos);
-    	//Main.trocarTelas("FaseGruposPage");
     }
 
     @FXML
@@ -94,8 +109,8 @@ public class MainWindow {
 
     @FXML
     void preSetAction(ActionEvent event) {
-    	DadosPreCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
-    	DadosPreCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
+    	DadosPreCadastro.LeituraArquivos(Main.getSelecaoDAO(), Main.getJogadorDAO(), Main.getGruposCRUD());
+    	DadosPreCadastro.LeituraTecnicoArbitro(Main.getSelecaoDAO(), Main.getTecnicoDAO(), Main.getArbitroDAO(), Main.getGruposCRUD());
     	this.btnPreSet.setDisable(true); //o botão é desabilitado pois não pode ser acionado duas vezes o cadastro automático
     	
     }

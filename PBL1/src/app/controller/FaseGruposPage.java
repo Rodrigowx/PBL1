@@ -39,8 +39,13 @@ public class FaseGruposPage {
     }
 
     @FXML
-    void btnEliminatoriasAction(ActionEvent event) {
-
+    void btnEliminatoriasAction(ActionEvent event) throws Exception {
+    	
+    	//chamar função de verificação PartidaGerenciar - todasPartidasCadastradas
+    	
+    	//fazer um if e colocar isso dentro do else
+    	Parent fxmlEliminatorias = FXMLLoader.load(getClass().getResource("/app/view/EliminatoriasPage.fxml"));
+    	Main.trocarTelas(fxmlEliminatorias);
     }
 
     @FXML

@@ -50,7 +50,7 @@
                   <DropShadow height="0.1" radius="0.0" width="0.1" />
                </effect>
             </Button>
-            <Button fx:id="btnTecnicos" mnemonicParsing="false" onAction="#goTecnicosPage1" onMouseMoved="#selectedBtn3" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: #ffffff; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: #000000;" text="Técnicos">
+            <Button fx:id="btnTecnicos" mnemonicParsing="false" onAction="#goTecnicosPage" onMouseMoved="#selectedBtn3" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: #ffffff; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: #000000;" text="Técnicos">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -115,5 +115,10 @@
             </Button>
          </children>
       </VBox>
+      <Label fx:id="labelMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="96.0" layoutY="128.0" prefHeight="18.0" prefWidth="666.0" textFill="#ef3c3c">
+         <font>
+            <Font name="Dubai Regular" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

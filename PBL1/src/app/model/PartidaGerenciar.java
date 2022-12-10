@@ -36,12 +36,10 @@ public class PartidaGerenciar {
 		mapPartidas.put(partida.getCodPart(), partida);// **
 		return false;
 	}
-	
-	public static void editar() {
-		
-	}
-	
+
 	public static void excluir(Partida partida) {
+		//chamando a função que retira os dados da partida dos jogadores
+		
 		
 		//retirando os dados do objeto excluído
 		partida.setData(null);
@@ -54,10 +52,7 @@ public class PartidaGerenciar {
 		
 		//retornando a partida para a lista de partidas geradas para ser cadastrada novamente
 		FaseGruposPage.getPartidasGeradas().get(partida.getGrupo()).add(partida);
-		
-		//chamando a função que retira os dados da partida dos jogadores
-		
-		
+	
 		return;
 	}
 

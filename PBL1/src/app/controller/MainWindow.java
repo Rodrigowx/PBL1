@@ -48,6 +48,8 @@ public class MainWindow {
     private Label labelMessage;
     
     private static Stage stage = new Stage();
+    
+    private static Integer contadorPreSet = 0;
 
     @FXML
     void goArbitrosPage1(ActionEvent event) throws Exception {
@@ -108,6 +110,7 @@ public class MainWindow {
 
     @FXML
     void preSetAction(ActionEvent event) {
+    	contadorPreSet = 1;
     	DadosPreCadastro.LeituraArquivos(Main.getSelecaoDAO(), Main.getJogadorDAO(), Main.getGruposCRUD());
     	DadosPreCadastro.LeituraTecnicoArbitro(Main.getSelecaoDAO(), Main.getTecnicoDAO(), Main.getArbitroDAO(), Main.getGruposCRUD());
     	this.btnPreSet.setDisable(true); //o botão é desabilitado pois não pode ser acionado duas vezes o cadastro automático
@@ -126,7 +129,12 @@ public class MainWindow {
         assert btnPreSet != null : "fx:id=\"btnPreSet\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert btnSelecoes != null : "fx:id=\"btnSelecoes\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert btnTecnicos != null : "fx:id=\"btnTecnicos\" was not injected: check your FXML file 'MainWindow.fxml'.";
-
+        
+        //verificação para o botão não ser clicado mais de uma vez
+        if (contadorPreSet == 1) {
+        	this.btnPreSet.setDisable(true);
+        }
+       
     }
     
     @FXML

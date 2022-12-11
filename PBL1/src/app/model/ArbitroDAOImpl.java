@@ -19,7 +19,7 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * @param nome
 	 * @return vericação de execução.
 	 */
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 		if (nomesArbitros.isEmpty()) {
 			return false;
 		} else {
@@ -37,8 +37,12 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * @return lista de objetos.
 	 */
 	// ------------------------------------------------------------------------
-	public ArrayList<Arbitro> getLista1() {
-		return listaArbitro;
+	public static ArrayList<Arbitro> getLista1() {
+		ArrayList<Arbitro> lista1Retornavel = new ArrayList<>();
+		for(Arbitro arbitro : listaArbitro) {
+			lista1Retornavel.add(arbitro);
+		}
+		return lista1Retornavel;
 	}
 
 	/**
@@ -46,8 +50,12 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * 
 	 * @return lista de nomes.
 	 */
-	public List<String> getLista2() {
-		return nomesArbitros;
+	public static List<String> getLista2() {
+		ArrayList<String> lista2Retornavel = new ArrayList<>();
+		for(String arbitroNome : nomesArbitros) {
+			lista2Retornavel.add(arbitroNome);
+		}
+		return lista2Retornavel;
 	}
 	// ------------------------------------------------------------------------
 
@@ -62,7 +70,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	public boolean inserir(Arbitro arbitro) {
 		listaArbitro.add(arbitro);
 		nomesArbitros.add(arbitro.getNome());
-		System.out.println("Inserido com sucesso!");
 		return true;
 	}
 
@@ -84,7 +91,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 				nomesArbitros.remove(index);
 				nomesArbitros.add(nome2);
 
-				System.out.println("Editado com sucesso!");
 				return true;
 			}
 		}
@@ -113,7 +119,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 				int index = nomesArbitros.indexOf(nomeArbitro);
 				nomesArbitros.remove(index);
 
-				System.out.println("Excluido com sucesso!");
 				return objArbitro;
 			}
 		}

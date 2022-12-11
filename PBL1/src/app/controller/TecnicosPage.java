@@ -1,6 +1,5 @@
 package app.controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,7 +50,7 @@ public class TecnicosPage {
     private Button btnReturn1;
 
     @FXML
-	private ChoiceBox<String> choiceSelTec;
+	private ComboBox<String> choiceSelTec;
     
     private List<String> nomesSelecoes = new ArrayList<>();
     
@@ -129,7 +128,7 @@ public class TecnicosPage {
 			return;
 		}
 		
-    	this.exibirTecnicos(null);
+    	this.attTecnicos();
 	}
 
     @FXML
@@ -171,7 +170,8 @@ public class TecnicosPage {
 			return;
 		}
 		
-    	this.exibirTecnicos(null);
+		this.nomeTec.clear();
+    	this.attTecnicos();
 	}
 
     @FXML
@@ -193,7 +193,7 @@ public class TecnicosPage {
     }
 
     @FXML
-	void exibirTecnicos(MouseEvent event) {
+	void attTecnicos() {
 		this.dadosTecnicos = FXCollections.observableArrayList(TecnicoDAOImpl.getLista1());
 		this.tabelaTecnicos.setItems(dadosTecnicos);
 
@@ -219,6 +219,7 @@ public class TecnicosPage {
     	selecaoCol.setCellValueFactory(new PropertyValueFactory<Jogador, String>("selecao"));
 
      	this.tabelaTecnicos.getColumns().addAll(nomeCol, selecaoCol);
+     	attTecnicos();
     }
 
 }

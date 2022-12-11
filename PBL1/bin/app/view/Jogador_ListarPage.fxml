@@ -37,7 +37,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="tabelaJogadores" layoutX="27.0" layoutY="122.0" onMouseMoved="#exibirJogadores" prefHeight="322.0" prefWidth="800.0">
+      <TableView fx:id="tabelaJogadores" layoutX="27.0" layoutY="122.0" prefHeight="322.0" prefWidth="800.0">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>

@@ -46,13 +46,6 @@ public class Jogador_ListarPage {
     	//Main.trocarTelas("JogadorPage1");
     }
 
-    @FXML
-    void exibirJogadores(MouseEvent event) {
-    	this.dadosJogadores = FXCollections.observableArrayList(JogadorDAOImpl.getMap().values());
-		this.tabelaJogadores.setItems(dadosJogadores);
-		labelTotalJog.setText("Total: " + dadosJogadores.size() + " jogadores");
-    }
-
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@FXML
     void initialize() {
@@ -77,7 +70,11 @@ public class Jogador_ListarPage {
      		golsCol.setCellValueFactory(new PropertyValueFactory<Jogador, Double>("gols"));
 
      		this.tabelaJogadores.getColumns().addAll(IDCol, nomeCol, selecaoCol, posicaoCol, cartACol, cartVCol, golsCol);
-
+     		
+     		//exibindo jogadores
+     		this.dadosJogadores = FXCollections.observableArrayList(JogadorDAOImpl.getMap().values());
+    		this.tabelaJogadores.setItems(dadosJogadores);
+    		labelTotalJog.setText("Total: " + dadosJogadores.size() + " jogadores");
     }
 
 }

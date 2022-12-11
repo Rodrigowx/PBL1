@@ -74,7 +74,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	public boolean verificaTotal() {
 
 		/**
-		 * Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores
+		 * Essa função verifica se cada seleção cadastrada possui pelo menos 11 jogadores
 		 * cadastrados, pois as partidas só podem ser iniciadas com pelo menos essa
 		 * quantidade em cada time (min 11 e max 26)
 		 */

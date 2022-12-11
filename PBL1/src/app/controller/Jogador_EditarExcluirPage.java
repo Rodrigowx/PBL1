@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,7 +51,7 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
     private ChoiceBox<String> choicePosicao;
 
 	@FXML
-	private ChoiceBox<String> choiceSelJog;
+	private ComboBox<String> choiceSelJog;
 
 	private List<String> nomesSelecoes = new ArrayList<>();
 
@@ -91,7 +92,7 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 		
 		labelMessage.setTextFill(Color.GREEN);
     	labelMessage.setText("Jogador Excluído com sucesso!");
-    	this.exibirJogadores(null);
+    	this.attJogadores();
 	}
 
 	@FXML
@@ -136,12 +137,13 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 			return;
 		}
 		
-    	this.exibirJogadores(null);
+    	this.attJogadores();
     	
     	//limpando os espaços
     	this.nomeJog.clear();
 		this.choicePosicao.setValue(null);
 		this.choiceSelJog.setValue(null);
+		
 	}
 
 	@FXML
@@ -196,14 +198,15 @@ public class Jogador_EditarExcluirPage extends Jogador_InserirPage {
 		selecaoCol.setCellValueFactory(new PropertyValueFactory<Jogador, String>("selecao"));
 		
 		this.tabelaJogadores.getColumns().addAll(nomeCol, posicaoCol, selecaoCol);
+		this.dadosJogadores = FXCollections.observableArrayList(JogadorDAOImpl.getMap().values());
+		this.tabelaJogadores.setItems(dadosJogadores);
 
 	}
 	
 	@FXML
-    void exibirJogadores(MouseEvent event) {
+    void attJogadores() {
 		this.dadosJogadores = FXCollections.observableArrayList(JogadorDAOImpl.getMap().values());
 		this.tabelaJogadores.setItems(dadosJogadores);
-		
     }
 
 }

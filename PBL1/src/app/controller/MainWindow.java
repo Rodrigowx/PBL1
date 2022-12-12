@@ -47,7 +47,7 @@ public class MainWindow {
     @FXML
     private Label labelMessage;
     
-    private static Stage stage = new Stage();
+    private static Stage stage;
     
     private static Integer contadorPreSet = 0;
 
@@ -77,11 +77,16 @@ public class MainWindow {
 			break;
 		case 5:
 			//abrir popUp para o usuário confirmar			
-			Parent fxmlPopUp = FXMLLoader.load(getClass().getResource("/app/view/popUpFaseG.fxml"));
-			Scene scene = new Scene(fxmlPopUp);
+			FXMLLoader loader = new FXMLLoader();
+			URL xmlURL = getClass().getResource("/app/view/popUpFaseG.fxml");
+			loader.setLocation(xmlURL);
+			Parent parent = loader.load();
 			
+			Scene scene = new Scene(parent);
+			stage = new Stage();
 			stage.setScene(scene);
 			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
 			break;		
 		}

@@ -21,5 +21,6 @@ public class popUpFaseG {
     	Main.trocarTelas(fxmlFaseGrupos);
     	
     	MainWindow.fecharPopUp();
+
     }
 }

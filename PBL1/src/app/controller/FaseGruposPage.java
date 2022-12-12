@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FaseGruposPage {
@@ -35,7 +36,7 @@ public class FaseGruposPage {
     @FXML
     private Label labelMessage;
     
-    private static Stage stage = new Stage();
+    private static Stage stage;
     
     @FXML
     void btnClassificaAction(ActionEvent event) {
@@ -44,24 +45,28 @@ public class FaseGruposPage {
 
     @FXML
     void btnEliminatoriasAction(ActionEvent event) throws Exception {
-    	Integer totalPartidas = PartidaGerenciar.getMapPartidas().size();
+    	Integer totalGeral, totalPartidas, faltam;
     	
-    	//chamar função de verificação PartidaGerenciar - todasPartidasCadastradas
-    	if (null) {
-    		labelMessage.setText("Não é possível ir para as Fases Eliminatórias, pois ainda faltam cadastrar " + " partidas!");
+    	totalGeral = 48; //pois são 48 partidas para completar a fase de grupos (8 grupos X 6 partidas = 48)
+    	totalPartidas = PartidaGerenciar.getMapPartidas().size();
+    	faltam = totalGeral - totalPartidas;
+    	
+    	//chamar AQUI NO IF função de verificação PartidaGerenciar - todasPartidasCadastradas, OU DEIXAR ASSIM QUE TBM FUNCIONA
+    	if (faltam != 0) {
+    		labelMessage.setText("Não é possível ir para as Fases Eliminatórias, pois ainda faltam cadastrar " + faltam + " partidas!");
+  
     	} else {
     		//abrir popUp para o usuário confirmar			
 			Parent fxmlPopUpEl = FXMLLoader.load(getClass().getResource("/app/view/popUpEliminatorias.fxml"));
 			Scene scene = new Scene(fxmlPopUpEl);
 			
+			stage = new Stage();
 			stage.setScene(scene);
 			stage.setResizable(false);
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
     	}
-    	
-    	//fazer um if e colocar isso dentro do else
-    	Parent fxmlEliminatorias = FXMLLoader.load(getClass().getResource("/app/view/EliminatoriasPage.fxml"));
-    	Main.trocarTelas(fxmlEliminatorias);
+
     }
 
     @FXML
@@ -80,7 +85,7 @@ public class FaseGruposPage {
 		return PartidasGeradas;
 	}
 	
-	public static void fecharPopUp() {
+	public static void fecharPopUp2() {
     	stage.close();
     }
 

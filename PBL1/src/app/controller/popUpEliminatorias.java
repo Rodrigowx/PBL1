@@ -1,9 +1,14 @@
 package app.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import app.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class popUpEliminatorias {
@@ -18,8 +23,11 @@ public class popUpEliminatorias {
     private Button btnSim;
 
     @FXML
-    void btnSimAction(ActionEvent event) {
-
+    void btnSimAction(ActionEvent event) throws Exception {
+    	Parent fxmlEliminatorias = FXMLLoader.load(getClass().getResource("/app/view/EliminatoriasPage.fxml"));
+    	Main.trocarTelas(fxmlEliminatorias);
+    	
+    	FaseGruposPage.fecharPopUp2();
     }
 
     @FXML

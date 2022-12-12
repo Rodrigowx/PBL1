@@ -52,7 +52,7 @@
       </VBox>
       <VBox alignment="BOTTOM_LEFT" layoutX="111.0" layoutY="192.0" onMouseMoved="#atualizarLabels" prefHeight="206.0" prefWidth="228.0" spacing="30.0">
          <children>
-            <ComboBox fx:id="choicePartida" onMouseClicked="#exibirPartidasDoGrupo" prefHeight="27.0" prefWidth="285.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
+            <ComboBox fx:id="choicePartida" onMouseClicked="#exibirPartidasDosGrupos" prefHeight="27.0" prefWidth="285.0" style="-fx-background-radius: 50; -fx-border-color: #000000; -fx-border-radius: 50; -fx-background-color: ffffff;" />
             <DatePicker fx:id="datePickerPart" editable="false" />
             <TextField fx:id="horaPartida" prefHeight="31.0" prefWidth="182.0" promptText="hh:mm" style="-fx-border-radius: 50; -fx-background-radius: 50;" VBox.vgrow="ALWAYS">
                <font>
@@ -94,7 +94,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="hBoxGolsCart" alignment="CENTER" layoutX="372.0" layoutY="191.0" prefHeight="207.0" prefWidth="471.0" spacing="10.0" style="-fx-border-radius: 40; -fx-border-color: #000000;">
+      <HBox alignment="CENTER" layoutX="372.0" layoutY="191.0" prefHeight="207.0" prefWidth="471.0" spacing="10.0" style="-fx-border-radius: 40; -fx-border-color: #000000;">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" />
          </padding>

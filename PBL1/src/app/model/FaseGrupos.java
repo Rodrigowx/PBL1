@@ -7,6 +7,7 @@ public class FaseGrupos {
 	private static Map<String, List<Selecao>> mapGrupos = new HashMap<String, List<Selecao>>();// map para armazenar em
 																								// que grupos as
 																								// seleções estão
+	private static Map<String, List<Partida>> partidasGeradasSalvo;
 
 	// -----------------------------------------------------------------------------------------
 
@@ -17,6 +18,10 @@ public class FaseGrupos {
 	 */
 	public static Map<String, List<Selecao>> getMapGrupos() {
 		return mapGrupos;
+	}
+	
+	public static Map<String, List<Partida>> getPartidasGeradas() {
+		return partidasGeradasSalvo;
 	}
 
 	/**
@@ -106,6 +111,10 @@ public class FaseGrupos {
 			mapPartidasGeradas.put(grupo, PartidasGrupo); // adiciona a Lista de Partidas do Grupo que acabou de ser
 															// percorrido no Map de TODAS as Partidas
 		});
+		
+		partidasGeradasSalvo = new HashMap<String, List<Partida>>();
+		partidasGeradasSalvo.putAll(mapPartidasGeradas);
+		
 		return mapPartidasGeradas;
 	}
 

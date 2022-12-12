@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import app.Funcoes;
 import app.Main;
 import app.DadosArquivo.DadosPreCadastro;
+import app.model.FaseGrupos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -76,6 +77,8 @@ public class MainWindow {
 			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois o número de Técnicos cadastrados é insuficiente!");
 			break;
 		case 5:
+			FaseGruposPage.setPartidasGeradas();
+			
 			//abrir popUp para o usuário confirmar			
 			FXMLLoader loader = new FXMLLoader();
 			URL xmlURL = getClass().getResource("/app/view/popUpFaseG.fxml");

@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class FaseGruposPage {
 	
-	private static Map<String, List<Partida>> PartidasGeradas = FaseGrupos.gerarPartidas();
+	private static Map<String, List<Partida>> PartidasGeradas;
 
 	@FXML
     private Button btnClassifica;
@@ -39,8 +39,9 @@ public class FaseGruposPage {
     private static Stage stage;
     
     @FXML
-    void btnClassificaAction(ActionEvent event) {
-
+    void btnClassificaAction(ActionEvent event) throws Exception {
+    	Parent fxmlClassificacao = FXMLLoader.load(getClass().getResource("/app/view/classificacaoGruposPage.fxml"));
+    	Main.trocarTelas(fxmlClassificacao);
     }
 
     @FXML
@@ -52,10 +53,10 @@ public class FaseGruposPage {
     	faltam = totalGeral - totalPartidas;
     	
     	//chamar AQUI NO IF função de verificação PartidaGerenciar - todasPartidasCadastradas, OU DEIXAR ASSIM QUE TBM FUNCIONA
-    	if (faltam != 0) {
-    		labelMessage.setText("Não é possível ir para as Fases Eliminatórias, pois ainda faltam cadastrar " + faltam + " partidas!");
+    	//if (faltam != 0) {
+    		//labelMessage.setText("Não é possível ir para as Fases Eliminatórias, pois ainda faltam cadastrar " + faltam + " partidas!");
   
-    	} else {
+    	//} else {
     		//abrir popUp para o usuário confirmar			
 			Parent fxmlPopUpEl = FXMLLoader.load(getClass().getResource("/app/view/popUpEliminatorias.fxml"));
 			Scene scene = new Scene(fxmlPopUpEl);
@@ -65,7 +66,7 @@ public class FaseGruposPage {
 			stage.setResizable(false);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
-    	}
+    	//}
 
     }
 
@@ -83,6 +84,10 @@ public class FaseGruposPage {
 
 	public static Map<String, List<Partida>> getPartidasGeradas() {
 		return PartidasGeradas;
+	}
+	
+	public static void setPartidasGeradas() {
+		PartidasGeradas = FaseGrupos.gerarPartidas();
 	}
 	
 	public static void fecharPopUp2() {

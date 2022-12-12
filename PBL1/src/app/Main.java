@@ -107,9 +107,14 @@ public class Main extends Application {
 
 		FaseGrupos GruposCRUD = new FaseGrupos();
 		PartidaGerenciar PartGerenciar = new PartidaGerenciar();
+<<<<<<< HEAD
 		
 		DadosPreCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
 		DadosPreCadastro.LeituraTecnicoArbitro(SelecaoDAO, TecnicoDAO, ArbitroDAO, GruposCRUD);
+=======
+
+		DadosPréCadastro.LeituraArquivos(SelecaoDAO, JogadorDAO, GruposCRUD);
+>>>>>>> refs/remotes/origin/rodrigo
 
 		System.out.println("----------Bem-vindo(a) ao SysCopa!-------------\n");
 
@@ -576,8 +581,7 @@ public class Main extends Application {
 			System.out.println("ESCOLHA UMA DAS OPCOES: ");
 
 			// MENU PARA A FASE 1
-			System.out.println(
-					"1 - GERENCIAR PARTIDAS \n2 - LISTAR SELECOES "
+			System.out.println("1 - GERENCIAR PARTIDAS \n2 - LISTAR SELECOES "
 					+ "\n3 - LISTAR JOGADORES \n4 - LISTAR ARBITROS \n5 - LISTAR TECNICOS \n6 - PESQUISAR \n7 - SAIR");
 
 			// O programa ler a opção escolhida pelo usuario
@@ -740,31 +744,47 @@ public class Main extends Application {
 						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime1() + " fez: ");
 						int golsTime1 = Funcoes.leituraInt();
 						partidaEscolhida.setGolsTime1(golsTime1);
-						
+
 						if (golsTime1 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
+<<<<<<< HEAD
 						
 						//Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO, partidaEscolhida.getTime1());
+=======
+
+						Funcoes.cadastrarGolsPartida(golsTime1, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime1());
+>>>>>>> refs/remotes/origin/rodrigo
 
 						// GOLS DO TIME 2
 						System.out.println("Informe quantos gols o " + partidaEscolhida.getTime2() + " fez: ");
 						int golsTime2 = Funcoes.leituraInt();
 						partidaEscolhida.setGolsTime2(golsTime2);
-						
+
 						if (golsTime2 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
+<<<<<<< HEAD
 						
 						//Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO, partidaEscolhida.getTime2());
 						
 						SelecaoDAO.atualizaPontuacao(partidaEscolhida); //coloca e atualiza a pontuação das 2 Seleçoes
+=======
+
+						Funcoes.cadastrarGolsPartida(golsTime2, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime2());
+
+						SelecaoDAO.atualizaPontuacao(partidaEscolhida); // coloca e atualiza a pontuação das 2 Seleçoes
+						partidaEscolhida.setCadastro(true);
+						Map<String, Map<Selecao, Integer>> mapPontuacaoAtt = FaseGrupos.gerarMapPontuacao();
+>>>>>>> refs/remotes/origin/rodrigo
 
 						// INSERIR CARTAO VERMELHO TIME 1
 						System.out.println(
 								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime1() + " recebeu: ");
 						int cartaoVtime1 = Funcoes.leituraInt();
-						
+
 						if (cartaoVtime1 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
@@ -774,27 +794,39 @@ public class Main extends Application {
 						System.out.println(
 								"Informe quantos cartoes VERMELHOS o " + partidaEscolhida.getTime2() + " recebeu: ");
 						int cartaoVtime2 = Funcoes.leituraInt();
-						
+
 						if (cartaoVtime2 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
+<<<<<<< HEAD
 						
+=======
+
+						Funcoes.cadastrarCartaoVermelho(cartaoVtime2, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime2());
+>>>>>>> refs/remotes/origin/rodrigo
 
 						// INSERIR CARTAO AMARELO TIME 1
 						System.out.println(
 								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime1() + " recebeu: ");
 						int cartaoAtime1 = Funcoes.leituraInt();
-						
+
 						if (cartaoAtime1 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime1(), SelecaoDAO);
 						}
+<<<<<<< HEAD
 						
+=======
+
+						Funcoes.cadastrarCartaoVermelho(cartaoAtime1, partidaEscolhida, SelecaoDAO,
+								partidaEscolhida.getTime1());
+>>>>>>> refs/remotes/origin/rodrigo
 
 						// INSERIR CARTAO AMARELO TIME 2
 						System.out.println(
 								"Informe quantos cartoes AMARELOS o " + partidaEscolhida.getTime2() + " recebeu: ");
 						int cartaoAtime2 = Funcoes.leituraInt();
-						
+
 						if (cartaoAtime2 > 0) {
 							Funcoes.exibirJogadores(partidaEscolhida.getTime2(), SelecaoDAO);
 						}
@@ -831,9 +863,9 @@ public class Main extends Application {
 				break;
 
 			// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-			//LISTAR SELEÇOES
+			// LISTAR SELEÇOES
 			case 2:
-				SelecaoDAO.listar();
+				FaseGrupos.listarPontuacao();
 				break;
 			// LISTAR JOGADORES
 			case 3:

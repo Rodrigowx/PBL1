@@ -142,8 +142,4 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 	}
 
-	public void pesquisarCategoriaArbitro() {
-
-	}
-
 }

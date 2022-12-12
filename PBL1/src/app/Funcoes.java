@@ -47,6 +47,31 @@ public class Funcoes {
 		return dadoLeituraInt;
 	}
 
+	public static Integer leituraInt() {
+
+		String dadoLeitura;
+		Integer dadoLeituraInt = null;
+		boolean finish = true;
+
+		while (finish) {
+			try {
+				dadoLeitura = read.nextLine();
+				dadoLeituraInt = Integer.parseInt(dadoLeitura);
+
+				// Caso não dê erro, agora verifica se a entrada é um numero positivo
+				if (dadoLeituraInt < 0) {
+					System.err.println("Apenas numeros positivos!");
+				} else {
+					finish = false;
+				}
+
+			} catch (NumberFormatException erro) {
+				System.err.println("Digite apenas numeros!");
+			}
+		}
+		return dadoLeituraInt;
+	}
+
 	/**
 	 * Função que verifica se os nomes informados pelo usuário possuem números
 	 * 
@@ -73,22 +98,22 @@ public class Funcoes {
 	 * @return
 	 */
 
-	public static boolean verificaçãoFase1(FaseGrupos grupos, SelecaoDAOImpl selecoes) {
+	public static int verificaçãoFase1() {
 		int totalSelecao = 32;
 		if (FaseGrupos.getMapGrupos().isEmpty()) {
-			System.out.println("\nAinda nao eh possivel ir para a fase de Grupos, pois nao ha Selecoes cadastradas!");
-			return true;
+			return 1;
+			
 		} else if (SelecaoDAOImpl.getLista1().size() < totalSelecao) {
-			System.out.println(
-					"\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de Selecoes cadastradas eh Insuficiente!");
-			return true;
-		} else if (selecoes.verificaTotal() == false) {
-			System.out.println(
-					"\nAinda nao eh possivel ir para a fase de Grupos, pois o numero de jogadores cadastrados eh Insuficiente!");
-			return true;
+			return 2;
+			
+		} else if (Main.getSelecaoDAO().verificaTotal() == false) {
+			return 3;
+			
+		} else if (TecnicoDAOImpl.verificaTotal() == false) {
+			return 4;
 		}
 
-		return false;
+		return 5;
 	}
 
 	/**
@@ -183,14 +208,14 @@ public class Funcoes {
 	 * @param SelecaoDAO
 	 * @param time
 	 */
-	public static void cadastrarGolsPartida(Jogador jogador, int golsJog, Partida partida, Selecao time) {
-			for (PartidaJogador atualPart : jogador.getPartidaJogador()) {
-				if (atualPart.getCodPartida().equals(partida.getCodPart())) {
-					atualPart.inserirGols(golsJog);
-					Integer golGeral = jogador.getGols() + golsJog;
-					jogador.setGols(golGeral);
-				}
+	public static void cadastrarGolsPartida(Jogador jogador, Integer golsJog, Partida partida, Selecao time) {
+		for (PartidaJogador atualPart : jogador.getPartidaJogador()) {
+			if (atualPart.getCodPartida().equals(partida.getCodPart())) {
+				atualPart.inserirGols(golsJog);
+				Integer golGeral = jogador.getGols() + golsJog;
+				jogador.setGols(golGeral);
 			}
+		}
 	}
 
 	/**
@@ -201,49 +226,16 @@ public class Funcoes {
 	 * @param SelecaoDAO
 	 * @param time
 	 */
-	public static void cadastrarCartaoVermelho(int cartoesDoTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
-			String time) {
-		Jogador jogadorIdOk;
-		int cartoesContabilizados = 0;
-		int cartaoGeral = 0;
-		while (true) {
-			if (cartoesContabilizados < cartoesDoTime) {
-				while (true) {
+	public static void cadastrarCartaoVermelho(Jogador jogador, Integer cartVJog, Partida partida, Selecao time) {
+		for (PartidaJogador atualPart : jogador.getPartidaJogador()) {
+			if (atualPart.getCodPartida().equals(partida.getCodPart())) {
+				atualPart.inserirCartV(cartVJog);
+				Integer cartaoGeral = jogador.getCartVermelho() + cartVJog;
+				jogador.setCartVermelho(cartaoGeral);
 
-					System.out.println("Informe o ID do jogador que recebeu algum cartao Vermelho(restam "
-							+ (cartoesDoTime - cartoesContabilizados) + " cartao(s) para cadastrar): \n");
-					String idAtual = read.nextLine();
-					jogadorIdOk = checarID(idAtual, time, SelecaoDAO);
-					if (jogadorIdOk.equals(null)) {
-						System.out.println("ID nao encontrado!\n");
-					} else {
-						break;
-					}
-				}
-
-				System.out.println("Quantos cartoes vermelhos o jogador " + jogadorIdOk.getCodJog() + " recebeu:\n");
-				int totalCartaoJog = leituraInt();
-				if (cartoesContabilizados > 0) {
-					while (totalCartaoJog > (cartoesDoTime - cartoesContabilizados)) {
-						System.out.println("Quantidade maior de cartao(s) informado(s)!");
-						System.out.println("Digite novamente!");
-						totalCartaoJog = leituraInt();
-					}
-				}
-				for (PartidaJogador atualPart : jogadorIdOk.getPartidaJogador()) {
-					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
-						atualPart.inserirCartV(totalCartaoJog);
-						cartaoGeral = jogadorIdOk.getCartVermelho() + totalCartaoJog;
-						jogadorIdOk.setCartVermelho(cartaoGeral);
-						cartoesContabilizados += totalCartaoJog;
-
-					}
-				}
-			} else {
-				break;
 			}
 		}
-		System.out.println("Cartoes inseridos com sucesso!");
+
 	}
 
 	/**
@@ -254,49 +246,16 @@ public class Funcoes {
 	 * @param SelecaoDAO
 	 * @param time
 	 */
-	public static void cadastrarCartaoAmarelo(int cartoesDoTime, Partida partidaEscolhida, SelecaoDAOImpl SelecaoDAO,
-			String time) {
-		Jogador jogadorIdOk;
-		int cartoesContabilizados = 0;
-		int cartaoGeral = 0;
-		while (true) {
-			if (cartoesContabilizados < cartoesDoTime) {
-				while (true) {
-
-					System.out.println("Informe o ID do jogador que recebeu algum cartao Amarelo(restam "
-							+ (cartoesDoTime - cartoesContabilizados) + " cartao(s) para cadastrar): \n");
-					String idAtual = read.nextLine();
-					jogadorIdOk = checarID(idAtual, time, SelecaoDAO);
-					if (jogadorIdOk.equals(null)) {
-						System.out.println("ID nao encontrado!\n");
-					} else {
-						break;
-					}
-				}
-
-				System.out.println("Quantos cartoes amarelos o jogador " + jogadorIdOk.getCodJog() + " recebeu:\n");
-				int totalCartaoJog = leituraInt();
-				if (cartoesContabilizados > 0) {
-					while (totalCartaoJog > (cartoesDoTime - cartoesContabilizados)) {
-						System.out.println("Quantidade maior de cartao(s) informado(s)!");
-						System.out.println("Digite novamente!");
-						totalCartaoJog = leituraInt();
-					}
-				}
-				for (PartidaJogador atualPart : jogadorIdOk.getPartidaJogador()) {
-					if (atualPart.getCodPartida().equals(partidaEscolhida.getCodPart())) {
-						atualPart.inserirCartA(totalCartaoJog);
-						cartaoGeral = jogadorIdOk.getCartAmarelo() + totalCartaoJog;
-						jogadorIdOk.setCartAmarelo(cartaoGeral);
-						cartoesContabilizados += totalCartaoJog;
+	public static void cadastrarCartaoAmarelo(Jogador jogador, Integer cartAJog, Partida partida, Selecao time) {
+				for (PartidaJogador atualPart : jogador.getPartidaJogador()) {
+					if (atualPart.getCodPartida().equals(partida.getCodPart())) {
+						atualPart.inserirCartA(cartAJog);
+						Integer cartaoGeral = jogador.getCartAmarelo() + cartAJog;
+						jogador.setCartAmarelo(cartaoGeral);
 
 					}
-				}
-			} else {
-				break;
-			}
+
 		}
-		System.out.println("Cartoes inseridos com sucesso!");
 	}
 
 	/**

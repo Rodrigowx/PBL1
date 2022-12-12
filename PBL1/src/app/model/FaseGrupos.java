@@ -1,6 +1,7 @@
 package app.model;
 
 import java.util.*;
+import java.util.Map.Entry;
 
 public class FaseGrupos {
 
@@ -116,6 +117,115 @@ public class FaseGrupos {
 		partidasGeradasSalvo.putAll(mapPartidasGeradas);
 		
 		return mapPartidasGeradas;
+	}
+	
+	public static Map<String, Map<Selecao, Integer>> gerarMapPontuacao() {
+
+		Map<String, Map<Selecao, Integer>> selecoesOitavas = new HashMap<>();
+
+		for (Map.Entry<String, List<Selecao>> entry : mapGrupos.entrySet()) {
+
+			Map<Selecao, Integer> tempMap = new HashMap<>();
+
+			for (Selecao selAtual : entry.getValue()) {
+				tempMap.put(selAtual, selAtual.getPontuacaoFaseG());
+
+			}
+			List<Map.Entry<Selecao, Integer>> valorAtt = new ArrayList<>(tempMap.entrySet());
+			valorAtt.sort(Map.Entry.comparingByValue());
+			Collections.reverse(valorAtt);
+			selecoesOitavas.put(entry.getKey(), tempMap);
+		}
+
+		return selecoesOitavas;
+
+	}
+
+	public static void listarPontuacao() {
+
+		Map<String, Map<Selecao, Integer>> mapAtualizado = gerarMapPontuacao();
+
+		for (Map.Entry<String, Map<Selecao, Integer>> entry : mapAtualizado.entrySet()) {
+
+			List<Map.Entry<Selecao, Integer>> valorAtt = new ArrayList<>(entry.getValue().entrySet());
+			valorAtt.sort(Map.Entry.comparingByValue());
+			Collections.reverse(valorAtt);
+			for (Map.Entry<Selecao, Integer> entry2 : valorAtt) {
+				System.out.println("Grupo: " + entry.getKey() + " | Selecao: " + entry2.getKey() + " | Pontuacao: "
+						+ entry2.getValue());
+			}
+		}
+
+	}
+
+	public static void listarCampeoes() {
+
+		Map<String, Map<Selecao, Integer>> mapAtualizado = gerarMapPontuacao();
+
+		for (Map.Entry<String, Map<Selecao, Integer>> entry : mapAtualizado.entrySet()) {
+
+			List<Map.Entry<Selecao, Integer>> valorAtt = new ArrayList<>(entry.getValue().entrySet());
+			valorAtt.sort(Map.Entry.comparingByValue());
+			Collections.reverse(valorAtt);
+			int contador = 0;
+			for (Map.Entry<Selecao, Integer> entry2 : valorAtt) {
+				if (contador == 0 || contador == 1) {
+					System.out.println("Grupo: " + entry.getKey() + " | Selecao: " + entry2.getKey() + " | Pontuacao: "
+							+ entry2.getValue());
+				}
+				contador += 1;
+			}
+
+		}
+	}
+
+	public static List<Selecao> organizaSelecoesGrupo(String letraGrupo) {
+
+		Map<Selecao, Integer> grupo = acharGrupo(letraGrupo);
+		Map<Selecao, List<Integer>> mapParametroComparacao = new HashMap<>();
+		for (Map.Entry<Selecao, Integer> entry : grupo.entrySet()) {
+			List<Integer> parametroComparacao = new ArrayList<>();
+			Selecao selecao = entry.getKey();
+			parametroComparacao.add(selecao.getPontuacaoFaseG());
+			parametroComparacao.add(selecao.getTotalGols());
+			parametroComparacao.add(selecao.getTotalCartao());
+			mapParametroComparacao.put(selecao, parametroComparacao);
+		}
+
+		List<List<Integer>> parametrosList = new ArrayList<>(mapParametroComparacao.values());
+		List<Selecao> selecoesOrdenadas = new ArrayList<>();
+		parametrosList.sort((x, y) -> {
+			for (int i = 0; i < Math.min(x.size(), y.size()); i++) {
+				if (x.get(i) != y.get(i)) {
+					return x.get(i) - y.get(i);
+				}
+			}
+
+			return x.size() - y.size();
+		});
+
+		for (List<Integer> list : parametrosList) {
+			for (Entry<Selecao, List<Integer>> entry : mapParametroComparacao.entrySet()) {
+				Selecao selecao = entry.getKey();
+				List<Integer> lis = entry.getValue();
+				if (list.equals(lis) && !selecoesOrdenadas.contains(selecao))
+					selecoesOrdenadas.add(selecao);
+			}
+		}
+		Collections.reverse(selecoesOrdenadas);
+		return selecoesOrdenadas;
+	}
+
+	private static Map<Selecao, Integer> acharGrupo(String letraGrupo) {
+		Map<String, Map<Selecao, Integer>> atual = gerarMapPontuacao();
+		for (Entry<String, Map<Selecao, Integer>> entry : atual.entrySet()) {
+			if (entry.getKey().equals(letraGrupo)) {
+				return entry.getValue();
+			}
+
+		}
+
+		return null;
 	}
 
 }

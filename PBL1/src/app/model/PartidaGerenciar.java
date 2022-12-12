@@ -63,7 +63,7 @@ public class PartidaGerenciar {
 	 * 
 	 * @param nomeSelecao
 	 */
-	public void pesquisarSelecao(String nomeSelecao) {
+	public static void pesquisarSelecao(String nomeSelecao) {
 		mapPartidas.forEach((id, partida) -> {
 			if (partida.getTime1().equals(nomeSelecao) || partida.getTime2().equals(nomeSelecao)) {
 				System.out.println("ID: " + id);
@@ -83,7 +83,7 @@ public class PartidaGerenciar {
 	 * 
 	 * @param data
 	 */
-	public void pesquisarPartidaData(String data) {
+	public static void pesquisarPartidaData(String data) {
 		mapPartidas.forEach((id, partida) -> {
 			if (partida.getData().equals(data)) {
 				System.out.println("ID: " + id);
@@ -101,7 +101,7 @@ public class PartidaGerenciar {
 	/**
 	 * Função responsável por listar.
 	 */
-	public void listar() {
+	public static void listar() {
 
 		System.out.println("\nLISTAGEM DAS PARTIDAS: \n");
 
@@ -115,6 +115,19 @@ public class PartidaGerenciar {
 			System.out.println();
 		});
 
+	}
+
+	public static boolean todasPartidasCadastradas() {
+
+		for (Map.Entry<String, Partida> partidaAtual : mapPartidas.entrySet()) {
+			if (partidaAtual.getValue().isCadastro() == true) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 }

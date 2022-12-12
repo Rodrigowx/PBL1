@@ -125,7 +125,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 		listaSelecoes.add(selecao); // **
 		nomesSelecao.add(selecao.getNome());
-		
+
 		return true;
 	}
 
@@ -200,7 +200,8 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	public void listar() {
 		System.out.println("\nLISTAGEM DAS SELECOES:");
 		for (Selecao selecao : listaSelecoes) {
-			System.out.println("- " + selecao.getNome() + "\tGrupo: " + selecao.getGrupo() + "\tPontuacao: " + selecao.getPontuacaoFaseG());
+			System.out.println("- " + selecao.getNome() + "\tGrupo: " + selecao.getGrupo() + "\tPontuacao: "
+					+ selecao.getPontuacaoFaseG());
 		}
 	}
 
@@ -220,21 +221,23 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 			}
 		}
 	}
-	
+
 	/**
 	 * Essa função tem o objetivo de ...
+	 * 
 	 * @param partida
 	 */
-	
+
 	public void atualizaPontuacao(Partida partida) {
-		
+
 		Integer golsTime1, golsTime2;
 		Selecao time1 = null, time2 = null;
-		
+
 		golsTime1 = partida.getGolsTime1();
 		golsTime2 = partida.getGolsTime2();
-		
-		//Percorre a lista de seleçoes para selecionar os objetos Selecao dos times da partida
+
+		// Percorre a lista de seleçoes para selecionar os objetos Selecao dos times da
+		// partida
 		for (Selecao selecao : listaSelecoes) {
 			if (selecao.getNome().equals(partida.getTime1())) {
 				time1 = selecao;
@@ -244,26 +247,30 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 				continue;
 			}
 		}
-		
-		//Selecionando qual foi o time ganhador ou se houve empate e adicionando os pontos 
+
+		// Selecionando qual foi o time ganhador ou se houve empate e adicionando os
+		// pontos
 		if (golsTime1 > golsTime2) {
-			
-			//Quando um time ganha uma partida, 3 pontos são acrescentados na fase de Grupos
-			Integer pontos = time1.getPontuacaoFaseG() + 3; 
-			time1.setPontuacaoFaseG(pontos);
-			
-		} else if (golsTime1 < golsTime2) {
+
+			// Quando um time ganha uma partida, 3 pontos são acrescentados na fase de
+			// Grupos
 			Integer pontos = time1.getPontuacaoFaseG() + 3;
 			time1.setPontuacaoFaseG(pontos);
-			
+
+		} else if (golsTime1 < golsTime2) {
+			Integer pontos = time2.getPontuacaoFaseG() + 3;
+			time2.setPontuacaoFaseG(pontos);
+
 		} else if (golsTime1.equals(golsTime2)) {
-			
-			//Quando o resultado da partida foi um empate, 1 ponto é acrescentado em cada Seleção
+
+			// Quando o resultado da partida foi um empate, 1 ponto é acrescentado em cada
+			// Seleção
 			Integer pontos1 = time1.getPontuacaoFaseG() + 1;
 			Integer pontos2 = time2.getPontuacaoFaseG() + 1;
-			
+
 			time1.setPontuacaoFaseG(pontos1);
 			time2.setPontuacaoFaseG(pontos2);
 		}
 	}
+
 }

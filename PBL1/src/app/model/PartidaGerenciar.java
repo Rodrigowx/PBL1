@@ -37,6 +37,7 @@ public class PartidaGerenciar {
 		return false;
 	}
 
+
 	public static void excluir(Partida partida) {
 		//chamando a função que retira os dados da partida dos jogadores
 		
@@ -48,7 +49,8 @@ public class PartidaGerenciar {
 		partida.setHorario(null);
 		partida.setLocal(null);
 		
-		mapPartidas.remove(partida);
+		mapPartidas.remove(partida.getCodPart());
+		System.out.println(mapPartidas);
 		
 		//retornando a partida para a lista de partidas geradas para ser cadastrada novamente
 		FaseGruposPage.getPartidasGeradas().get(partida.getGrupo()).add(partida);

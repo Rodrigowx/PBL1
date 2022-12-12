@@ -7,11 +7,14 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="555.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PartidaListarExcluirPage">
    <children>
+      <TableView fx:id="tabelaPartidas" layoutX="25.0" layoutY="114.0" prefHeight="298.0" prefWidth="800.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
       <Label contentDisplay="CENTER" layoutX="31.0" layoutY="18.0" prefHeight="40.0" prefWidth="800.0" style="-fx-border-radius: 50;" text="syscopa 3.0" textFill="#5b5b5b">
          <font>
             <Font name="Arial Bold" size="28.0" />
@@ -26,13 +29,11 @@
             <Font name="Dubai Regular" size="18.0" />
          </font>
       </Label>
-      <HBox layoutX="126.0" layoutY="240.0" prefHeight="129.0" prefWidth="614.0" spacing="5.0" />
-      <Label fx:id="labelMessage" layoutX="228.0" layoutY="204.0" prefHeight="18.0" prefWidth="405.0" textFill="RED">
+      <Label fx:id="labelMessage" layoutX="25.0" layoutY="427.0" prefHeight="18.0" prefWidth="405.0" textFill="RED">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="tabelaPartidas" layoutX="25.0" layoutY="114.0" prefHeight="298.0" prefWidth="800.0" />
       <Button fx:id="btnDelPart" layoutX="357.0" layoutY="464.0" mnemonicParsing="false" onAction="#btnDelPartAction" prefHeight="46.0" prefWidth="152.0" style="-fx-background-color: E58787; -fx-border-radius: 50; -fx-background-radius: 50; -fx-border-color: #919191;" text="Excluir Partida">
          <font>
             <Font name="System Bold" size="15.0" />

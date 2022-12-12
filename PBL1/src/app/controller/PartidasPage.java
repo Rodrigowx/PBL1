@@ -33,8 +33,6 @@ import javafx.scene.paint.Color;
 public class PartidasPage {
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
-	
-	private SelecaoDAOImpl SelecaoDAO = new SelecaoDAOImpl();
 
 	@FXML
 	private Button btnAddPart;
@@ -175,17 +173,13 @@ public class PartidasPage {
 			partidaEscolhida.setData(data);
 			partidaEscolhida.setHorario(horario);
 			partidaEscolhida.setLocal(local);
-
-			// Inserindo partida em todos jogadores.
-			Funcoes.inserirPartidaJog(partidaEscolhida, new SelecaoDAOImpl());
-
-			/**
-			 * COLOCAR AQUI A PARTE DOS GOLS E CARTÔES
-			 */
-			// verificar se fez tudoo, ver como
+			
+			//a parte dos gols é inserido após os outros dados, em outra função
 
 			PartidaGerenciar.inserir(partidaEscolhida);
-			Funcoes.inserirPartidaJog(partidaEscolhida, SelecaoDAO);
+			
+			// Inserindo partida em todos jogadores.
+			Funcoes.inserirPartidaJog(partidaEscolhida, Main.getSelecaoDAO());
 			listaDePartidas.remove(partidaEscolhida);
 
 			labelMessage.setTextFill(Color.GREEN);
@@ -196,6 +190,7 @@ public class PartidasPage {
 		} catch (Exception e) {
 			this.labelMessage.setText("Erro ao cadastrar partida!");
 		}
+		
 	}
 
 	@FXML
@@ -411,11 +406,19 @@ public class PartidasPage {
 				this.totalGolsTime1 += golsJog1;
 				this.labelTotalGols1.setText("Total de Gols: " + totalGolsTime1);
 				
-			} else if (jogadorTime2 != null) {
+				//adicionando os gols na partida
+				partida.setGolsTime1(totalGolsTime1);
+				
+			}
+			
+			if (jogadorTime2 != null) {
 				inserirGols(partida, jogadorTime2, time2, golsJog2);
 				inserirCartões(partida, jogadorTime2, time2, cartVJog2, cartAJog2);
 				this.totalGolsTime2 += golsJog2;
 				this.labelTotalGols2.setText("Total de Gols: " + totalGolsTime2);
+				
+				//adicionando os gols na partida
+				partida.setGolsTime2(totalGolsTime2);
 			}
 
 			labelMessage.setTextFill(Color.GREEN);
@@ -448,9 +451,21 @@ public class PartidasPage {
 	
 	@FXML
     void btnFinalizarPartAction(ActionEvent event) {
-		labelMessage.setTextFill(Color.GREEN);
-		labelMessage.setText("Partida cadastrada com sucesso!");
-		clearAll();
+		if (verificaEspacos()) {
+			return;
+		} else {
+			if (this.hBoxGolsCart.isDisable()) {
+				labelMessage.setTextFill(Color.RED);
+				labelMessage.setText("É necessário inserir a partida antes!");
+				return;
+			} else {
+				labelMessage.setTextFill(Color.GREEN);
+				labelMessage.setText("Partida cadastrada com sucesso!");
+				clearAll();
+			}
+	
+		}
+		
     }
 
 }

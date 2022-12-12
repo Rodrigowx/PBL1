@@ -1,11 +1,14 @@
 package app.controller;
 
+import app.Main;
 import app.model.Partida;
 import app.model.PartidaGerenciar;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -34,7 +37,7 @@ public class PartidaListarExcluirPage {
 
 	@FXML
 	void btnDelPartAction(ActionEvent event) {
-		try {
+		
 			labelMessage.setTextFill(Color.RED);
 			
 			int partidaIndex = this.tabelaPartidas.getSelectionModel().getSelectedIndex();
@@ -52,15 +55,14 @@ public class PartidaListarExcluirPage {
 			
 			labelMessage.setTextFill(Color.GREEN);
 			labelMessage.setText("Partida excluída com sucesso!");
-			
-		} catch(Exception e) {
-			labelMessage.setText("Erro ao excluir partida!");
-		}
+
+			this.attTabela();
 	}
 
     @FXML
-    void btnReturnAction(ActionEvent event) {
-
+    void btnReturnAction(ActionEvent event) throws Exception {
+    	Parent fxmlPartidas = FXMLLoader.load(getClass().getResource("/app/view/PartidasPage.fxml"));
+    	Main.trocarTelas(fxmlPartidas);
     }
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -88,11 +90,17 @@ public class PartidaListarExcluirPage {
      	grupoCol.setCellValueFactory(new PropertyValueFactory<Partida, String>("grupo"));
 
      	this.tabelaPartidas.getColumns().addAll(time1Col, gols1Col, time2Col, gols2Col, dataCol, horarioCol, localCol, grupoCol);
+     	this.attTabela();
      	
-     	//exibindo os dados na tabela
-     	this.dadosPartidas = FXCollections.observableArrayList(PartidaGerenciar.getMapPartidas().values());
-		this.tabelaPartidas.setItems(dadosPartidas);
 		
 	}
+    
+    public void attTabela() {
+    	//exibindo os dados na tabela
+     	this.dadosPartidas = FXCollections.observableArrayList(PartidaGerenciar.getMapPartidas().values());
+		this.tabelaPartidas.setItems(dadosPartidas);
+
+		labelTotalPart.setText("Total: " + dadosPartidas.size());
+    }
 
 }

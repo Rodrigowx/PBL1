@@ -13,8 +13,8 @@ public class Partida {
 	private String local;
 	private String time1;
 	private String time2;
-	private Integer golsTime1;
-	private Integer golsTime2;
+	private Integer golsTime1 = 0;
+	private Integer golsTime2 = 0;
 	private String grupo;
 
 	// CONSTRUTOR

@@ -76,8 +76,7 @@ public class MainWindow {
 			labelMessage.setText("Ainda não é possível ir para a Fase de Grupos, pois o número de Técnicos cadastrados é insuficiente!");
 			break;
 		case 5:
-			//abrir popUp para o usuário confirmar
-			
+			//abrir popUp para o usuário confirmar			
 			Parent fxmlPopUp = FXMLLoader.load(getClass().getResource("/app/view/popUpFaseG.fxml"));
 			Scene scene = new Scene(fxmlPopUp);
 			

@@ -13,7 +13,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	private static List<String> nomesSelecao = new ArrayList<String>();
 
 	// ------------------------------------------------------------------------
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 		if (nomesSelecao.isEmpty()) {
 			return false;
 		} else {
@@ -33,7 +33,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @param nomeSelecao
 	 * @return seleção
 	 */
-	public Selecao verificaTecnico(String nomeSelecao) {
+	public static Selecao verificaTecnico(String nomeSelecao) {
 
 		for (Selecao atual : listaSelecoes) {
 			if (atual.getNome().equals(nomeSelecao)) {
@@ -54,7 +54,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @return objeto da Seleção
 	 */
 
-	public Selecao verificaSelecao(String nomeSelecao) {
+	public static Selecao verificaSelecao(String nomeSelecao) {
 
 		if (nomesSelecao.contains(nomeSelecao)) {
 
@@ -71,7 +71,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 		return null;
 	}
 
-	public boolean verificaTotal() {
+	public static boolean verificaTotal() {
 
 		/**
 		 * Essa função verifica se cada seleção cadastrada possui pelo menos 7 jogadores
@@ -97,7 +97,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @return Lista Selecao.
 	 */
 
-	public ArrayList<Selecao> getLista1() {
+	public static ArrayList<Selecao> getLista1() {
 		return listaSelecoes;
 	}
 
@@ -106,7 +106,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * 
 	 * @return Lista de nomes da Selecao.
 	 */
-	public List<String> getLista2() {
+	public static List<String> getLista2() {
 		return nomesSelecao;
 	}
 
@@ -139,25 +139,29 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 */
 
 	@Override
-	public boolean editar(String nomeSelecao, String novoNome) {
+    public boolean editar(String nomeSelecao, String novoNome, String novoGrupo) {
 
-		for (int i = 0; i < listaSelecoes.size(); i++) {
+        for(Selecao selecao : listaSelecoes) {
+            if(selecao.getNome().equals(nomeSelecao)) {
+                selecao.setNome(novoNome);// mudando o nome no objeto
 
-			if (listaSelecoes.get(i).getNome().equals(nomeSelecao)) {
+                // tirando o nome antigo da segunda lista e adicionando o novo
+                int index = nomesSelecao.indexOf(nomeSelecao);
+                nomesSelecao.remove(index);
+                nomesSelecao.add(novoNome);
 
-				listaSelecoes.get(i).setNome(novoNome);// mudando o nome no objeto
-
-				// tirando o nome antigo da segunda lista e adicionando o novo
-				int index = nomesSelecao.indexOf(nomeSelecao);
-				nomesSelecao.remove(index);
-				nomesSelecao.add(novoNome);
-
-				System.out.println("Editado com sucesso!");
-				return true;
-			}
-		}
-		return false;
-	}
+                if(selecao.getGrupo().equals(novoGrupo)) {
+                    return true;
+                } else{
+                    FaseGrupos.getMapGrupos().get(selecao.getGrupo()).remove(selecao);
+                    FaseGrupos.getMapGrupos().get(novoGrupo).add(selecao);
+                    selecao.setGrupo(novoGrupo);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 	/**
 	 * Função excluir, responsável por excluir o objeto Seleção da lista. E também,
@@ -168,23 +172,24 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 */
 
 	@Override
-	public Selecao excluir(String nomeSelecao) {
+    public Selecao excluir(String nomeSelecao) {
 
-		/* removendo da lista de nomes (segunda lista) */
-		int indx2 = nomesSelecao.indexOf(nomeSelecao);
-		nomesSelecao.remove(indx2);
+        /* removendo da lista de nomes (segunda lista) */
+        int indx2 = nomesSelecao.indexOf(nomeSelecao);
+        nomesSelecao.remove(indx2);
 
-		for (Selecao atual : listaSelecoes) {
-			if (atual.getNome().equals(nomeSelecao) == true) {
-				Selecao a = atual;
-				listaSelecoes.remove(atual);
-				System.out.println("Excluido com sucesso!");
-				return a;
-			}
+        for (Selecao atual : listaSelecoes) {
+            if (atual.getNome().equals(nomeSelecao) == true) {
+                Selecao a = atual;
+                listaSelecoes.remove(atual);
+                FaseGrupos.getMapGrupos().get(a.getGrupo()).remove(a);//removendo do map de grupos
 
-		}
-		return null;
-	}
+                return a;
+            }
+
+        }
+        return null;
+    }
 
 	/**
 	 * Função listar, responsável por imprimir o nome de todos os objetos Seleções
@@ -193,11 +198,6 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 
 	@Override
 	public void listar() {
-		System.out.println("\nLISTAGEM DAS SELECOES:");
-		for (Selecao selecao : listaSelecoes) {
-			System.out.println("- " + selecao.getNome() + "\tGrupo: " + selecao.getGrupo() + "\tPontuacao: "
-					+ selecao.getPontuacaoFaseG());
-		}
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @param tec
 	 */
 
-	public void attTecnico(Tecnico tec) {
+	public static void attTecnico(Tecnico tec) {
 
 		for (Selecao x : listaSelecoes) {
 			if (x.getNome().equals(tec.getSelecao().getNome())) {
@@ -223,7 +223,7 @@ public class SelecaoDAOImpl implements SelecaoDAO {
 	 * @param partida
 	 */
 
-	public void atualizaPontuacao(Partida partida) {
+	public static void atualizaPontuacao(Partida partida) {
 
 		Integer golsTime1, golsTime2;
 		Selecao time1 = null, time2 = null;

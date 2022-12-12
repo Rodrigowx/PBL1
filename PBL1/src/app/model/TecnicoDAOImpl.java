@@ -20,7 +20,7 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	 * @return vericação de execução.
 	 */
 
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 		if (nomesTecnico.isEmpty()) {
 			return false;
 		} else {
@@ -32,6 +32,15 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 		}
 	}
 
+	public static boolean verificaTotal() {
+		int totalTecnicos = 32;
+		if (listaTecnicos.size() == totalTecnicos) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	// ------------------------------------------------------------------------
 
 	/**
@@ -40,7 +49,7 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	 * @return lista de objetos.
 	 */
 
-	public ArrayList<Tecnico> getLista1() {
+	public static ArrayList<Tecnico> getLista1() {
 		return listaTecnicos;
 	}
 
@@ -50,7 +59,7 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	 * @return lista de nomes.
 	 */
 
-	public List<String> getLista2() {
+	public static List<String> getLista2() {
 		return nomesTecnico;
 	}
 	// ------------------------------------------------------------------------
@@ -67,7 +76,6 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	public boolean inserir(Tecnico tecnico) {
 		listaTecnicos.add(tecnico);
 		nomesTecnico.add(tecnico.getNome());
-		System.out.println("Inserido com sucesso!");
 		return true;
 	}
 
@@ -81,7 +89,7 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 	 */
 
 	@Override
-	public boolean editar(String nomeTecnico, String novoNome) {
+	public boolean editar(String nomeTecnico, String novoNome, Selecao novaSelecao) {
 
 		/**
 		 * O 'for' percorre a lista de tecnicos procurando o objeto que possui o nome
@@ -89,16 +97,23 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 		 * encontre um objeto com o nome dado, o método retorna false
 		 */
 
-		for (int i = 0; i < listaTecnicos.size(); i++) {
-			if (listaTecnicos.get(i).getNome().equals(nomeTecnico)) {
-				listaTecnicos.get(i).setNome(novoNome);
+		for (Tecnico tecnico : listaTecnicos) {
+			if (tecnico.getNome().equals(nomeTecnico)) {
 
-				// tirando o nome antigo da segunda lista e adicionando o novo
-				int index = nomesTecnico.indexOf(nomeTecnico);
-				nomesTecnico.remove(index);
-				nomesTecnico.add(novoNome);
+				if (!(novoNome.isBlank())) {
+					tecnico.setNome(novoNome);
 
-				System.out.println("Editado com sucesso!");
+					// tirando o nome antigo da segunda lista e adicionando o novo
+					int index = nomesTecnico.indexOf(nomeTecnico);
+					nomesTecnico.remove(index);
+					nomesTecnico.add(novoNome);
+
+				} else if (novaSelecao != null) {
+					tecnico.getSelecao().setTecnico(null); // removendo o tecnico de sua seleção antiga
+					tecnico.setSelecao(novaSelecao); // colocando a nova seleção no técnico
+					novaSelecao.setTecnico(tecnico); // colocando o técnico na nova seleção
+				}
+
 				return true;
 			}
 		}
@@ -122,20 +137,21 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 		 * Técnico que foi excluído. Caso não encontre, retorna NULL.
 		 */
 
-		for (int i = 0; i < listaTecnicos.size(); i++) {
+		for (Tecnico tecnico : listaTecnicos) {
 
-			if (listaTecnicos.get(i).getNome().equals(nomeTecnico)) {
+			if (tecnico.getNome().equals(nomeTecnico)) {
 
-				Tecnico objTecnico = listaTecnicos.get(i); // puxa da lista o objeto que será excluído para o retorno
-				listaTecnicos.remove(i);
+				listaTecnicos.remove(tecnico);
 
-				/* removendo da lista de nomes (segunda lista) */
+				// removendo da lista de nomes (segunda lista)
 				int index = nomesTecnico.indexOf(nomeTecnico);
 				nomesTecnico.remove(index);
 
-				System.out.println("Excluido com sucesso!");
-				return objTecnico;
+				tecnico.getSelecao().setTecnico(null); // removando o técnico de sua seleção
+
+				return tecnico;
 			}
+
 		}
 		return null;
 	}
@@ -147,12 +163,7 @@ public class TecnicoDAOImpl implements TecnicoDAO {
 
 	@Override
 	public void listar() {
-		System.out.println("- TECNICO");
-		for (int i = 0; i < listaTecnicos.size(); i++) {
-			System.out.println("- " + listaTecnicos.get(i).getNome() + "\tSELECAO: "
-					+ listaTecnicos.get(i).getSelecao().getNome()); // lista
-			// Loop para listar tecnicos.
-		}
+
 	}
 
 }

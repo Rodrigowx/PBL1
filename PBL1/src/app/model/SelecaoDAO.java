@@ -8,7 +8,7 @@ public interface SelecaoDAO {
 
 	public boolean inserir(Selecao selecao);
 
-	public boolean editar(String nomeSelecao, String novoNome);
+	public boolean editar(String nomeSelecao, String novoNome, String novoGrupo);
 
 	public Selecao excluir(String nomeSelecao);
 

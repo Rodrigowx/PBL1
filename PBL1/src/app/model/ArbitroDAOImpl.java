@@ -62,7 +62,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	public boolean inserir(Arbitro arbitro) {
 		listaArbitro.add(arbitro);
 		nomesArbitros.add(arbitro.getNome());
-		System.out.println("Inserido com sucesso!");
 		return true;
 	}
 
@@ -84,7 +83,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 				nomesArbitros.remove(index);
 				nomesArbitros.add(nome2);
 
-				System.out.println("Editado com sucesso!");
 				return true;
 			}
 		}
@@ -113,7 +111,6 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 				int index = nomesArbitros.indexOf(nomeArbitro);
 				nomesArbitros.remove(index);
 
-				System.out.println("Excluido com sucesso!");
 				return objArbitro;
 			}
 		}
@@ -128,17 +125,7 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 
 	@Override
 	public void listar() {
-		System.out.println("- Arbitros:");
-		for (int i = 0; i < listaArbitro.size(); i++) {
-			System.out.println("- " + listaArbitro.get(i).getNome()); // for para percorrer e listar o nome cada Arbitro
-																		// da lista.
 
 		}
-
-	}
-
-	public void pesquisarCategoriaArbitro() {
-
-	}
 
 }

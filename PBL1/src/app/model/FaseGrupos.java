@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 public class FaseGrupos {
 
+	private static Map<String, List<Partida>> partidasGeradasSalvo;
 	private static Map<String, List<Selecao>> mapGrupos = new HashMap<String, List<Selecao>>();// map para armazenar em
 																								// que grupos as
 																								// seleções estão
@@ -16,8 +17,12 @@ public class FaseGrupos {
 	 * 
 	 * @return Map dos Grupos
 	 */
-	public Map<String, List<Selecao>> getMapGrupos() {
+	public static Map<String, List<Selecao>> getMapGrupos() {
 		return mapGrupos;
+	}
+
+	public static Map<String, List<Partida>> getPartidasGeradas() {
+		return partidasGeradasSalvo;
 	}
 
 	/**
@@ -28,7 +33,7 @@ public class FaseGrupos {
 	 * @param Letra do Grupo
 	 * @return true ou false
 	 */
-	public boolean verificaGrupos(String opcaoMenu) {
+	public static boolean verificaGrupos(String opcaoMenu) {
 
 		List<Selecao> grupo = mapGrupos.get(opcaoMenu);
 
@@ -51,7 +56,7 @@ public class FaseGrupos {
 	 * 
 	 * @param grupo
 	 */
-	public void atualizaGrupos(String grupo, Selecao selecao) {
+	public static void atualizaGrupos(String grupo, Selecao selecao) {
 
 		if (mapGrupos.containsKey(grupo)) { // se o map já contem esse grupo, adiciona a seleção a lista
 			mapGrupos.get(grupo).add(selecao);
@@ -72,7 +77,7 @@ public class FaseGrupos {
 	 * @return map de todas as partidas geradas
 	 */
 
-	public Map<String, List<Partida>> gerarPartidas() {
+	public static Map<String, List<Partida>> gerarPartidas() {
 
 		Map<String, List<Partida>> mapPartidasGeradas = new HashMap<String, List<Partida>>(); // cria um Map para
 																								// armazenar as partidas
@@ -110,6 +115,8 @@ public class FaseGrupos {
 			mapPartidasGeradas.put(grupo, PartidasGrupo); // adiciona a Lista de Partidas do Grupo que acabou de ser
 															// percorrido no Map de TODAS as Partidas
 		});
+		partidasGeradasSalvo = new HashMap<String, List<Partida>>();
+		partidasGeradasSalvo.putAll(mapPartidasGeradas);
 		return mapPartidasGeradas;
 	}
 

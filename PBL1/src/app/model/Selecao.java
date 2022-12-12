@@ -15,6 +15,8 @@ public class Selecao {
 	private Tecnico tecnico = null;
 	private String grupo;
 	private Integer pontuacaoFaseG = 0;
+	private Integer totalGols = 0;
+	private Integer totalCartao = 0;
 
 	// CONSTRUTOR
 	public Selecao(String nome, List<Jogador> jogadores, String grupo) {
@@ -61,13 +63,29 @@ public class Selecao {
 	public void setGrupo(String grupo) {
 		this.grupo = grupo;
 	}
-	
+
 	public Integer getPontuacaoFaseG() {
 		return pontuacaoFaseG;
 	}
 
 	public void setPontuacaoFaseG(Integer pontuacaoFaseG) {
 		this.pontuacaoFaseG = pontuacaoFaseG;
+	}
+
+	public Integer getTotalGols() {
+		return totalGols;
+	}
+
+	public void setTotalGols(Integer totalGols) {
+		this.totalGols = totalGols;
+	}
+
+	public Integer getTotalCartao() {
+		return totalCartao;
+	}
+
+	public void setTotalCartao(Integer totalCartao) {
+		this.totalCartao = totalCartao;
 	}
 
 }

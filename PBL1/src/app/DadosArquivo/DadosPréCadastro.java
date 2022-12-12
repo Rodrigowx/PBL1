@@ -23,7 +23,7 @@ public class DadosPréCadastro {
 	public static void LeituraArquivos(SelecaoDAOImpl SelecaoDAO, JogadorDAOImpl JogadorDAO, FaseGrupos GruposCRUD) {
 		
 		try {
-			FileInputStream arquivo = new FileInputStream("/Users/Rodrigo/git/PBL1/PBL1/src/app/DadosArquivo/arquivoDeDados.txt");
+			FileInputStream arquivo = new FileInputStream("PBL1/src/app/DadosArquivo./arquivoDeDados.txt");
 			InputStreamReader input = new InputStreamReader(arquivo);
 			BufferedReader buffer = new BufferedReader(input);
 			

@@ -19,7 +19,7 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * @param nome
 	 * @return vericação de execução.
 	 */
-	public boolean checarNome(String nome) {
+	public static boolean checarNome(String nome) {
 		if (nomesArbitros.isEmpty()) {
 			return false;
 		} else {
@@ -37,7 +37,7 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * @return lista de objetos.
 	 */
 	// ------------------------------------------------------------------------
-	public ArrayList<Arbitro> getLista1() {
+	public static ArrayList<Arbitro> getLista1() {
 		return listaArbitro;
 	}
 
@@ -46,7 +46,7 @@ public class ArbitroDAOImpl implements ArbitroDAO {
 	 * 
 	 * @return lista de nomes.
 	 */
-	public List<String> getLista2() {
+	public static List<String> getLista2() {
 		return nomesArbitros;
 	}
 	// ------------------------------------------------------------------------

@@ -16,6 +16,9 @@ public class Partida {
 	private Integer golsTime1;
 	private Integer golsTime2;
 	private String grupo;
+	private boolean cadastro = false;
+	private Selecao ganhador;
+	private Selecao perdedor;
 
 	// CONSTRUTOR
 	public Partida(String time1, String time2) {
@@ -97,6 +100,30 @@ public class Partida {
 
 	public void setGrupo(String grupo) {
 		this.grupo = grupo;
+	}
+
+	public boolean isCadastro() {
+		return cadastro;
+	}
+
+	public void setCadastro(boolean cadastro) {
+		this.cadastro = cadastro;
+	}
+
+	public Selecao getGanhador() {
+		return ganhador;
+	}
+
+	public void setGanhador(Selecao ganhador) {
+		this.ganhador = ganhador;
+	}
+
+	public Selecao getPerdedor() {
+		return perdedor;
+	}
+
+	public void setPerdedor(Selecao perdedor) {
+		this.perdedor = perdedor;
 	}
 
 }
